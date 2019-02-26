@@ -39,9 +39,13 @@
 - map() foreach() fliter() reduce() 
 - Object.assign 拷贝
 
+    数组(array)：
+
+    字符(String)：
+
 ### 关于 this
 
-- 如果要想把 this 的值从一个环境传到另一个，就要用 call 或者apply 方法。
+- 如果要想把 this 的值从一个环境传到另一个，就要用 call 或者 apply 方法。
 - this 的值取决于**函数的调用方式**
 - 每次函数被调用时 this 的值也可能会不同
 - 箭头函数中，是在闭合的执行环境内设置 this 的值
@@ -59,16 +63,20 @@
 
 ### 有哪些基本的算法？
 
+### ES6/7的新特性
+
 ### 如何理解虚拟DOM? [@zhizhu](https://www.zhihu.com/question/29504639)
 
 步骤一：用JS对象模拟DOM树
+
 步骤二：比较两棵虚拟DOM树的差异 → 深度优先遍历，标记并记录差异 → 差异类型 → 列表对比算法
+
 步骤三：把差异应用到真正的DOM树上
 
 关键技术：batching(批处理)、Diff算法的优化
 
-    - batching(批处理)：将所有DOM的操作搜集打包在js对象中完成，然后一次性的递交给真实DOM（性能上只刷新一次）
-    - Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)，主要得益于对新旧DOM树进行了一个深度的优先遍历，并对每个节点做唯一标记
+    batching(批处理)：将所有DOM的操作搜集打包在js对象中完成，然后一次性的递交给真实DOM（性能上只刷新一次）
+    Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)，主要得益于对新旧DOM树进行了一个深度的优先遍历，并对每个节点做唯一标记
 
 优势：结合Node Server层来说，实现服务端与浏览器端的同构更为方便。
 
@@ -118,7 +126,8 @@
     参考：https://juejin.im/entry/575543857db2a2006993114e
 - [JS中的重要关键词](#js中的重要关键词)
 - 
-### 前端项目设计、构架
+
+## 设计、构架
 
 > 来源列表：
 >  - https://juejin.im/post/5bf5610be51d452a1353b08d
@@ -145,6 +154,23 @@
 - BOM盒模型 [box-sizing MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing) 
 - 纯 CSS 盒子水平垂直居中的实现方法  [Demo](https://zhuziyi1989.github.io/interview/Code/box-center.html)
 
+## 客户端
+
+- 浏览器内核：V8引擎、
+- 进程(系统层面)：一个Chome程序，或者一个标签页，操作系统分配资源的最小单位，独立
+- 线程(内核层面)：渲染线程/JS引擎/事件触发/定时器触发/异步HTTP请求，程序执行的最小单位，共享
+
+## 服务器端
+
+- Node
+- Koa
+- 服务器管理(Linux、Centos等)
+- 
 
 ## 网络安全篇
 
+## 系统工具和开发效率
+
+- git
+- 代码编辑器
+- 项目管理工具、BUG管理工具
