@@ -34,7 +34,7 @@
 
 ### JS中的高频API
 
-- call()  apply()  bind()
+- call()   apply()数组传递  bind()不立即执行
 - split() 字符串切割成数组  splice()  join()  push/pop  unshift/shift  concat()
 - map() foreach() fliter() reduce() 
 - Object.assign 拷贝
@@ -60,6 +60,19 @@
 ### 有哪些基本的算法？
 
 ### 如何理解虚拟DOM? [@zhizhu](https://www.zhihu.com/question/29504639)
+
+步骤一：用JS对象模拟DOM树
+步骤二：比较两棵虚拟DOM树的差异 → 深度优先遍历，标记并记录差异 → 差异类型 → 列表对比算法
+步骤三：把差异应用到真正的DOM树上
+
+关键技术：batching(批处理)、Diff算法的优化
+
+    - batching(批处理)：将所有DOM的操作搜集打包在js对象中完成，然后一次性的递交给真实DOM（性能上只刷新一次）
+    - Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)，主要得益于对新旧DOM树进行了一个深度的优先遍历，并对每个节点做唯一标记
+
+优势：结合Node Server层来说，实现服务端与浏览器端的同构更为方便。
+
+类比：CPU 内存(纯JS操作)和硬盘(纯DOM操作)的关系。
 
 ### 临时记录
 
