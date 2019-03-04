@@ -19,6 +19,11 @@
 
 ### ES6/7的新特性
 
+    - let、const
+    - 箭头函数
+    - promis
+    - for of
+
 ### 如何理解虚拟DOM? [@zhizhu](https://www.zhihu.com/question/29504639)
 
 步骤一：用JS对象模拟DOM树
@@ -53,10 +58,24 @@
 
 ## 5. 框架使用
 
+### Vue 和 React的一些优点？
+    
+    几个切入点：
+
+    - 数据驱动
+    - 数据单向流
+    - 虚拟DOM（可减少直接操作DOM）
+    - Vue 的双向绑定（原理？）
+    - 无缝结合 webpack 等打包工具，使得开发模式更现代，具有模块化、组件化式的。
+
+
+
 ## 6. CSS 布局基础
 
 - BOM盒模型 [box-sizing MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing) 
 - 纯 CSS 盒子水平垂直居中的实现方法  [Demo](https://zhuziyi1989.github.io/interview/Code/box-center.html)
+
+### 移动端布局方案
 
 ## 7. 系统工具和开发效率
 
@@ -64,6 +83,6 @@
 - 代码编辑器
 - 项目管理工具、BUG管理工具
 
-## 8. 算法、计算机基础概念
+## 8. 算法、数据结构、计算机基础等
 
 ### 有哪些基本的算法？

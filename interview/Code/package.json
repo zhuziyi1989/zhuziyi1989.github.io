@@ -1,17 +1,19 @@
 {
-  "name": "Code",
+  "name": "front-end-code",
   "version": "1.0.0",
-  "description": "临时性代码片段测试",
+  "description": "前端基础知识不完全记录",
   "main": "index.js",
-  "homepage": "https://zhuziyi1989.github.io",
+  "homepage": "https://github.com/zhuziyi1989/zhuziyi1989.github.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zhuziyi1989/zhuziyi1989.github.io"
+    "url": "git@github.com:zhuziyi1989/zhuziyi1989.github.io.git"
   },
   "scripts": {
     "server": "node server.js",
     "start": "webpack-dev-server --open --watch",
-    "build": "webpack --config webpack.config.js --mode=production "
+    "prebuild": "echo I run before the build script",
+    "build": "webpack --config webpack.config.js --mode=production ",
+    "postbuild": "echo I run after the build script"
   },
   "keywords": [
     "temp"
