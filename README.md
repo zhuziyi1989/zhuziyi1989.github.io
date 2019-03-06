@@ -2,20 +2,21 @@
 
 ## 目录
 
-1. JS 语言基础
-2. 客户端及其内核原理
-3. 服务端应用
-4. 网络原理
-5. 框架使用
-6. CSS 布局基础
-7. 系统工具和开发效率
-8. 算法、计算机基础概念
+1. [JS 语言基础](#1js语言基础)
+2. [客户端及其内核原理](#2客户端及其内核原理)
+3. [服务端应用](#3服务端应用)
+4. [网络原理](#4网络原理)
+5. [框架使用](#5框架使用)
+6. [CSS 布局基础](#6CSS-布局基础)
+7. [前端构架和开发效率](#7前端构架和开发效率)
+8. [算法、计算机基础概念](#8算法、计算机基础概念)
+9.   [面试分享](#9面试分享)
 
-## 1.JS 语言基础
+## 1.JS语言基础
 
 ### DOM 事件绑定的几种方式？常见的 API
 
-### 谈谈 new 操作符
+### “new” 关键字在 JavaScript 中有什么作用？
 
 ### 关于“闭包”的相关话题
 
@@ -23,6 +24,73 @@
 
 ### 原型、原型链、继承等相关话题
 
+关于原型继承， 我们应该记住以下几条：
+
+- 类属性使用 this 绑定
+- 类方法使用 prototype 对象来绑定
+- 为了继承属性， 使用 call 函数来传递 this
+- 为了继承方法, 使用 Object.create 连接父和子的原型
+- 始终将子类构造函数设置为自身，以获得其对象的正确类型
+
+### 关于 this
+
+- 如果要想把 this 的值从一个环境传到另一个，就要用 call 或者 apply 方法。
+- this 的值取决于**函数的调用方式**
+- 每次函数被调用时 this 的值也可能会不同
+- 箭头函数中，是在闭合的执行环境内设置 this 的值
+- 当函数作为对象里的方法被调用时，它们的 this 是调用该函数的对象。
+- 谁调用的该方法，那么this就指向谁。
+
+查看此文：[MDN 对 this 的讲解](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)
+
+### JS中的重要关键词（大杂烩）
+
+- super关键字用于访问和调用一个对象的父对象上的函数。
+
+    super([arguments]); 
+    // 调用 父对象/父类 的**构造函数**
+    super.functionOnParent([arguments]); 
+    // 调用 父对象/父类 上的**方法**
+
+    参考 [super MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super)
+
+- function* 关键字定义了一个 generator 函数表达式。
+- yield     暂停和恢复 generator 函数。
+- yield*    委派给另外一个 generator 函数或可迭代的对象。
+- async function*  async function 定义一个异步函数表达式。
+- await     暂停或恢复执行异步函数，并等待 promise 的 resolve/reject 回调。
+- promise
+ - JSON.stringify() 将一个对象转制成字符串
+ - JSON.parse() 将字符串转成对象
+ - Object.prototype.hasOwnProperty 用于检查给定的属性/键是否存在于对象中。
+ - Object.prototype.instanceof 判断给定对象是否是特定原型的类型。
+ - 使用 Object.freeze 可以冻结对象，以便不能修改对象现有属性。
+- call()   apply()数组传递  bind()不立即执行
+- split() 字符串切割成数组  splice()  join()  push/pop  unshift/shift  concat()
+- map() foreach() fliter() reduce() 
+- Object.assign 拷贝
+
+### 数组(array)：
+
+### 字符(String)：
+
+### 对象(Object):
+
+> 来源列表：
+>  - https://juejin.im/post/5bf5610be51d452a1353b08d
+
+### 浮点数问题，解释 console.log(0.1+0.2) //0.30000000000000004
+
+参考： [浮点数为什么不精确？](https://juejin.im/entry/575543857db2a2006993114e)
+
+### JavaScript 中有哪些不同的数据类型？
+
+### 异步相关，解释 promises，observables，generator 或 async-wait 
+
+### JavaScript 中有哪些不同的函数调用模式？ 详细解释。 
+    
+    ** 提示: 有四种模式，函数调用，方法调用，.call() 和 .apply()。
+    
 ### ES6/7的新特性
 
 - let、const
@@ -32,20 +100,24 @@
 
     箭头函数和普通 function 的区别？从而课衍生到 `call、apply、bind` 三者的运用问题，更或者涉及到 `this` 的使用。
 
-### 如何理解虚拟DOM? [zhizhu](https://www.zhihu.com/question/29504639)
+### 新 ECMAScript 2018 提案关注过有哪些？
+    
+    ** 提示: ECMAScript 2018 的 BigInt、partial function、pipeline operator
 
-- 步骤一：用JS对象模拟DOM树
-- 步骤二：比较两棵虚拟DOM树的差异 → 深度优先遍历，标记并记录差异 → 差异类型 → 列表对比算法
-- 步骤三：把差异应用到真正的DOM树上
+### JavaScript 中的迭代器（iterators）和迭代（iterables）是什么？ 你知道什么是内置迭代器吗？
 
-关键技术：batching(批处理)、Diff算法的优化:
+    ```javascript
+    const a ={
+        key1:Symbol(),
+        key2:110
+    }
+    console.log(JSON.stringify(a)) // {"key2":110}  丢失 key1，为什么丢失？
+    ```
 
-    batching(批处理)：将所有DOM的操作搜集打包在js对象中完成，然后一次性的递交给真实DOM（性能上只刷新一次）
-    Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)，主要得益于对新旧DOM树进行了一个深度的优先遍历，并对每个节点做唯一标记
+### 你熟悉 Typed Arrays 吗？ 如果熟悉，请解释他们与 JavaScript 中的传统数组相比的异同？
 
-优势：结合Node Server层来说，实现服务端与浏览器端的同构更为方便。
+### 解释 TCO - 尾调用优化（Tail Call Optimization）。 有没有支持尾调用优化的 JavaScript 引擎？ 
 
-类比：CPU 内存(纯JS操作)和硬盘(纯DOM操作)的关系。
 
 ## 2.客户端及其内核原理
 
@@ -54,14 +126,26 @@
 - 线程(内核层面)：渲染线程/JS引擎/事件触发/定时器触发/异步HTTP请求，程序执行的最小单位，共享
 - 回流和重绘，以及优化方案 [link](https://juejin.im/post/5c39aeba6fb9a049b41cb0ee)
 
-## 3. 服务端应用
+### JS引擎的基础概念
+
+调用堆栈：
+
+	V8引擎主要由两部分组成:
+		① 内存堆：这是内存分配发生的地方
+		② 调用栈：这是你的代码执行时的地方
+		
+概念：[Call Stack — MDN](https://developer.mozilla.org/zh-CN/docs/Glossary/Call_stack)
+
+堆栈溢出？堆栈溢出的产生是由于过多的函数调用，导致调用堆栈无法容纳这些调用的返回地址，一般在递归中产生。
+
+## 3.服务端应用
 
 - Node
 - Koa
 - 服务器管理(Linux、Centos等)
 - Nginx 的使用
 
-## 4. 网络原理
+## 4.网络原理
 
 ### 简单讲解一下 HTTP2 的多路复用？
 
@@ -89,8 +173,8 @@ HTTP2中
 - （数据链路层）封装成帧，交换机
 - （物理层）光纤/网线/无线电磁波等
 
-### （应用层）HTTP 相关问题
-- 强缓存 & 协商缓存
+### HTTP 相关问题
+- 强缓存  & 协商缓存
 - 跨域的原因及处理方式 [link](https://tech.jandou.com/cross-domain.html)
 - get 与 post
 - 通用头部、请求/响应头、请求/响应体
@@ -111,7 +195,24 @@ HTTP2中
 ### 如何部署大型 CDN ？
 
 
-## 5. 框架使用
+## 5.框架的使用
+
+- 解释单向数据流和双向数据绑定。
+- Vue双向绑定实现原理
+- 单向数据流架构在哪些方面适合 MVC？
+
+    MVC 拥有大约 50 年的悠久历史，并已演变为 MVP，MVVM 和 MV *。两者之间的相互关系是什么？如果 MVC 是架构模式，那么单向数据流是什么？这些竞争模式是否能解决同样的问题？
+
+- 客户端 MVC 与服务器端或经典 MVC 有何不同？
+
+    提示：经典 MVC 是适用于桌面应用程序的 Smalltalk MVC。在 Web 应用中，至少有两个不同的数据 MVC 周期。
+
+- 不可变数据结构（immutable data structures）解决了哪些问题？
+
+- 大型应用程序是否应使用静态类型？
+
+    如何比较 TypeScript/Flow 与 Elm/ReasonML/PureScript 等 JS 转换语言？这些方法的优缺点是什么？
+
 
 ### Vue 和 React的一些优点？
     
@@ -122,9 +223,22 @@ HTTP2中
 - Vue 的双向绑定（原理？）
 - 无缝结合 webpack 等打包工具，使得开发模式更现代，具有模块化、组件化式的。
 
+### 如何理解虚拟DOM? [zhizhu](https://www.zhihu.com/question/29504639)
 
+- 步骤一：用JS对象模拟DOM树
+- 步骤二：比较两棵虚拟DOM树的差异 → 深度优先遍历，标记并记录差异 → 差异类型 → 列表对比算法
+- 步骤三：把差异应用到真正的DOM树上
 
-## 6. CSS 布局基础
+关键技术：batching(批处理)、Diff算法的优化:
+
+    batching(批处理)：将所有DOM的操作搜集打包在js对象中完成，然后一次性的递交给真实DOM（性能上只刷新一次）
+    Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)，主要得益于对新旧DOM树进行了一个深度的优先遍历，并对每个节点做唯一标记
+
+优势：结合Node Server层来说，实现服务端与浏览器端的同构更为方便。
+
+类比：CPU 内存(纯JS操作)和硬盘(纯DOM操作)的关系。
+
+## 6.CSS布局基础
 
 - BOM盒模型 [box-sizing MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing) 
 - 纯 CSS 盒子水平垂直居中的实现方法  [Demo](https://zhuziyi1989.github.io/interview/Code/box-center.html)
@@ -142,17 +256,17 @@ HTTP2中
 - 因使用了标准盒模型，盒子的 border 必然导致盒子挤出去，那么如何实现边框？
   答：用阴影或者outline来画线更加巧妙。
 - 
-## 7. 系统工具和开发效率
+## 7.前端构架和开发效率
 
 - git
 - 代码编辑器
 - 项目管理工具、BUG管理工具
 
-## 8. 算法、数据结构、计算机基础等
+## 8.算法、数据结构、计算机基础等
 
 ### 有哪些基本的算法？
 
-## 9. 综合性问题
+## 9.综合性问题
 
 - 自我介绍
 
@@ -172,3 +286,13 @@ HTTP2中
 ④ 避免高频刷新页面获取数据
 
 ⑤ 设置响应头 cache-control 和 last-modifie
+
+
+
+
+## 10.面试分享
+
+- [半年经验面试阿里前端P6](https://juejin.im/post/5a92c23b5188257a6b06110b)
+- [前端面试分享: 两年经验社招-阿里巴巴](https://segmentfault.com/a/1190000013538920)
+- [2019年前端面试都聊啥？一起来看看](https://juejin.im/post/5bf5610be51d452a1353b08d)
+- [中高级前端大厂面试秘籍，为你保驾护航金三银四，直通大厂(上)](https://juejin.im/post/5c64d15d6fb9a049d37f9c20)
