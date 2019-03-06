@@ -215,20 +215,21 @@ HTTP2中
 
 ## 5.框架的使用
 
-### 解释单向数据流和双向数据绑定。
+### 解释单向数据流和双向数据绑定
+
 ### Vue双向绑定实现原理 
 ➤ 参考：[《剖析Vue原理&实现双向绑定MVVM》](https://segmentfault.com/a/1190000006599500)
 - 单向数据流架构在哪些方面适合MVC ？
 
     MVC 拥有大约 50 年的悠久历史，并已演变为 MVP，MVVM 和 MV *。两者之间的相互关系是什么？如果 MVC 是架构模式，那么单向数据流是什么？这些竞争模式是否能解决同样的问题？
 
-- 客户端 MVC 与服务器端或经典 MVC 有何不同？
+### 客户端 MVC 与服务器端或经典 MVC 有何不同？
 
     提示：经典 MVC 是适用于桌面应用程序的 Smalltalk MVC。在 Web 应用中，至少有两个不同的数据 MVC 周期。
 
-- 不可变数据结构（immutable data structures）解决了哪些问题？
+### 不可变数据结构（immutable data structures）解决了哪些问题？
 
-- 大型应用程序是否应使用静态类型？
+### 大型应用程序是否应使用静态类型？
 
     如何比较 TypeScript/Flow 与 Elm/ReasonML/PureScript 等 JS 转换语言？这些方法的优缺点是什么？
 
@@ -259,8 +260,17 @@ HTTP2中
 
 ## 6.CSS布局基础
 
-- BOM盒模型 [box-sizing MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing) 
-- 纯 CSS 盒子水平垂直居中的实现方法  [Demo](https://zhuziyi1989.github.io/interview/Code/box-center.html)
+### BOM盒模型 
+- [box-sizing MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing) 
+- 浮动、文档流
+
+### 纯 CSS 盒子水平垂直居中的实现方法  
+
+查看 [Demo](https://zhuziyi1989.github.io/interview/Code/box-center.html)
+
+### 动画相关
+
+### Canvas 和 svg
 
 ### 移动端布局方案
 
@@ -277,9 +287,11 @@ HTTP2中
 - 
 ## 7.前端构架和开发效率
 
-- git
-- 代码编辑器
-- 项目管理工具、BUG管理工具
+### git
+
+### 代码编辑器
+
+### 项目管理工具、BUG管理工具
 
 ## 8.算法、数据结构、计算机基础等
 
@@ -287,11 +299,11 @@ HTTP2中
 
 ## 9.综合性问题
 
-- 自我介绍
+### 自我介绍
 
-- 介绍印象最深刻的项目
+### 介绍印象最深刻的项目
 
-- 高并发高可用的前端架构
+### 高并发高可用的前端架构
     
 场景：诸如京东6.18和双十一这类时期，要求采用高并发、高可用的前端架构，
 
@@ -305,8 +317,6 @@ HTTP2中
 ④ 避免高频刷新页面获取数据
 
 ⑤ 设置响应头 cache-control 和 last-modifie
-
-
 
 
 ## 10.面试分享
