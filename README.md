@@ -1,4 +1,4 @@
-# 前端基础知识不完全记录
+# 前端知识体系不完全记录
 
 ## 目录
 
@@ -16,6 +16,8 @@
 ## 1.JS语言基础
 
 ### DOM 事件绑定的几种方式？常见的 API
+
+### 事件冒泡和捕获
 
 ### “new” 关键字在 JavaScript 中有什么作用？
 
@@ -68,8 +70,9 @@
  - 使用 Object.freeze 可以冻结对象，以便不能修改对象现有属性。
 - call()   apply()数组传递  bind()不立即执行
 - split() 字符串切割成数组  splice()  join()  push/pop  unshift/shift  concat()
-- map() foreach() fliter() reduce() 
 - Object.assign 拷贝
+
+### 理解和深挖 map() 、foreach() 、fliter() 、reduce() 
 
 ### 数组(array)：
 
@@ -119,6 +122,19 @@
 
 ### 解释 TCO - 尾调用优化（Tail Call Optimization）。 有没有支持尾调用优化的 JavaScript 引擎？ 
 
+### 理解正则表达
+
+正则表达式主要运用在_处理文本_、_对用户输入执行规则_等
+
+创建正则表达式，有如下两种方式：
+
+```
+var re = /ar/;
+var re = new RegExp('ar'); 
+```
+### 错误的处理模式，捕获和调试的一些心得？
+
+- try/catch
 
 ## 2.客户端及其内核原理
 
@@ -188,6 +204,7 @@ HTTP2中
 
 相关文章：
 - [关于 TCP/IP，必知必会的十个问题](https://juejin.im/post/598ba1d06fb9a03c4d6464ab)
+- [通俗大白话来理解TCP协议的三次握手和四次分手 #14](https://github.com/jawil/blog/issues/14)
 - [掘金搜索TCP结果](https://juejin.im/search?query=tcp&type=all)
 
 
@@ -198,9 +215,10 @@ HTTP2中
 
 ## 5.框架的使用
 
-- 解释单向数据流和双向数据绑定。
-- Vue双向绑定实现原理
-- 单向数据流架构在哪些方面适合 MVC？
+### 解释单向数据流和双向数据绑定。
+### Vue双向绑定实现原理 
+➤ 参考：[《剖析Vue原理&实现双向绑定MVVM》](https://segmentfault.com/a/1190000006599500)
+- 单向数据流架构在哪些方面适合MVC ？
 
     MVC 拥有大约 50 年的悠久历史，并已演变为 MVP，MVVM 和 MV *。两者之间的相互关系是什么？如果 MVC 是架构模式，那么单向数据流是什么？这些竞争模式是否能解决同样的问题？
 
@@ -297,3 +315,5 @@ HTTP2中
 - [前端面试分享: 两年经验社招-阿里巴巴](https://segmentfault.com/a/1190000013538920)
 - [2019年前端面试都聊啥？一起来看看](https://juejin.im/post/5bf5610be51d452a1353b08d)
 - [中高级前端大厂面试秘籍，为你保驾护航金三银四，直通大厂(上)](https://juejin.im/post/5c64d15d6fb9a049d37f9c20)
+- [记一次“失利后”经过半年准备通过阿里社招的经历与感悟](https://segmentfault.com/a/1190000013129650)
+
