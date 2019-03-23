@@ -10,14 +10,53 @@
 6. [CSS 布局基础](#6CSS布局基础)
 7. [前端构架和开发效率](#7前端构架和开发效率)
 8. [算法、数据结构、计算机基础等](#8算法数据结构计算机基础等)
-9.   [综合性问题](#9综合性问题)
-10. [面试分享](#10面试分享)
+9. [综合性问题](#9综合性问题)
+10. [面试分享和学习资料](#10面试分享和学习资料)
 
 ## 1.JS语言基础
 
 ### DOM 事件绑定的几种方式？常见的 API
 
 ### 事件冒泡和捕获
+
+### 值类型和引用类型、变量提升
+
+### 立即执行函数, 模块化, 命名空间
+
+### == 与 ===区别，typeof 与 instanceof
+
+### 围绕 setTimeout, setInterval 和 requestAnimationFrame 展开的话题
+
+
+#### setTimeout导致实例引用的丢失
+
+<details>
+<summary>查看解析</summary>
+
+```javascript
+function LateBloomer() {
+  this.petalCount = Math.ceil(Math.random() * 12) + 1;
+}
+
+// 在 1 秒钟后声明 bloom
+LateBloomer.prototype.bloom = function() {
+  window.setTimeout(this.declare.bind(this), 1000);// 尝试不使用 bind，看看结果
+};
+
+LateBloomer.prototype.declare = function() {
+  console.log('I am a beautiful flower with ' +
+    this.petalCount + ' petals!');
+};
+
+var flower = new LateBloomer();
+flower.bloom();  // 一秒钟后, 调用'declare'方法
+```
+在默认情况下，使用 window.setTimeout() 时，this 关键字会指向 window （或global）对象。当类的方法中需要 this 指向类的实例时，你可能需要显式地把 this 绑定到回调函数，就不会丢失该实例的引用。
+
+</details>
+
+
+### 函数作用域,、块级作用域和词法作用域
 
 ### “new” 关键字在 JavaScript 中有什么作用？
 
@@ -44,7 +83,9 @@
 - 当函数作为对象里的方法被调用时，它们的 this 是调用该函数的对象。
 - 谁调用的该方法，那么this就指向谁。
 
-查看此文：[MDN 对 this 的讲解](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)
+参考资料：[MDN 对 this 的讲解](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)
+
+### 设计模式展开话题
 
 ### JS中的重要关键词（大杂烩）
 
@@ -55,7 +96,7 @@
     super.functionOnParent([arguments]); 
     // 调用 父对象/父类 上的**方法**
 
-    参考 [super MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super)
+  	参考资料：[super MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super)
 
 - function* 关键字定义了一个 generator 函数表达式。
 - yield     暂停和恢复 generator 函数。
@@ -72,9 +113,19 @@
 - split() 字符串切割成数组  splice()  join()  push/pop  unshift/shift  concat()
 - Object.assign 拷贝
 
-### 理解和深挖 map() 、foreach() 、fliter() 、reduce() 
+### 理解和深挖 map() 、foreach() 、fliter() 、reduce() 等高阶函数
 
 ### 数组(array)：
+
+Array.prototype.find() - 返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 undefined。
+Array.prototype.findIndex() – find and return an **index**
+Array.prototype.includes() – 用来判断一个数组是否包含一个指定的值，如果包含则返回 true，否则返回false。
+Array.prototype.filter() – _创建一个新数组_, 其包含通过所提供函数实现的测试的所有元素。 
+Array.prototype.every() – 测试数组的**所有元素**是否都通过了指定函数的测试。
+Array.prototype.some() – 测试是否**至少有一个元素**通过由提供的函数实现的测试。
+Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数。
+
+
 
 ### 字符(String)：
 
@@ -85,7 +136,7 @@
 
 ### 浮点数问题，解释 console.log(0.1+0.2) //0.30000000000000004
 
-参考： [浮点数为什么不精确？](https://juejin.im/entry/575543857db2a2006993114e)
+参考资料：： [浮点数为什么不精确？](https://juejin.im/entry/575543857db2a2006993114e)
 
 ### JavaScript 中有哪些不同的数据类型？
 
@@ -155,6 +206,8 @@ var re = new RegExp('ar');
 
 堆栈溢出？堆栈溢出的产生是由于过多的函数调用，导致调用堆栈无法容纳这些调用的返回地址，一般在递归中产生。
 
+参考资料：[JavaScript 如何工作：对引擎、运行时、调用堆栈的概述](https://juejin.im/post/5a05b4576fb9a04519690d42)
+
 ## 3.服务端应用
 
 - Node
@@ -165,6 +218,9 @@ var re = new RegExp('ar');
 ## 4.网络原理
 
 ### 简单讲解一下 HTTP2 的多路复用？
+
+<details>
+<summary>查看解析</summary>
 
 在 HTTP/1 中，每次请求都会建立一次TCP连接，也就是我们常说的3次握手4次挥手，这在一次请求过程中占用了相当长的时间，即使开启了 Keep-Alive ，解决了多次连接的问题，但是依然有两个效率上的问题：
 
@@ -183,6 +239,8 @@ HTTP2中
 帧代表着最小的数据单位，每个帧会标识出该帧属于哪个流，流也就是多个帧组成的数据流。
 多路复用，就是在一个 TCP 连接中可以存在多条流。换句话说，也就是可以发送多个请求，对端可以通过帧中的标识知道属于哪个请求。通过这个技术，可以避免 HTTP 旧版本中的队头阻塞问题，极大的提高传输性能。[More...](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/14)
 
+</details>
+
 ### 五(七)层因特网协议栈？
 - （应用层）HTTP/DNS/FTP等，HTTP 与 HTTPS 的区别？DNS 域名解析过程？
 - （传输层）TCP/IP 协议
@@ -192,21 +250,26 @@ HTTP2中
 
 ### HTTP 相关问题
 - 强缓存  & 协商缓存
-- 跨域的原因及处理方式 [link](https://tech.jandou.com/cross-domain.html)
+- 跨域的原因及处理方式 [参考资料](https://tech.jandou.com/cross-domain.html)
 - get 与 post
 - 通用头部、请求/响应头、请求/响应体
 - 常用的状态码  200 301 302 304 400 404 500 501 503
 
 ### TCP/IP 相关原理及延伸
+
+<details>
+<summary>查看解析</summary>
+
 - 为什么握手需要三次，而挥手却需要四次？ ➤为了防止_已失效的_连接请求报文段突然又传送到了服务端，因而产生错误。握手过程中传送的包里不包含数据。
 - 为什么要四次挥手？ ➤主机双方相互确认结束报文的发送，并应答对方。
 - 为什么要等待2MSL？ ➤ ①.保证TCP协议的全双工连接能够_可靠关闭_；②.保证这次连接的_重复数据段从网络中消失_。备注：MSL是任何报文段被丢弃前在网络内的最长时间。
 
-相关文章：
+参考资料：
 - [关于 TCP/IP，必知必会的十个问题](https://juejin.im/post/598ba1d06fb9a03c4d6464ab)
 - [通俗大白话来理解TCP协议的三次握手和四次分手 #14](https://github.com/jawil/blog/issues/14)
 - [掘金搜索TCP结果](https://juejin.im/search?query=tcp&type=all)
 
+</details>
 
 ### 正向代理和反向代理的区别？
 
@@ -218,7 +281,7 @@ HTTP2中
 ### 解释单向数据流和双向数据绑定
 
 ### Vue双向绑定实现原理 
-➤ 参考：[《剖析Vue原理&实现双向绑定MVVM》](https://segmentfault.com/a/1190000006599500)
+➤ 参考资料：[《剖析Vue原理&实现双向绑定MVVM》](https://segmentfault.com/a/1190000006599500)
 - 单向数据流架构在哪些方面适合MVC ？
 
     MVC 拥有大约 50 年的悠久历史，并已演变为 MVP，MVVM 和 MV *。两者之间的相互关系是什么？如果 MVC 是架构模式，那么单向数据流是什么？这些竞争模式是否能解决同样的问题？
@@ -243,7 +306,15 @@ HTTP2中
 - Vue 的双向绑定（原理？）
 - 无缝结合 webpack 等打包工具，使得开发模式更现代，具有模块化、组件化式的。
 
-### 如何理解虚拟DOM? [zhizhu](https://www.zhihu.com/question/29504639)
+
+
+
+### 如何理解虚拟DOM? 
+
+<details>
+<summary>查看解析</summary>
+
+参考资料：[如何理解虚拟DOM? @zhihu](https://www.zhihu.com/question/29504639)
 
 - 步骤一：用JS对象模拟DOM树
 - 步骤二：比较两棵虚拟DOM树的差异 → 深度优先遍历，标记并记录差异 → 差异类型 → 列表对比算法
@@ -252,11 +323,21 @@ HTTP2中
 关键技术：batching(批处理)、Diff算法的优化:
 
     batching(批处理)：将所有DOM的操作搜集打包在js对象中完成，然后一次性的递交给真实DOM（性能上只刷新一次）
-    Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)，主要得益于对新旧DOM树进行了一个深度的优先遍历，并对每个节点做唯一标记
+    Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)，主要得益于对新旧DOM树进行了一个深度的优先遍历，并对每个节点做唯一 id 标记
+
+逐层进行节点比较
+![](https://ws1.sinaimg.cn/large/69b05e0aly1g17x7hycqdj20kg0bdaae.jpg)
+
+更多解析：[深入浅出 React（四）：虚拟 DOM Diff 算法解析](https://infoq.cn/article/react-dom-diff)
+
+> Tips：由于特有的 DOM Diff 算法，我们在实现自己的组件时，保持稳定的 DOM 结构会有助于性能的提升。例如，我们有时可以通过 CSS 隐藏或显示某些节点，而不是真的移除或添加 DOM 节点。
 
 优势：结合Node Server层来说，实现服务端与浏览器端的同构更为方便。
 
 类比：CPU 内存(纯JS操作)和硬盘(纯DOM操作)的关系。
+
+</details>
+
 
 ## 6.CSS布局基础
 
@@ -297,6 +378,10 @@ HTTP2中
 
 ### 有哪些基本的算法？
 
+### 二进制, 十进制, 十六进制, 科学记数法
+
+### 耗性能操作和时间复杂度
+
 ## 9.综合性问题
 
 ### 自我介绍
@@ -319,11 +404,17 @@ HTTP2中
 ⑤ 设置响应头 cache-control 和 last-modifie
 
 
-## 10.面试分享
+## 10.面试分享和学习资料
+
+### 面试分享
 
 - [半年经验面试阿里前端P6](https://juejin.im/post/5a92c23b5188257a6b06110b)
 - [前端面试分享: 两年经验社招-阿里巴巴](https://segmentfault.com/a/1190000013538920)
 - [2019年前端面试都聊啥？一起来看看](https://juejin.im/post/5bf5610be51d452a1353b08d)
 - [中高级前端大厂面试秘籍，为你保驾护航金三银四，直通大厂(上)](https://juejin.im/post/5c64d15d6fb9a049d37f9c20)
 - [记一次“失利后”经过半年准备通过阿里社招的经历与感悟](https://segmentfault.com/a/1190000013129650)
+
+### 学习资料
+
+-  书籍《You-Dont-Know-JS》 [Github在线阅读](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN)
 
