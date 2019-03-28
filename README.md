@@ -25,6 +25,8 @@
 
 ### == 与 ===区别，typeof 与 instanceof
 
+### 剩余参数、默认参数和解构赋值参数
+
 ### 围绕 setTimeout, setInterval 和 requestAnimationFrame 展开的话题
 
 
@@ -96,7 +98,7 @@ flower.bloom();  // 一秒钟后, 调用'declare'方法
     super.functionOnParent([arguments]); 
     // 调用 父对象/父类 上的**方法**
 
-  	参考资料：[super MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super)
+    	参考资料：[super MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super)
 
 - function* 关键字定义了一个 generator 函数表达式。
 - yield     暂停和恢复 generator 函数。
@@ -132,6 +134,7 @@ Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数�
 ### 对象(Object):
 
 > 来源列表：
+>
 >  - https://juejin.im/post/5bf5610be51d452a1353b08d
 
 ### 浮点数问题，解释 console.log(0.1+0.2) //0.30000000000000004
@@ -143,9 +146,9 @@ Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数�
 ### 异步相关，解释 promises，observables，generator 或 async-wait 
 
 ### JavaScript 中有哪些不同的函数调用模式？ 详细解释。 
-    
+
     ** 提示: 有四种模式，函数调用，方法调用，.call() 和 .apply()。
-    
+
 ### ES6/7的新特性
 
 - let、const
@@ -156,7 +159,7 @@ Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数�
     箭头函数和普通 function 的区别？从而课衍生到 `call、apply、bind` 三者的运用问题，更或者涉及到 `this` 的使用。
 
 ### 新 ECMAScript 2018 提案关注过有哪些？
-    
+
     ** 提示: ECMAScript 2018 的 BigInt、partial function、pipeline operator
 
 ### JavaScript 中的迭代器（iterators）和迭代（iterables）是什么？ 你知道什么是内置迭代器吗？
@@ -201,7 +204,7 @@ var re = new RegExp('ar');
 	V8引擎主要由两部分组成:
 		① 内存堆：这是内存分配发生的地方
 		② 调用栈：这是你的代码执行时的地方
-		
+
 概念：[Call Stack — MDN](https://developer.mozilla.org/zh-CN/docs/Glossary/Call_stack)
 
 堆栈溢出？堆栈溢出的产生是由于过多的函数调用，导致调用堆栈无法容纳这些调用的返回地址，一般在递归中产生。
@@ -298,7 +301,7 @@ HTTP2中
 
 
 ### Vue 和 React的一些优点？
-    
+
 几个切入点：
 - 数据驱动
 - 数据单向流
@@ -389,7 +392,7 @@ HTTP2中
 ### 介绍印象最深刻的项目
 
 ### 高并发高可用的前端架构
-    
+
 场景：诸如京东6.18和双十一这类时期，要求采用高并发、高可用的前端架构，
 
 ① 利用**缓存**

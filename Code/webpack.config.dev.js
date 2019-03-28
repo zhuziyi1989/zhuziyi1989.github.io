@@ -8,7 +8,7 @@ const webpack = require('webpack');
 module.exports = {
     mode: "development", // enabled useful tools for development
     entry: {
-        app: './src/main.js',
+        app: './src/App.js',
         // print: './src/print.js'
     },
     devtool: 'inline-source-map',
@@ -19,7 +19,13 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: 'Hot Module Replacement'
+            title: 'My App Demo',
+            filename: "assets/index.html",
+            // template:"",
+            hash:true,
+            meta: {
+                viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
+            }
         }),
         new webpack.HotModuleReplacementPlugin()
     ],

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>JavaScript 在线运行</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/codemirror-5-31-0.css" rel="stylesheet" />
+    <link href="./css/editor-js.css" rel="stylesheet" />
+</head>
+
+<body>
+    <section id="static">
+        <pre>
+			<code id="static-js"></code>
+		</pre>
+    </section>
+    <section id="live" class="live hidden">
+        <header><h4>JavaScript 在线运行</h4>
+        </header>
+        <div id="editor" class="editor"></div>
+        <div class="output-container">
+            <div class="buttons-container">
+                <button id="execute" class="button run" type="button">运行 &rsaquo;</button>
+                <button id="reset" type="button" class="button">重置 O</button>
+            </div>
+            <div id="console" class="output"><code></code></div>
+        </div>
+    </section>
+    <script src="./js/codemirror-5-31-0.js"></script>
+    <script src="./js/editor-js.js"></script>
+</body>
+
+</html>
