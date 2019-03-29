@@ -153,14 +153,14 @@ header h4 {
 .button {
     display: block;
     color: #fff;
-    padding: 0.6em;
+    padding: 4.4em 0;
     border: none;
     width: 130px;
     font-size: 16px;
     line-height: 1;
     cursor: pointer;
     outline: none;
-    border-radius: 50em;
+    border-radius: 1em;
 }
 
 .button:nth-child(1) {
