@@ -172,7 +172,7 @@ header h4 {
 }
 
 .button:nth-child(1):hover {
-	color: #fff
+	color: #fff;
 	background-image: -webkit-linear-gradient(left, #2272af 0%, #118df1 100%);
 	background-image: -o-linear-gradient(left, #2272af 0%, #118df1 100%);
 	background-image: linear-gradient(to right, #2272af 0%, #118df1 100%);
@@ -180,16 +180,17 @@ header h4 {
 
 .button:nth-child(2) {
 	background: #fc6076;
-	background-image: -webkit-linear-gradient(290deg, #fc6076 0%, #ff9a44 100%);
-	background-image: -o-linear-gradient(290deg, #fc6076 0%, #ff9a44 100%);
-	background-image: linear-gradient(20deg, #fc6076 0%, #ff9a44 100%);
-}
-
-.button:nth-child(2):hover {
-	color: #fff
     background-image: -webkit-linear-gradient(290deg, #fb1132 0%, #fd7d10 100%);
     background-image: -o-linear-gradient(290deg, #fb1132 0%, #fd7d10 100%);
     background-image: linear-gradient(20deg, #fb1132 0%, #fd7d10 100%);
+}
+
+.button:nth-child(2):hover {
+	color: #fff;
+	background-image: -webkit-linear-gradient(290deg, #fc6076 0%, #ff9a44 100%);
+	background-image: -o-linear-gradient(290deg, #fc6076 0%, #ff9a44 100%);
+	background-image: linear-gradient(20deg, #fc6076 0%, #ff9a44 100%);
+
 }
 
 .js .editor {
