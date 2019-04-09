@@ -18,11 +18,13 @@ if(!String.prototype.repeatX) {
         count = Math.floor(count); // round 四舍五入；ceil 上进一位；floor 舍去一位
         if (str.length == 0 || count == 0) {
             return '';
+        // eslint-disable-next-line no-empty
         }else{
             
         }
     }
 }
+// eslint-disable-next-line no-console
 console.log(`舍去一位: Math.floor(3.7)=${Math.floor(3.7)}\n上进一位：Math.ceil(3.3)=${Math.ceil(3.3)}\n四舍五入：Math.round(3.6)=${Math.round(3.6)}`)
 
 

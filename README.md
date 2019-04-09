@@ -23,7 +23,7 @@
 
 ### 立即执行函数, 模块化, 命名空间
 
-### == 与 ===区别，typeof 与 instanceof
+### == 与 === 区别，typeof 与 instanceof
 
 ### 剩余参数、默认参数和解构赋值参数
 
@@ -282,6 +282,10 @@ HTTP2中
 ## 5.框架的使用
 
 ### 解释单向数据流和双向数据绑定
+只有 UI控件 才存在双向，非 UI控件 只有单向。全局性数据流使用单向，易跟踪调试。局部性数据流使用双向，简单易用。
+
+- [单向数据绑定和双向数据绑定的优缺点，适合什么场景？](https://www.zhihu.com/question/49964363)
+- [React 应用的架构模式 Flux](http://stylechen.com/react-flux.html)
 
 ### Vue双向绑定实现原理 
 ➤ 参考资料：[《剖析Vue原理&实现双向绑定MVVM》](https://segmentfault.com/a/1190000006599500)
@@ -350,7 +354,7 @@ HTTP2中
 
 ### 纯 CSS 盒子水平垂直居中的实现方法  
 
-查看 [Demo](https://zhuziyi1989.github.io/interview/Code/box-center.html)
+查看 [Demo](https://zhuziyi1989.github.io/interview/demo/box-center.html)
 
 ### 动画相关
 
