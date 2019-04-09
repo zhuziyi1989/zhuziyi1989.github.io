@@ -10,4 +10,6 @@ function selectSort(arr) {
     return arr
 }
 var result = selectSort([1, 2, 3, 7, 6, 1, 3])
-console.log(result)
+
+// eslint-disable-next-line no-console
+console.log(result);
