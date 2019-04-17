@@ -15,6 +15,26 @@
 
 ## 1.JS语言基础
 
+### 最新的 ECMAScript 标准定义了 7 种数据类型:
+
+6 种原始数据类型：
+  - Boolean
+  - Null （完全不存在）
+  - Undefined（一个没有被赋值的变量会有个默认值 undefined，也就说已存在，但还没值）
+  - Number（基于 IEEE 754 标准的`双精度` 64 位`二进制`格式的值（-(2^63 -1) 到 2^63 -1））
+  - String
+  - Symbol (ECMAScript 6 新定义)
+  - BigInt（ECMAScript 新提案）
+  
+  * 在JavaScript中，Number 可以准确表达的最大数字是2^53，比 2^53 大的所有数字可以使用BigInt表达。
+
+对象类型：
+  - 数组（Array）
+  - 函数（Function）
+  - 正则（RegExp）
+  - 日期（Date）
+
+
 ### DOM 事件绑定的几种方式？常见的 API
 
 ### 事件冒泡和捕获
@@ -23,7 +43,24 @@
 
 ### 立即执行函数, 模块化, 命名空间
 
-### == 与 === 区别，typeof 与 instanceof
+### 相等（== ）与全等（===）区别，typeof 与 instanceof
+
+相等（==）操作符会执行 ==类型转换==。
+
+typeof null        // "object" (因为一些以前的原因而不是'null')
+typeof undefined   // "undefined"
+null === undefined // false
+null  == undefined // true
+null === null // true
+null == null // true
+!null //true
+isNaN(1 + null) // false
+isNaN(1 + undefined) // true
+
+- typeof操作符返回一个字符串，表示未经计算的操作数的类型。
+- instanceof运算符用于测试构造函数的prototype属性是否出现在对象的原型链中的任何位置
+
+
 
 ### 剩余参数、默认参数和解构赋值参数
 
@@ -95,7 +132,7 @@ ES5中的普通函数：
 
 ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，直到global / window。
 
-*以上方法的指定 this 的优先级：new > bind > 对象调用 > 直接调用*
+*以上方法指定 this 的优先级：new > bind > 对象调用 > 直接调用*
 
 参考资料：[MDN 对 this 的讲解](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)
 
