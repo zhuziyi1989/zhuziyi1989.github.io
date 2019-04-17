@@ -15,9 +15,9 @@
 
 ## 1.JS语言基础
 
-### 最新的 ECMAScript 标准定义了 7 种数据类型:
+### ECMAScript 标准定义的数据类型:
 
-6 种原始数据类型：
+7 种原始数据类型：
   - Boolean
   - Null （完全不存在）
   - Undefined（一个没有被赋值的变量会有个默认值 undefined，也就说已存在，但还没值）
@@ -26,7 +26,7 @@
   - Symbol (ECMAScript 6 新定义)
   - BigInt（ECMAScript 新提案）
   
-  * 在JavaScript中，Number 可以准确表达的最大数字是2^53，比 2^53 大的所有数字可以使用BigInt表达。
+> 在JavaScript中，Number 可以准确表达的最大数字是2^53，比 2^53 大的所有数字可以使用BigInt表达。
 
 对象类型：
   - 数组（Array）
