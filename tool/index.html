@@ -9,10 +9,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="-1">
-    <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
-    <link rel="shortcut icon" href="img/favicon.ico?v=1" />
+    <!-- <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi"> -->
+    <link rel="shortcut icon" href="/favicon.ico?v=1" />
     <!--移动端版本兼容 -->
-    <script type="text/javascript">
+<!--     <script type="text/javascript">
         var phoneWidth = parseInt(window.screen.width);
         var phoneScale = phoneWidth / 640;
         var ua = navigator.userAgent;
@@ -26,12 +26,12 @@
         } else {
             document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
         }
-    </script>
+    </script> -->
     <!--移动端版本兼容 end -->
     <link rel="stylesheet" href="styles/solarized_light.min.css">
     <script type="text/javascript" src="js/highlight.min.js"></script>
     <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
     <style type="text/css">
     * { margin: 0; padding: 0; }
@@ -47,15 +47,19 @@
     }
     .qrcode{ position: relative; }
     .in-01,.in-02 {color: #0086BB; }
-    .in-01 { padding-left: 2em;box-sizing: border-box;min-height: 50px; line-height: 50px; background-color: #FBFBFB;    margin-top: 15px; }
+    .in-01 { padding-left: 1em;box-sizing: border-box;min-height: 50px; line-height: 50px; background-color: #FBFBFB;    margin-top: 15px; }
     #qrcode { display: none;width: 256px;height: 256px;position: absolute;top: 100%;left: 50%;margin-left: -123px; padding: 30px;background: rgba(251,251,251,0.5);box-shadow: 0 0 2em rgba(101,115,126,0.5); }
     #qrcode:before{content: "×";position: absolute; top: 0; right: 0;display: inline-block;width: 24px;font-size:20px;font-weight:700;line-height:24px;color:#000;text-shadow:0 1px 0 #fff;opacity:.2;-webkit-transition:all .3s;transition:all .3s; }
     #qrcode:focus, #qrcode:hover {cursor:pointer;opacity:.8;outline:0; }
-    #btn,#btnX { width: 100px; height: 34px; line-height: 34px; color: #fff; background: hsla(160, 100%, 32%, 0.9); display: inline-block; text-align: center; cursor: pointer; font-size: 16px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05); color: #ffffff; }
+    #btn,#btnX,#btnS { width: 100px; height: 34px; line-height: 34px; color: #fff; background: hsla(160, 100%, 32%, 0.9); display: inline-block; text-align: center; cursor: pointer; font-size: 16px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05); color: #ffffff; }
     #btn { background-color: hsla(0, 80%, 60%, 0.9); }
+    #btnS { background-color: hsla(197, 100%, 37%, 0.9); }
     #url { width: 300px; height: 30px; line-height: 30px; border: 1px solid #ddd; }
-    #result { text-align: left; width: 100%; height: 50px; line-height: 50px; font-size: 12px;color: #0086BB; background-color: #FBFBFB; text-indent: 2em; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
-    #qrcode_url{display: inline-block; width: 100%; height: 50px; line-height: 50px; text-align: left; color: #2AA8B6;box-sizing: border-box;background-color: #FBFBFB; }
+    .red-placeholder::-webkit-input-placeholder{
+        color: hsla(0, 80%, 60%, 0.9);
+    }
+    .result { text-align: left; width: 100%; height: 30px; line-height: 30px; font-size: 12px;color: #0086BB; background-color: #FBFBFB; text-indent: 2em; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+    .qrcode_url{display: inline-block; width: 100%; height: 30px; line-height: 30px; text-align: left; color: #2AA8B6;box-sizing: border-box;background-color: #FBFBFB; }
     .tool-link { text-align: left; width: auto; height: 48px; border: 1px solid #f5f5f5; line-height: 50px; color: #0086BB; background-color: #FBFBFB; margin-bottom: 5px; padding-left: 2em; }
     .tool-link a { font-family: inherit; font-size: 14px; text-decoration: none; display: inline-block; color: #0086BB; width: auto; height: 18px; line-height: 18px; padding: 3px; }
     .tool-link a:visited { color: inherit; }
@@ -69,7 +73,7 @@
     details summary { font-size: 16px; text-align: left; height: 30px; line-height: 30px; margin-top: 6px;color: #19AC7B;outline: none;cursor: pointer;}
     /*.zhitu, .uploadImages, .fileManage{ padding: 20px 0; }*/
     .zhitu iframe{width:100%;height:100%;min-height:960px;border:none;}
-    .uploadImages iframe{width:100%;height:100%;min-height:300px;border:none;}
+    .uploadImages iframe{width:100%;height:100%;min-height:600px;border:none;}
     .fileManage iframe{width:100%;height:100%;min-height:900px;border:none;}
     .footer { font-family: monospace; width: 100%;padding-bottom: 10px; font-size: 14px; line-height: 20px; text-align: center; color: #BCC1C4; }
     .container { max-width: 800px; width: 80%; margin: auto; padding: 0 10px; }
@@ -84,16 +88,18 @@
         <details class="qrcode" open>
             <summary>二维码生成：</summary>
             <div class="in-01">
-                <span>URL → </span>
-                <input type="text" id="url" placeholder="URL需包含传输协议，如：http://">
+                <span>URL或SKU → </span>
+                <input type="text" id="url" class="" placeholder="URL需包含传输协议，如：http://">
                 <span id="btn" value="生成普通二维码">普通二维码</span>
-                <span id="btnX" value="用于钱包测试">钱包测试</span>
+                <span id="btnS" value="生成短址二维码">短址二维码</span>
+                <span id="btnX" value="用于生成京粉专链">京粉专链</span>
             </div>
             <div class="in-02">
                 <div id="qrcode" title="关闭二维码">
                     <canvas width="256" height="256"></canvas>
                 </div>
-                <div id="result"><span>核对URL地址：</span><input type="text" id="qrcode_url" placeholder="光标移动自动选中，可直接拷贝粘贴，点击二维码关闭！" /></div>
+                <div class="result"><span>原始地址：</span><input type="text" class="qrcode_url" id="qrcode_url" placeholder="光标移动自动选中，可直接拷贝粘贴，点击二维码关闭！" /></div>
+                <div class="result"><span>新浪短址：</span><input type="text" class="qrcode_url" id="qrcode_url_shorten" placeholder="" /></div>
             </div>
         </details>
 
@@ -101,7 +107,6 @@
             <summary>一些工具：</summary>
             <div class="tool-link">
                 <a href="console.html?eruda=true" target="_blank">移动端调试</a>
-                <a href="http://wiki.cbpmgt.com/confluence/display/WYWiKi/H5" target="_blank">技术文库</a>
                 <a href="sdk.html" target="_blank">接口测试</a>
                 <a href="../demo/slider.html" target="_blank">滑动切屏例</a>
                 <a href="../demo/fund.html" target="_blank">M端案例</a>
@@ -112,12 +117,11 @@
             <div class="tool-link">
                 <a href="fund.html" target="_blank">基金模板</a>
                 <a href="fund-preview.html" target="_blank">基金模板预览</a>
-                <!-- <a href="http://172.25.47.49/pux/wystat/" target="_blank">埋点数据</a> -->
                 <a href="http://www.freeformatter.com/html-escape.html" target="_blank">HTML转码</a>
-                <a href="http://tool.css-js.com/" target="_blank">压缩美化</a>
+                <a href="http://www.css-js.com/" target="_blank">压缩美化</a>
                 <a href="http://tool.lu/" target="_blank">在线工具</a>
                 <a href="http://tool.chinaz.com/" target="_blank">站长工具</a>
-                <a href="javascript:;" id="uploadImages">上传图片</a>
+                <a href="javascript:;" id="uploadImages">压缩工具</a>
                 <a href="#y" id="fileManage">图片管理</a>
                 <a href="#z" id="zhitu">加载智图</a>
                 <a href="http://staticfile.org/" target="_blank">七牛CDN</a>
@@ -181,7 +185,7 @@ $(document).ready(function(){
 <summary>常用移动端代码块：</summary>
 <pre>
 <code class="txt">/**
- * 普通模块名 （模块名询问：滕召杰）
+ * 普通模块名 （模块名询问：XXX）
  */
 &#39318;&#39029;&#65306; HOME
 &#23450;&#26399;&#29702;&#36130;&#65306; INSURANCE
@@ -682,8 +686,8 @@ ul[href$="xxxx"]{
         };
     };
     selectInputContent('.config input');
-    selectInputContent('#qrcode_url');
-    selectInputContent('#url');
+    selectInputContent('.qrcode_url');
+    // selectInputContent('#url');
 
     window.onload = function(){
         var firstInput = document.querySelector('.in-01 input');
@@ -710,7 +714,7 @@ ul[href$="xxxx"]{
          uploadImages.onclick = function(){
              if(!document.querySelector('.uploadImages iframe')){
                  var lDom = document.createElement('iframe');
-                 lDom.src = 'http://jshop.jd.com/file/html5DragUpload.html';
+                 lDom.src = 'http://www.css-js.com/';
                  lDom.scrolling = 'auto';
                  uploadImagesDiv.appendChild(lDom);
              };
@@ -765,26 +769,75 @@ ul[href$="xxxx"]{
         }
         return get_par;
     };
+
     $('#btn').on('click', function() {
         var val = $('#url').val(),
             str = toUtf8(val);
-        $('#qrcode').html('');
-        $('#qrcode').qrcode(str);
-        $('#qrcode_url').val(val);
-        $('#qrcode').fadeIn('400');
+        getShort(val, str, val)
     });
+
+    $('#btnS').on('click', function() {
+        var val = $('#url').val(),
+            str = toUtf8(val);
+        getShort(val, str, val, 1)
+    });
+
     $('#btnX').on('click', function() {
         var val = $('#url').val(),
             str = toUtf8(val),
-            pre = 'http://sale.jd.com/app/act/KBuoE641DZmxgYf.html?url=',
-            newurl = pre + val + '#ACTIVITY',
-            newurlStr =pre + str + '#ACTIVITY';
+            pre = 'https://wqitem.jd.com/item/view?sku=',
+            suffix = '&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_1000164560_',//京粉后缀
+            newurl =  pre + val + suffix ,
+            newurlStr = pre + str + suffix ;
+            getShort(newurl, newurlStr,val, 1);
+    });
+    
+    // 短网址获取
+    function getShort(newurl,newurlStr,val,isShort){
+        var apiUrl = "https://laoxianghuijia.cn:6688/other/shorten"; //Node封装  Nginx的6688端口为https，同事转发到node的6699端口
+        if( val === ""){
+            $('#tips').html("请输入URL！！");
+            $("#url").attr('class', 'red-placeholder');
+            $('#url').attr("placeholder",'请输入您的 URL ！')
+            return false;
+        }
+        if( isShort === undefined){
             $('#qrcode').html('');
             $('#qrcode').qrcode(newurlStr);
             $('#qrcode_url').val(newurl);
+            $('#qrcode').fadeIn('400'); 
+            return false;
+        }
+        var request = $.ajax({
+            url: apiUrl,
+            type: "GET",
+            timeout : 1000,
+            data: {
+                source: 31641035,// appkey
+                url_long: newurlStr, // 需要压缩的原始网址
+            },
+            dataType: "json",
+            cache: false,
+        });
+        request.done(function(data) {
+            console.log(data);
+            var url_short = data[0].url_short;
+            $('#qrcode').html('');
+            $('#qrcode').qrcode(url_short);
+            $('#qrcode_url').val(newurl);
+            $('#qrcode_url_shorten').val(url_short);
             $('#qrcode').fadeIn('400');
+        });
+        request.fail(function(jqXHR, textStatus) {
+            console.log(textStatus);
+            $('#qrcode').html('');
+            $('#qrcode').qrcode(newurlStr);
+            $('#qrcode_url').val(newurl);
+            $('#qrcode_url_shorten').val("压缩失败！");
+            $('#qrcode').fadeIn('400'); 
+        });
+    }
 
-    });
     $('#qrcode').on('click', function() {
         $(this).fadeOut('400')
     })

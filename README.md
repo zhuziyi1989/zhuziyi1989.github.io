@@ -84,6 +84,18 @@ flower.bloom();  // 一秒钟后, 调用'declare'方法
 - 箭头函数中，是在闭合的执行环境内设置 this 的值
 - 当函数作为对象里的方法被调用时，它们的 this 是调用该函数的对象。
 - 谁调用的该方法，那么this就指向谁。
+- bind/call/apply 能够强制改变 this 的绑定。
+
+#### 普通函数和箭头函数的this
+
+ES5中的普通函数：
+  - 函数被直接调用，上下文一定是 window (请区别 w 大写 的 Window 对象)
+  - 函数作为对象属性被调用，例如：obj.foo()，上下文就是对象本身obj
+  - 通过 new 调用，this 绑定在返回的 `实例` 上
+
+ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，直到global / window。
+
+*以上方法的指定 this 的优先级：new > bind > 对象调用 > 直接调用*
 
 参考资料：[MDN 对 this 的讲解](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)
 
