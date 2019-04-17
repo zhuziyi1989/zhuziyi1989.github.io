@@ -37,6 +37,37 @@
 
 ### DOM 事件绑定的几种方式？常见的 API
 
+- 1.在 DOM 元素上直接绑定（不推荐）
+
+```html
+<div id="btn" onclick="clickone()"></div> //直接在DOM里绑定事件
+<script>
+　　　　function clickone(){ alert("hello"); }
+</script>
+ ```
+ 
+- 2.在JavaScript代码中绑定；onclick
+
+```html
+<div id="btn"></div>
+<script>
+　　document.getElementById("btn").onclick = function（）{ alert("hello"); } //脚本里面绑定
+</script>
+```
+- 3.绑定事件监听函数。
+
+```html
+<div id="btn"></div>
+<script>
+　document.getElementById("btn").addeventlistener("click",clickone,false); //通过侦听事件处理相应的函数，
+  //第三个参数设置为true就在捕获过程中执行，反之就在冒泡过程中执行处理函数。
+
+　function clickone(){ alert("hello"); }
+</script>
+```
+	- obj.addEventListener(event,fn,useCapture); 是标准的绑定事件监听函数的方法
+	- attachEvent(event,fn); 适用于IE8.0及其以下版本
+
 ### 事件冒泡和捕获
 
 ### 值类型和引用类型、变量提升
@@ -45,22 +76,28 @@
 
 ### 相等（== ）与全等（===）区别，typeof 与 instanceof
 
-相等（==）操作符会执行 ==类型转换==。
+相等（==）操作符会执行 `类型转换`。
 
 typeof null        // "object" (因为一些以前的原因而不是'null')
+
 typeof undefined   // "undefined"
+
 null === undefined // false
+
 null  == undefined // true
+
 null === null // true
+
 null == null // true
+
 !null //true
+
 isNaN(1 + null) // false
+
 isNaN(1 + undefined) // true
 
-- typeof操作符返回一个字符串，表示未经计算的操作数的类型。
-- instanceof运算符用于测试构造函数的prototype属性是否出现在对象的原型链中的任何位置
-
-
+- typeof操作符返回一个`字符串`，表示未经计算的操作数的`类型`。[typeof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof)
+- instanceof运算符用于测试构造函数的prototype属性是否出现在对象的`原型链`中的任何位置 (简单地说，可以判断是否是某个对象的实例) [instanceof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof)
 
 ### 剩余参数、默认参数和解构赋值参数
 
