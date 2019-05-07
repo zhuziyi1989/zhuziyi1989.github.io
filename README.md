@@ -1,3 +1,5 @@
+
+
 # 前端知识体系不完全记录
 
 ## 目录
@@ -15,9 +17,10 @@
 
 ## 1.JS语言基础
 
-### ECMAScript 标准定义的数据类型:
+### 简单说说 JS 数据类型
 
-7 种原始数据类型：
+7 种原始(基本)数据类型  ▶ `栈内存`存储的是值
+
   - Boolean
   - Null （完全不存在）
   - Undefined（一个没有被赋值的变量会有个默认值 undefined，也就说已存在，但还没值）
@@ -25,28 +28,174 @@
   - String
   - Symbol (ECMAScript 6 新定义)
   - BigInt（ECMAScript 新提案）
-  
+
 > 在JavaScript中，Number 可以准确表达的最大数字是2^53，比 2^53 大的所有数字可以使用BigInt表达。
 
-对象类型：
+对象类型  ▶`堆内存`存储的是地址
   - 数组（Array）
   - 函数（Function）
   - 正则（RegExp）
   - 日期（Date）
 
+### 数组(array)：
 
-### DOM 事件绑定的几种方式？常见的 API
+Array.prototype.find() - 返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 undefined。
 
-- 1.在 DOM 元素上直接绑定（不推荐）
+Array.prototype.findIndex() – find and return an **index**
+
+Array.prototype.includes() – 用来判断一个数组是否包含一个指定的值，如果包含则返回 true，否则返回false。
+
+Array.prototype.filter() – _创建一个新数组_, 其包含通过所提供函数实现的测试的所有元素。 
+
+Array.prototype.every() – 测试数组的**所有元素**是否都通过了指定函数的测试。
+
+Array.prototype.some() – 测试是否**至少有一个元素**通过由提供的函数实现的测试。
+
+Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数。
+
+##### 数组的哪些API会改变原数组？
+
+![数组的哪些API会改变原数组](/Users/zhuziyi/blog/zhuziyi1989.github.io/images/arrary.jpg)
+
+#### 类数组
+
+Array.prototype.slice.call() -可对**类数组**进行截取
+
+### 字符串(String)：
+
+### 对象(Object):
+
+应该熟悉掌握`Object` 的一些 API：
+
+#### 如何遍历对象的属性和值
+
+1. `for`循环：`for (var property in obj) { console.log(property) }`。但这还会遍历到它的继承属性，在使用之前，你需要加入`obj.hasOwnProperty(property)`检查。
+2. `Object.keys()`：`Object.keys(obj).forEach(function (property) { ... })`。`Object.keys()`方法会返回一个由一个给定对象的自身可枚举属性组成的数组。
+3. `Object.getOwnPropertyNames()`：`Object.getOwnPropertyNames(obj).forEach(function (property) { ... })`。`Object.getOwnPropertyNames()`方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括 Symbol 值作为名称的属性）组成的数组。
+
+### 类型的判断
+
+#### 操作符typeof 
+
+[typeof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof) 操作符返回一个`字符串`，表示未经计算的操作数的`类型`，主要用于判断除 null 以外的基本类型。
+
+```js
+typeof null        // "object" (因为一些历史原因而不是'null'，Null表示一个空指针)
+typeof undefined   // "undefined"
+```
+
+#### 操作符 instanceof 
+
+instanceof 判断对象类型，但数组可能被 `instanceof` 判断为 Object。
+
+[instanceof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof) 运算符用于测试构造函数的`prototype`属性是否出现在对象的`原型链`中的任何位置 (简单地说，可以判断是否是某个对象的实例，举个例子： `奥迪 instanceof 汽车`) 
+
+#### Object.prototype.toString.call()
+
+ Object.prototype.toString 可精确判断类型
+
+```javascript
+Object.prototype.toString.call(1) // "[object Number]" 
+Object.prototype.toString.call('hi') // "[object String]"  
+Object.prototype.toString.call({a:'hi'}) // "[object Object]"  
+Object.prototype.toString.call([1,'a']) // "[object Array]"  
+Object.prototype.toString.call(true) // "[object Boolean]"
+Object.prototype.toString.call(() => {}) // "[object Function]"
+Object.prototype.toString.call(null) // "[object Null]"  
+Object.prototype.toString.call(undefined) // "[object Undefined]"  
+Object.prototype.toString.call(Symbol(1)) // "[object Symbol]"
+
+// 加上 slice(8,-1) 的效果
+Object.prototype.toString.call(true)slice(8,-1) // "Boolean"
+```
+
+### 相等与全等区别
+
+相等（==）操作符会执行 `类型转换`，具体流程如下:
+
+1. 首先**判断两者类型**，如果相同，则判断`值`是否相等即可。
+2. 如果类型不同，先进行类型转换，再判断。
+
+`类型转换`的几条规则：
+
+- 判断比较的是否是 null 或者是 undefined, 如果是, 返回 true .
+- 判断两者类型是否为 string 和 number, 如果是, 将字符串转换成 number
+- 判断其中一方是否为 boolean, 如果是, 将 boolean 转为 number 再进行判断
+- 判断其中一方是否为 object 且另一方为 string、number 或者 symbol , 如果是, 将 object 转为原始类型再进行判断
+
+**总结一句话**：对于基本类型Boolean，Number，String，三者之间做比较时，*总是向 Number进行类型转换*，然后再比较；如果有Object，那么将Object转化成这三者，再进行比较；对于 null 和 undefined，只有 == 两边分别是它们时才相同，其他都为false。
+
+```javascript
+''  ==  '0'  //  类型都是字符串，直接判断值；false
+0  ==  ''  //  类型不同，空字符串转换成 Number 后为 0 ，再直接判断值相等；true
+false == 'false'   // 有Boolean，转化成Number，所以第一步转化后为0=='false'；然后'false'向Number转，结果是NaN,最后变成比较0==NaN；所以是false。（NaN和任何相比都是false，就算是自己也是false， NaN==NaN //false)
+
+false == '0'  // 有Boolean，转化成Number，经过第一次转化就成了0=='0';就变成了上面的第3个例子，所以是true
+true == '1'	 // true
+false == undefined // 对于undefined和null，只有两边分别是两者才是true，其他都是false；所以是false
+false == null  // 对于undefined和null，只有两边分别是两者才是true，其他都是false；所以是false
+0 == []	// 类型不同，空数组转换成 Number 后为 0 ，再直接判断值相等；所以是true
+![]     // 上一条中 [] 转换成 0，而引用类型转换成布尔值都是true，所有![]；所以是false
+[]==![] // true  
+
+' \t\r\n ' == 0    // true
+//对于String，先转成Number，对于空String，都将转成0，所以转化后成为0==0,结果为true（注意，空字符不仅仅是只是空格，还包括\t\r\n等等，更多可以见ECMAScript spec的9.3.1）
+
+null === undefined // false 
+null ==  undefined // true  对于undefined和null，只有两边分别是两者才是true，其他都是false；所以是true
+null === null // true
+null == null // true
+!null  //true
+
+isNaN(1 + null) // false
+isNaN(1 + undefined) // true
+```
+
+### 哪些值是 false
+
+可用 Boolean() 去检测，以下在条件语句中被认为是 false
+
+- `false`
+- `undefined`
+- `null`
+- `""` （空字符串）
+- `NaN`
+- `0`（两个`+0`和`-0`）
+
+### 谈谈类型转换
+
+
+
+### 什么是函数式编程？
+
+**函数式编程** （通常简称为 FP）是指通过复合 **纯函数** 来构建软件的过程，它避免了**共享的状态（share state）**、**易变的数据(mutable data)**、以及**副作用(side-effects)**。函数式编程是**声明式**而不是**命令式**，并且应用程序状态通过纯函数流转。对比面向对象编程，后者的应用程序状态通常是共享并共用于对象方法。
+
+**关键词**：`纯函数`、`不可变数据`、`私有状态`、`无副作用`
+
+Via：[征服 JavaScript 面试: 什么是函数式编程？| Eric Elliott](https://www.zcfy.cc/article/master-the-javascript-interview-what-is-functional-programming-2221.html)
+
+**关于纯函数**：纯函数 » 相同的输入，永远会得到相同的输出！
+
+✪  纯函数的优势有哪些？ (来自维基百科)
+
+- ❶ 无状态，线程安全，不需要线程同步
+- ❷ 纯函数相互调用组装起来的函数，还是纯函数
+- ❸ 应用程序或者运行环境(Runtime) 可以对纯函数的运算结果进行*缓存*，运算加快速度
+
+什么是纯函数？ https://t.cn/EJELtXz
+
+### DOM 事件绑定的几种方式？
+
+- 1. 在 DOM 元素上直接绑定（不推荐）
 
 ```html
 <div id="btn" onclick="clickone()"></div> //直接在DOM里绑定事件
 <script>
 　　　　function clickone(){ alert("hello"); }
 </script>
- ```
- 
-- 2.在JavaScript代码中绑定；onclick
+```
+
+- 2. 在JavaScript代码中绑定 (DOM0级 onclick)
 
 ```html
 <div id="btn"></div>
@@ -54,60 +203,62 @@
 　　document.getElementById("btn").onclick = function（）{ alert("hello"); } //脚本里面绑定
 </script>
 ```
-- 3.绑定事件监听函数。
+- 3. 绑定事件监听函数 (DOM2级)
 
 ```html
 <div id="btn"></div>
 <script>
-　document.getElementById("btn").addeventlistener("click",clickone,false); //通过侦听事件处理相应的函数，
-  //第三个参数设置为true就在捕获过程中执行，反之就在冒泡过程中执行处理函数。
-
-　function clickone(){ alert("hello"); }
+  function dosomething(){ alert("hello"); }
+　document.getElementById("btn").addEventListener("click",dosomething,false); 
+/* 
+通过监听事件，处理相应的函数 dosomething
+*/
 </script>
 ```
-	- obj.addEventListener(event,fn,useCapture); 是标准的绑定事件监听函数的方法
-	- attachEvent(event,fn); 适用于IE8.0及其以下版本
+
+obj.addEventListener(event,fn,useCapture); 是标准的绑定事件监听函数的方法，第三个参数为 `true` 代表在捕获阶段调用事件处理程序，否者为 `false` 表示在冒泡阶段调用事件处理程序，默认为`false`。
+
+IE8.0及其以下版本用`attachEvent(event,fn);`代替。
+
+*DOM2级的几个优点:*
+① 可以绑定 / 卸载事件
+② 支持事件流
+③ 冒泡 + 捕获：相当于每个节点同一个事件，至少 2 次处理机会
+④ 同一类事件，可以绑定多个函数
 
 ### 事件冒泡和捕获
 
+事件冒泡：子元素的触发事件会一直向父节点传递，一直到根结点停止。此过程中，可以在每个节点捕捉到相关事件。可以通过`stopPropagation`方法终止冒泡。
+
+事件冒泡的传播方向：子元素 → 根节点
+
+事件捕获的传播方向：根节点 → 子元素
+
+### 事件委托的优势
+
+使用事件委托是需要在 DOM 树中尽量最高的层次节点上添加一个事件处理程序，因为子节点的事件会冒泡，最终会被委托节点处理的，优势：① 如果绑定在 document 上，document是很快能被访问的，而且可在页面生命周期的任何时点上为它添加时间事件程序(无需等待 load 事件)；② 更简洁，多个事件处理不需要更多代码；③ 整个页面占用的内存空间较少，性能也得到了大大的提升。
+
 ### 值类型和引用类型、变量提升
+
+1. var 的函数作用域、有变量提升
+2. let 和 const 定义前的区域为`暂时性死区`
 
 ### 立即执行函数, 模块化, 命名空间
 
-### 相等（== ）与全等（===）区别，typeof 与 instanceof
+IIFE（Immediately Invoked Function Expressions）代表立即执行函数。
 
-相等（==）操作符会执行 `类型转换`。
-
-typeof null        // "object" (因为一些以前的原因而不是'null')
-
-typeof undefined   // "undefined"
-
-null === undefined // false
-
-null  == undefined // true
-
-null === null // true
-
-null == null // true
-
-!null //true
-
-isNaN(1 + null) // false
-
-isNaN(1 + undefined) // true
-
-- typeof操作符返回一个`字符串`，表示未经计算的操作数的`类型`。[typeof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof)
-- instanceof运算符用于测试构造函数的prototype属性是否出现在对象的`原型链`中的任何位置 (简单地说，可以判断是否是某个对象的实例) [instanceof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof)
+1. (function(){ … })()   私有化变量
+2. ES6+ 的 import、export 模块化相对比 Common.js 的优势？
 
 ### 剩余参数、默认参数和解构赋值参数
 
-### 围绕 setTimeout, setInterval 和 requestAnimationFrame 展开的话题
+### setTimeout, setInterval
 
 
 #### setTimeout导致实例引用的丢失
 
 <details>
-<summary>查看解析</summary>
+  <summary>查看解析</summary>
 
 ```javascript
 function LateBloomer() {
@@ -129,12 +280,17 @@ flower.bloom();  // 一秒钟后, 调用'declare'方法
 ```
 在默认情况下，使用 window.setTimeout() 时，this 关键字会指向 window （或global）对象。当类的方法中需要 this 指向类的实例时，你可能需要显式地把 this 绑定到回调函数，就不会丢失该实例的引用。
 
-</details>
+
 
 
 ### 函数作用域,、块级作用域和词法作用域
 
-### “new” 关键字在 JavaScript 中有什么作用？
+### “new” 关键字有什么作用？
+当代码 new Foo(...) 执行时，会发生以下事情：
+
+- 1.一个继承自 Foo.prototype 的`新对象`被创建。
+- 2.使用指定的参数调用构造函数 Foo，并*将 this 绑定到新创建的对象* 。new Foo 等同于 Foo()，也就是没有指定参数列表，Foo 不带任何参数调用的情况。
+- 3.由构造函数返回的对象就是 new 表达式的结果。如果构造函数没有显式返回一个对象，则使用步骤1创建的对象。（一般情况下，构造函数不返回值，但是用户可以选择主动返回对象，来覆盖正常的对象创建步骤）
 
 ### 关于“闭包”的相关话题
 
@@ -150,15 +306,36 @@ flower.bloom();  // 一秒钟后, 调用'declare'方法
 - 为了继承方法, 使用 Object.create 连接父和子的原型
 - 始终将子类构造函数设置为自身，以获得其对象的正确类型
 
+
+
+**一个对象都有原型对象，且原型对象是独立的！**如图：
+
+![](/Users/zhuziyi/blog/zhuziyi1989.github.io/images/prototype.jpg)
+
 ### 关于 this
 
 - 如果要想把 this 的值从一个环境传到另一个，就要用 call 或者 apply 方法。
-- this 的值取决于**函数的调用方式**
-- 每次函数被调用时 this 的值也可能会不同
-- 箭头函数中，是在闭合的执行环境内设置 this 的值
+- this 的值取决于**函数的调用方式**。一般来说，谁调用了该方法，那么 this 就指向谁。
+- 箭头函数中，是在闭合的执行环境内设置 this 的值。
 - 当函数作为对象里的方法被调用时，它们的 this 是调用该函数的对象。
-- 谁调用的该方法，那么this就指向谁。
-- bind/call/apply 能够强制改变 this 的绑定。
+- 特殊情况下，bind/call/apply 能够强制改变 this 的绑定。
+- 使用 new 操作符时，也会涉及 this 的绑定。
+
+#### bind / call / apply
+
+首先 call、apply、bind 第一个参数都是 this 指向的对象，call 和 apply 如果第一个参数指向 null 或 undefined 时，那么this会指向windows对象。
+
+- call、apply 都是改变上下文中的 this，并立即执行。
+
+- call 与 apply 方法的区别： call 方法接受的是参数列表，而 apply 方法接受的是一个参数数组（联想下解构）。
+
+- bind 方法不立即执行，需要的时候再调用！
+
+参考资料：
+
+- [前端面试之手写一个bind方法](https://zhuanlan.zhihu.com/p/45992705)
+- [细说Array.prototype.slice.call](https://juejin.im/post/5a5a201f5188257345017af1)
+- [手动实现call/apply/bind](https://juejin.im/post/5ca088fb51882568093c24ee)
 
 #### 普通函数和箭头函数的this
 
@@ -169,7 +346,7 @@ ES5中的普通函数：
 
 ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，直到global / window。
 
-*以上方法指定 this 的优先级：new > bind > 对象调用 > 直接调用*
+*以上方法指定 this 的优先级：new > bind/call/apply > 对象调用 > 直接调用*
 
 参考资料：[MDN 对 this 的讲解](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)
 
@@ -187,47 +364,50 @@ ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，
     	参考资料：[super MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super)
 
 - function* 关键字定义了一个 generator 函数表达式。
+
 - yield     暂停和恢复 generator 函数。
+
 - yield*    委派给另外一个 generator 函数或可迭代的对象。
+
 - async function*  async function 定义一个异步函数表达式。
+
 - await     暂停或恢复执行异步函数，并等待 promise 的 resolve/reject 回调。
+
 - promise
+
  - JSON.stringify() 将一个对象转制成字符串
+
  - JSON.parse() 将字符串转成对象
+
  - Object.prototype.hasOwnProperty 用于检查给定的属性/键是否存在于对象中。
+
  - Object.prototype.instanceof 判断给定对象是否是特定原型的类型。
+
  - 使用 Object.freeze 可以冻结对象，以便不能修改对象现有属性。
+
 - call()   apply()数组传递  bind()不立即执行
+
 - split() 字符串切割成数组  splice()  join()  push/pop  unshift/shift  concat()
-- Object.assign 拷贝
-
-### 理解和深挖 map() 、foreach() 、fliter() 、reduce() 等高阶函数
-
-### 数组(array)：
-
-Array.prototype.find() - 返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 undefined。
-Array.prototype.findIndex() – find and return an **index**
-Array.prototype.includes() – 用来判断一个数组是否包含一个指定的值，如果包含则返回 true，否则返回false。
-Array.prototype.filter() – _创建一个新数组_, 其包含通过所提供函数实现的测试的所有元素。 
-Array.prototype.every() – 测试数组的**所有元素**是否都通过了指定函数的测试。
-Array.prototype.some() – 测试是否**至少有一个元素**通过由提供的函数实现的测试。
-Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数。
 
 
 
-### 字符(String)：
+### Object.assign 如何实现深拷贝？
 
-### 对象(Object):
+Object.assign({}, state, { visibilityFilter: action.filter })，把第一个参数设置为空对象，就可以避免改变 state
 
-> 来源列表：
->
->  - https://juejin.im/post/5bf5610be51d452a1353b08d
+![assign](/Users/zhuziyi/blog/zhuziyi1989.github.io/images/assign.jpg)
 
-### 浮点数问题，解释 console.log(0.1+0.2) //0.30000000000000004
+### 理解和深挖 map() 等高阶函数
+
+1. 熟练掌握诸如 map() 、foreach() 、fliter() 、reduce() 新的 API
+2. 说说`map()`和`forEach()`的比较？均不改变原数组（除非 callback 有操作）。 `forEach()`的执行速度较慢，无返回值；`map()`则会要求分配新的内存空间，用于存储新数组 **并返回**。
+3. for(let key in Obj){ console.log(key, Obj[key]) } 的性能比较
+
+### 浮点数问题 0.1+0.2 != 0.3
+
+解释 console.log(0.1+0.2) //0.30000000000000004 
 
 参考资料：： [浮点数为什么不精确？](https://juejin.im/entry/575543857db2a2006993114e)
-
-### JavaScript 中有哪些不同的数据类型？
 
 ### 异步相关，解释 promises，observables，generator 或 async-wait 
 
@@ -235,14 +415,47 @@ Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数�
 
     ** 提示: 有四种模式，函数调用，方法调用，.call() 和 .apply()。
 
-### ES6/7的新特性
+### ES6定义类与ES5有何区别？
 
-- let、const
-- 箭头函数
+1. ES6 类内部所有定义的方法都是`不可枚举`
+2. ES6 类必须使用 `new 调用`
+3. ES6 类`不存在变量提升`
+4. ES6 类默认即是严格模式
+5. ES6 子类必须在父类的构造函数中调用`super()`，这样才有this对象；ES5中类继承的关系是相反的，先有子类的this，然后用父类的方法应用在this上。
+
+### ES6+ 的新特性，与 ES5 的一些区别
+
+#### let、const 与 var 的区别
+
+let 和 const 属于`块级作用域`，且`不存在变量提升`，也`不允许重复声明`(会抛出错误)，`变量不能在声明之前使用`(因 **暂时性死区** 会抛出错误)。
+
+const 声明一个只读的常量。一旦声明，**常量的值就不能改变**，如果声明是一个对象，那么不能改变的是对象的引用地址。
+
+#### 箭头函数
+
 - promis
+
 - for of
 
     箭头函数和普通 function 的区别？从而课衍生到 `call、apply、bind` 三者的运用问题，更或者涉及到 `this` 的使用。
+
+#### AMD，CMD，CommonJS和ES6的对比
+
+参考文章：[ECMAScript 6 的模块相比 CommonJS 的 有什么优点？](https://tech.jandou.com/ECMAScript6-CommonJS-Module-Compare.html)
+
+#### CommonJS、AMD的起源
+
+​	**CommonJS 起源于 Node.js ，因此在服务端广泛使用。**对于服务端，所有的模块都存放在本地硬盘，可以**同步加载**完成，等待时间就是硬盘的读取时间。但对于浏览器，这却是一个大问题，因为模块都放在服务器端，等待时间取决于网速的快慢，可能要等很长时间，浏览器处于"假死"状态。因此，浏览器端的模块，不能采用"同步加载"（synchronous），**只能采用"异步加载"（asynchronous）。这就是AMD规范诞生的背景。**
+
+#### CMD与AMD区别？
+
+​	AMD和CMD最大的区别是**对依赖模块的执行时机处理不同**，而不是加载的时机或者方式不同，二者皆为异步加载模块。
+
+#### ES6模块机制与CommonJS的区别
+
+1. CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是**<u>值的引用</u>**。
+2. CommonJS 模块是运行时加载，ES6 模块是**<u>编译时</u>**输出接口
+3. ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令import，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，ES6 的import有点像 Unix 系统的“符号连接”，原始值变了，import加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
 
 ### 新 ECMAScript 2018 提案关注过有哪些？
 
@@ -276,6 +489,23 @@ var re = new RegExp('ar');
 
 - try/catch
 
+### TypeScript对JS的改进？
+
+主要在于`静态类型检查`，那么静态类型检查有何意义呢？
+
+**标准答案是：**“<u>静态类型更有利于构建大型应用</u>”。
+
+其一，静态类型检查可以做到early fail，即你编写的代码即使没有被执行到，一旦你编写代码时发生类型不匹配，语言在编译阶段（解释执行也一样，可以在运行前）即可发现。针对大型应用，测试调试分支覆盖困难，很多代码并不一定能够在所有条件下执行到。而假如你的代码简单到任何改动都可以从UI体现出来，这确实跟大型应用搭不上关系，那么静态类型检查确实没什么作用。
+
+其二，静态类型对阅读代码是友好的，比如我们举个例子 jQuery API Documentation 这是大家都非常喜欢用的jQuery.ajax，在这份文档中，详尽地解释了类型为object的唯一一个参数settings，它是如此之复杂，如果没有文档，我们只看这个函数声明的话，根本不可能有人把这个用法猜对。针对大型应用，方法众多，调用关系复杂，不可能每个函数都有人编写细致的文档，所以静态类型就是非常重要的提示和约束。而假如你的代码像jQuery这样所有函数基本全是API，根本没什么内部函数，而且逻辑关系看起来显而易见，这确实跟大型应用搭不上关系，那么静态类型对阅读代码确实也没什么帮助。
+
+作者：winter
+链接：https://www.zhihu.com/question/64563945/answer/221904107
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+智者见智，仁者见仁
+
 ## 2.客户端及其内核原理
 
 - 浏览器内核：V8引擎、
@@ -299,10 +529,14 @@ var re = new RegExp('ar');
 
 ## 3.服务端应用
 
-- Node
+- [Node.js 基础指南](https://nodejs.org/zh-cn/docs/guides/)
 - Koa
 - 服务器管理(Linux、Centos等)
 - Nginx 的使用
+
+### Node.js中的事件循环是什么？
+
+`事件循环`是 Node.js 处理**非阻塞 I/O 操作**的机制，尽管 JavaScript 是单线程处理的。当有可能的时候，它们会把操作转移到系统内核中去。
 
 ## 4.网络原理
 
@@ -419,7 +653,7 @@ HTTP2中
     Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)，主要得益于对新旧DOM树进行了一个深度的优先遍历，并对每个节点做唯一 id 标记
 
 逐层进行节点比较
-![](https://ws1.sinaimg.cn/large/69b05e0aly1g17x7hycqdj20kg0bdaae.jpg)
+![](/Users/zhuziyi/blog/zhuziyi1989.github.io/images/dom-diff.jpg)
 
 更多解析：[深入浅出 React（四）：虚拟 DOM Diff 算法解析](https://infoq.cn/article/react-dom-diff)
 
@@ -506,10 +740,24 @@ HTTP2中
 - [2019年前端面试都聊啥？一起来看看](https://juejin.im/post/5bf5610be51d452a1353b08d)
 - [中高级前端大厂面试秘籍，为你保驾护航金三银四，直通大厂(上)](https://juejin.im/post/5c64d15d6fb9a049d37f9c20)
 - [记一次“失利后”经过半年准备通过阿里社招的经历与感悟](https://segmentfault.com/a/1190000013129650)
+- 30秒系列
+  - 30秒JS (link: https://github.com/30-seconds/30-seconds-of-code) 
+  - 30秒CSS (link: https://30-seconds.github.io/30-seconds-of-css/)
+  - 30秒面试 (link: https://30secondsofinterviews.org/) 
+  - 30秒React (link: https://github.com/30-seconds/30-seconds-of-react) 
+  - 30秒Python (link: https://github.com/kriadmin/30-seconds-of-python-code) 
+  - 30秒PHP (link: https://github.com/appzcoder/30-seconds-of-php-code) 
+- [前端开发人员手册2019 From frontend masters](https://frontendmasters.com/books/front-end-handbook/2019)
+- [前端面试题列表，课自我检测](https://github.com/yangshun/front-end-interview-handbook/blob/master/Translations/Chinese/questions/javascript-questions.md)
 
 ### 学习资料
 
--  书籍《You-Dont-Know-JS》 [Github在线阅读](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN)
+-  JS 基础类《JavaScript高级程序设计》（第3版）
+
+-  网络类《HTTP权威指南》
+
+-  CSS 基础类《CSS揭秘》
+
+-  JS 基础书籍《You-Dont-Know-JS》 [Github在线阅读](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN)
 
 	购买链接：[你不知道的JavaScript（上卷）](https://u.jd.com/mwU5Oo) 、  [你不知道的JavaScript（中卷）](https://u.jd.com/jHylwd)  、 [你不知道的JavaScript（下卷）](https://u.jd.com/iO9Z43)
-
