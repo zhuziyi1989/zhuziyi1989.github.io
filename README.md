@@ -312,6 +312,10 @@ flower.bloom();  // 一秒钟后, 调用'declare'方法
 
 ![](./images/prototype.jpg)
 
+原型链查找图：
+
+![](./images/Prototypechain-min.jpg)
+
 ### 关于 this
 
 - 如果要想把 this 的值从一个环境传到另一个，就要用 call 或者 apply 方法。
