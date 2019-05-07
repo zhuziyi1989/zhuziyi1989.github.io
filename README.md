@@ -55,7 +55,7 @@ Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数�
 
 ##### 数组的哪些API会改变原数组？
 
-![数组的哪些API会改变原数组](/Users/zhuziyi/blog/zhuziyi1989.github.io/images/arrary.jpg)
+![数组的哪些API会改变原数组](./images/arrary.jpg)
 
 #### 类数组
 
@@ -310,7 +310,7 @@ flower.bloom();  // 一秒钟后, 调用'declare'方法
 
 **一个对象都有原型对象，且原型对象是独立的！**如图：
 
-![](/Users/zhuziyi/blog/zhuziyi1989.github.io/images/prototype.jpg)
+![](./images/prototype.jpg)
 
 ### 关于 this
 
@@ -395,7 +395,7 @@ ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，
 
 Object.assign({}, state, { visibilityFilter: action.filter })，把第一个参数设置为空对象，就可以避免改变 state
 
-![assign](/Users/zhuziyi/blog/zhuziyi1989.github.io/images/assign.jpg)
+![assign](./images/assign.jpg)
 
 ### 理解和深挖 map() 等高阶函数
 
@@ -653,7 +653,7 @@ HTTP2中
     Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)，主要得益于对新旧DOM树进行了一个深度的优先遍历，并对每个节点做唯一 id 标记
 
 逐层进行节点比较
-![](/Users/zhuziyi/blog/zhuziyi1989.github.io/images/dom-diff.jpg)
+![](./images/dom-diff.jpg)
 
 更多解析：[深入浅出 React（四）：虚拟 DOM Diff 算法解析](https://infoq.cn/article/react-dom-diff)
 
@@ -674,7 +674,7 @@ HTTP2中
 
 ### 纯 CSS 盒子水平垂直居中的实现方法  
 
-查看 [Demo](https://zhuziyi1989.github.io/interview/demo/box-center.html)
+查看 [Demo](https://zhuziyi1989.github.io/demo/box-center.html)
 
 ### 动画相关
 
@@ -761,3 +761,4 @@ HTTP2中
 -  JS 基础书籍《You-Dont-Know-JS》 [Github在线阅读](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN)
 
 	购买链接：[你不知道的JavaScript（上卷）](https://u.jd.com/mwU5Oo) 、  [你不知道的JavaScript（中卷）](https://u.jd.com/jHylwd)  、 [你不知道的JavaScript（下卷）](https://u.jd.com/iO9Z43)
+
