@@ -395,7 +395,7 @@ ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，
 
 Object.assign({}, state, { visibilityFilter: action.filter })，把第一个参数设置为空对象，就可以避免改变 state
 
-![assign](./images/assign.jpg)
+![assign](./images/assign2.jpg)
 
 ### 理解和深挖 map() 等高阶函数
 
