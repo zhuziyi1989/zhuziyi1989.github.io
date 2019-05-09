@@ -377,7 +377,7 @@ ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，
 
 - await     暂停或恢复执行异步函数，并等待 promise 的 resolve/reject 回调。
 
-- promise
+- Promise 和 Observerble
 
  - JSON.stringify() 将一个对象转制成字符串
 
@@ -385,9 +385,9 @@ ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，
 
  - Object.prototype.hasOwnProperty 用于检查给定的属性/键是否存在于对象中。
 
- - Object.prototype.instanceof 判断给定对象是否是特定原型的类型。
+ - Object.prototype.instanceof 判断给定对象是否是特定原型的类型，更准备的判断用 `Object.prototype.toString.call(被检测者).slice(8,-1)`
 
- - 使用 Object.freeze 可以冻结对象，以便不能修改对象现有属性。
+ - 使用 Object.freeze 可以冻结对象，以便不能修改对象现有属性，仍然是浅拷贝
 
 - call()   apply()数组传递  bind()不立即执行
 
@@ -409,7 +409,12 @@ Object.assign({}, state, { visibilityFilter: action.filter })，把第一个参�
 
 ### 浮点数问题 0.1+0.2 != 0.3
 
-解释 console.log(0.1+0.2) //0.30000000000000004 
+解释 console.log(0.1+0.2) //0.30000000000000004  
+
+解决方案：
+
+1. 第一种，先升幂降幂。
+2. 第二种，加强版 toFixed 方法
 
 参考资料：： [浮点数为什么不精确？](https://juejin.im/entry/575543857db2a2006993114e)
 
@@ -623,6 +628,14 @@ HTTP2中
 
 ### 不可变数据结构（immutable data structures）解决了哪些问题？
 
+可变数据的好处是 **节省内存 **或 **利用可变性做一些事情**，但在复杂的开发中它的副作用也挺多，于是出现了浅拷贝和深拷贝，JavaScript 原生方法里都是浅拷贝(例如Object.assign、Object.freeze、ES6中的解构)，在实际开发中浅拷贝通常不够用，于是 Facebook 推出来了不可变数据结构 Immutable.js
+
+在 React 开发中，频繁操作 `State 对象`或是 `Store`，Render 方法根据数据改变来执行，可变数据可能导致性能上的浪费，如果配合 immutable.js 快速、安全、方便，可以避免这种问题。
+
+immutable.js在数据比较上也有优化，只需要对外层数据判断即可(如果数据结构比较深，可避免数据比较带来的性能问题)，但 API 上设计过于细致，导致库脚本本身比较重，因此不太适用于移动端。
+
+➤ 参考资料：[facebook immutable.js 意义何在，使用场景？](https://www.zhihu.com/question/28016223)
+
 ### 大型应用程序是否应使用静态类型？
 
     如何比较 TypeScript/Flow 与 Elm/ReasonML/PureScript 等 JS 转换语言？这些方法的优缺点是什么？
@@ -633,11 +646,15 @@ HTTP2中
 几个切入点：
 - 数据驱动
 - 数据单向流
-- 虚拟DOM（可减少直接操作DOM）
-- Vue 的双向绑定（原理？）
+- 虚拟DOM（可减少直接操作DOM，性能上的优化）
+- Vue 的双向绑定（原理：**Object.defineProperty()来实现数据劫持**、发布者-订阅者模式。 [参考资料](https://juejin.im/entry/5923973da22b9d005893805a) ）
 - 无缝结合 webpack 等打包工具，使得开发模式更现代，具有模块化、组件化式的。
 
+### React 生命周期图谱 
 
+➤ 参考资料：https://t.cn/RmV1t56
+
+![](./images/lifeCycle.jpg)
 
 
 ### 如何理解虚拟DOM? 
@@ -753,6 +770,8 @@ HTTP2中
   - 30秒PHP (link: https://github.com/appzcoder/30-seconds-of-php-code) 
 - [前端开发人员手册2019 From frontend masters](https://frontendmasters.com/books/front-end-handbook/2019)
 - [前端面试题列表，课自我检测](https://github.com/yangshun/front-end-interview-handbook/blob/master/Translations/Chinese/questions/javascript-questions.md)
+- [2019前端面试题--这样准备，拿不到offer算我输！](https://juejin.im/post/5cbff661e51d456e693f48ec)
+- [三年前端，面试思考（头条蚂蚁美团offer）](https://juejin.im/post/5bd97627f265da39651c0a4b)
 
 ### 学习资料
 
@@ -765,4 +784,8 @@ HTTP2中
 -  JS 基础书籍《You-Dont-Know-JS》 [Github在线阅读](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN)
 
 	购买链接：[你不知道的JavaScript（上卷）](https://u.jd.com/mwU5Oo) 、  [你不知道的JavaScript（中卷）](https://u.jd.com/jHylwd)  、 [你不知道的JavaScript（下卷）](https://u.jd.com/iO9Z43)
+	
+-  [React  小书](http://huziketang.com/books/react/)
+
+-  [Redux文档](http://cn.redux.js.org/)
 
