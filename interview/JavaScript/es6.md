@@ -36,7 +36,10 @@
 
 17. ####`Math` / `Number` / `String` / `Array` / `Object`中新的方法❗️
 
-18. 
+
+
+
+
 
 ```
 let es6 = (width = 50, color = 'red', url = 'https://jandou.com')=>{

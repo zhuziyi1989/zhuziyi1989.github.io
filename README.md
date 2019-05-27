@@ -735,6 +735,49 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 
 </details>
 
+### React 组合 vs 继承
+
+#### 组合方式
+
+组件可以接受任意 props，包括基本数据类型，React 元素以及函数。
+
+1. 包含关系
+2. 特例关系
+
+### React 组件模式有哪几种？
+
+1. 有状态(stateful)组件 和 无状态(stateless)组件
+
+2. 容器(Container) 组件 和 展示(Presentational) 组件
+
+3. 高阶组件(Higher order components , HOC ）
+
+   #### 高阶组件概念
+
+   高阶组件是**<u>参数为组</u>件**，<u>**返回值**</u>为新组件的函数。(组件以参数形式进入，返回一个新组件，说白了就是抽象，并没多高阶...)
+
+   #### 一些建议
+
+   1. HOC 是纯函数，没有副作用。
+   2. HOC 不应该修改传入组件，而应该使用组合的方式，通过将组件包装在容器组件中实现功能。
+
+   #### HOC 与容器组件模式的区别？
+
+   #### 什么事柯里化？
+
+4. 渲染回调（Render Callbacks）：`this.props.children`方式，也就是函数作为子组件。
+
+5. 新的 API：Hooks
+
+> 参考：[[译]React 组件模式](https://github.com/yueshuiniao/blog/issues/1)
+
+### Fragments
+
+多个组件并排渲染，需要使用一个 HTML 比偶钱包过，一般增加一个 `<div>`  即可，但引起了 DOM 结构的冗余，于是出现了 `Fragment`，直接用 `<React.Fragment>` 代替 `<div>`
+
+### 单页面应用路由实现原理：
+
+[以 React-Router 为例](https://github.com/youngwind/blog/issues/109#)
 
 ## 6.CSS布局基础
 
@@ -775,9 +818,15 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 
 ### 有哪些基本的算法？
 
+1. [Leetcode中文](https://leetcode-cn.com/)
+
+2. ["所谓"的前端算法](https://github.com/zhaoqize/blog/issues/18#) 
+
 ### 二进制, 十进制, 十六进制, 科学记数法
 
 ### 耗性能操作和时间复杂度
+
+### 前端自动化测试
 
 ## 9.综合性问题
 
@@ -818,9 +867,12 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
   - 30秒Python (link: https://github.com/kriadmin/30-seconds-of-python-code) 
   - 30秒PHP (link: https://github.com/appzcoder/30-seconds-of-php-code) 
 - [前端开发人员手册2019 From frontend masters](https://frontendmasters.com/books/front-end-handbook/2019)
-- [前端面试题列表，课自我检测](https://github.com/yangshun/front-end-interview-handbook/blob/master/Translations/Chinese/questions/javascript-questions.md)
+- [自我检测：前端面试题列表 JS 部分](https://github.com/yangshun/front-end-interview-handbook/blob/master/Translations/Chinese/questions/javascript-questions.md)
+- [自我检测：前端面试题列表 CSS 部分](https://github.com/yangshun/front-end-interview-handbook/blob/master/Translations/Chinese/questions/css-questions.md)
 - [2019前端面试题--这样准备，拿不到offer算我输！](https://juejin.im/post/5cbff661e51d456e693f48ec)
 - [三年前端，面试思考（头条蚂蚁美团offer）](https://juejin.im/post/5bd97627f265da39651c0a4b)
+- [2018大厂高级前端面试题汇总](https://juejin.im/post/5bc92e9ce51d450e8e777136#heading-19)
+- [2019面试 你必须要懂的原生JS知识点](https://juejin.im/post/5cb7b62b5188253772753c01)
 
 ### 学习资料
 
@@ -838,7 +890,15 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 	
 -  [React  小书](http://huziketang.com/books/react/)
 
-- [Redux文档](http://cn.redux.js.org/)
+-  [React 官方文档](https://zh-hans.reactjs.org/docs/)
 
--  [React 组件间通讯 Taobao FED](http://taobaofed.org/blog/2016/11/17/react-components-communication/)
+- [Redux 文档](http://cn.redux.js.org/)
+
+- [React 组件间通讯 Taobao FED](http://taobaofed.org/blog/2016/11/17/react-components-communication/)
+
+- [现代 JavaScript 教程](https://zh.javascript.info/)
+
+- MDN
+
+- [React API 速查](http://devhints.cn/react)
 
