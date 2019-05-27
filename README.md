@@ -37,7 +37,7 @@
   - 正则（RegExp）
   - 日期（Date）
 
-### 数组(array)：
+### 数组(Array)
 
 Array.prototype.find() - 返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 undefined。
 
@@ -53,17 +53,44 @@ Array.prototype.some() – 测试是否**至少有一个元素**通过由提供�
 
 Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数。
 
-##### 数组的哪些API会改变原数组？
+#### 哪些 API 会改变原数组？
 
 ![数组的哪些API会改变原数组](./images/arrary.jpg)
 
-#### 类数组
+#### 如何判断变量 A 是不是数组？
 
-Array.prototype.slice.call() -可对**类数组**进行截取
+1. 使用 Array.isArray(A) 判断，如果返回 true, 说明是数组
+2. 使用 A instanceof Array 判断，如果返回true, 说明是数组
+3. 使用 Object.prototype.toString.call 判断，如果值是 [object Array], 说明是数组
+4. 通过 constructor 来判断，如果是数组，那么 `A.constructor === Array`，在改变指定 `obj.constructor = Array`时，此方法并不准确。
 
-### 字符串(String)：
+#### 类数组的特性
 
-### 对象(Object):
+1. 拥有 length 属性，其它属性（索引）为非负整数（对象中的索引会被当做字符串来处理）
+2. 不具有数组所具有的方法
+3. 类数组是一个普通**对象**，而真实的数组是 Array 类型。
+
+> **常见的类数组举例**
+>
+> 1. 函数的参数 arugments
+>
+> 2. DOM 对象列表(比如通过 document.querySelectorAll 得到的列表)
+>
+> 3. jQuery 对象 (比如 $("div"))
+>
+>    **将类数组 `arrayLike` 转换为数组的方法**
+>
+>1. Array.prototype.slice.call(arrayLike, start)
+>2. 展开运算 [ …arrayLike ]
+>    3. Array.from(arrayLike);
+>    
+>    任何定义了遍历器（Iterator）接口的对象，都可以用扩展运算符转为真正的数组。
+>    
+>    Array.from方法可以将**类似数组的对象（array-like object）**和**可遍历（iterable）的对象**转为真正的数组。
+
+### 字符串(String)
+
+### 对象(Object)
 
 应该熟悉掌握`Object` 的一些 API：
 
@@ -75,7 +102,7 @@ Array.prototype.slice.call() -可对**类数组**进行截取
 
 ### 类型的判断
 
-#### 操作符typeof 
+#### 操作符 typeof 
 
 [typeof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof) 操作符返回一个`字符串`，表示未经计算的操作数的`类型`，主要用于判断除 null 以外的基本类型。
 
@@ -106,7 +133,7 @@ Object.prototype.toString.call(undefined) // "[object Undefined]"
 Object.prototype.toString.call(Symbol(1)) // "[object Symbol]"
 
 // 加上 slice(8,-1) 的效果
-Object.prototype.toString.call(true)slice(8,-1) // "Boolean"
+Object.prototype.toString.call(true).slice(8,-1) // "Boolean"
 ```
 
 ### 相等与全等区别
@@ -123,7 +150,7 @@ Object.prototype.toString.call(true)slice(8,-1) // "Boolean"
 - 判断其中一方是否为 boolean, 如果是, 将 boolean 转为 number 再进行判断
 - 判断其中一方是否为 object 且另一方为 string、number 或者 symbol , 如果是, 将 object 转为原始类型再进行判断
 
-**总结一句话**：对于基本类型Boolean，Number，String，三者之间做比较时，*总是向 Number进行类型转换*，然后再比较；如果有Object，那么将Object转化成这三者，再进行比较；对于 null 和 undefined，只有 == 两边分别是它们时才相同，其他都为false。
+**总结一句话**：对于基本类型Boolean，Number，String，三者之间做比较时，*总是向 Number进行类型转换*，然后再比较；如果有Object，那么将Object转化成这三者，再进行比较；**对于 null 和 undefined，只有 == 两边分别是它们时才相同，其他都为false。**
 
 ```javascript
 ''  ==  '0'  //  类型都是字符串，直接判断值；false
@@ -136,7 +163,7 @@ false == undefined // 对于undefined和null，只有两边分别是两者才是
 false == null  // 对于undefined和null，只有两边分别是两者才是true，其他都是false；所以是false
 0 == []	// 类型不同，空数组转换成 Number 后为 0 ，再直接判断值相等；所以是true
 ![]     // 上一条中 [] 转换成 0，而引用类型转换成布尔值都是true，所有![]；所以是false
-[]==![] // true  
+[]==![] // true   ! 的优先级高于 ==,右边的 [] → true，那么！[] → false → 0， 然而[]直接转换成数字也是 0
 
 ' \t\r\n ' == 0    // true
 //对于String，先转成Number，对于空String，都将转成0，所以转化后成为0==0,结果为true（注意，空字符不仅仅是只是空格，还包括\t\r\n等等，更多可以见ECMAScript spec的9.3.1）
@@ -161,10 +188,6 @@ isNaN(1 + undefined) // true
 - `""` （空字符串）
 - `NaN`
 - `0`（两个`+0`和`-0`）
-
-### 谈谈类型转换
-
-
 
 ### 什么是函数式编程？
 
@@ -252,10 +275,10 @@ IIFE（Immediately Invoked Function Expressions）代表立即执行函数。
 
 ### 剩余参数、默认参数和解构赋值参数
 
-### setTimeout, setInterval
+### setTimeout 和 setInterval
 
 
-#### setTimeout导致实例引用的丢失
+#### setTimeout 导致实例引用的丢失
 
 <details>
   <summary>查看解析</summary>
@@ -281,7 +304,9 @@ flower.bloom();  // 一秒钟后, 调用'declare'方法
 在默认情况下，使用 window.setTimeout() 时，this 关键字会指向 window （或global）对象。当类的方法中需要 this 指向类的实例时，你可能需要显式地把 this 绑定到回调函数，就不会丢失该实例的引用。
 </details>
 
+#### setTimeout和setInterval的返回值问题
 
+setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID 传递给clearInterval()，clearTimeout() 以取消执行。这几个函数都是浏览器 window 对象提供的，没有公开的规范和标准，所以并不保证这些 ID 都是从1开始。
 
 ### 函数作用域,、块级作用域和词法作用域
 
@@ -358,7 +383,7 @@ ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，
 
 ### JS中的重要关键词（大杂烩）
 
-- super关键字用于访问和调用一个对象的父对象上的函数。
+- `super` 关键字用于访问和调用一个对象的父对象上的函数。
 
     super([arguments]); 
     // 调用 父对象/父类 的**构造函数**
@@ -379,9 +404,7 @@ ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，
 
 - Promise 和 Observerble
 
- - JSON.stringify() 将一个对象转制成字符串
-
- - JSON.parse() 将字符串转成对象
+ - JSON.stringify() 将一个对象转制成字符串。JSON.parse() 将字符串转成对象
 
  - Object.prototype.hasOwnProperty 用于检查给定的属性/键是否存在于对象中。
 
@@ -389,11 +412,9 @@ ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，
 
  - 使用 Object.freeze 可以冻结对象，以便不能修改对象现有属性，仍然是浅拷贝
 
-- call()   apply()数组传递  bind()不立即执行
+- call()、apply()数组传递、bind()不立即执行
 
 - split() 字符串切割成数组  splice()  join()  push/pop  unshift/shift  concat()
-
-
 
 ### Object.assign 如何实现深拷贝？
 
@@ -418,21 +439,21 @@ Object.assign({}, state, { visibilityFilter: action.filter })，把第一个参�
 
 参考资料：： [浮点数为什么不精确？](https://juejin.im/entry/575543857db2a2006993114e)
 
+### 事件循环(Event Loop)机制相关问题
+
+> 参考：https://juejin.im/post/5bac87b6f265da0a906f78d8
+
+*占坑，未总结*
+
 ### 异步相关，解释 promises，observables，generator 或 async-wait 
+
+*占坑，未总结*
 
 ### JavaScript 中有哪些不同的函数调用模式？ 详细解释。 
 
-    ** 提示: 有四种模式，函数调用，方法调用，.call() 和 .apply()。
+    ** 提示: 有四种模式，函数调用、方法调用、call() 和 apply()。
 
-### ES6定义类与ES5有何区别？
-
-1. ES6 类内部所有定义的方法都是`不可枚举`
-2. ES6 类必须使用 `new 调用`
-3. ES6 类`不存在变量提升`
-4. ES6 类默认即是严格模式
-5. ES6 子类必须在父类的构造函数中调用`super()`，这样才有this对象；ES5中类继承的关系是相反的，先有子类的this，然后用父类的方法应用在this上。
-
-### ES6+ 的新特性，与 ES5 的一些区别
+### ES6+ 的新特性
 
 #### let、const 与 var 的区别
 
@@ -442,11 +463,27 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 
 #### 箭头函数
 
-- promis
+箭头函数和普通 function 的区别？从而可衍生到 `call、apply、bind` 三者的运用问题，更或者涉及到 `this` 的使用。查看相对小节的解释。
 
-- for of
+####for of 和 for in的区别？
 
-    箭头函数和普通 function 的区别？从而课衍生到 `call、apply、bind` 三者的运用问题，更或者涉及到 `this` 的使用。
+- **for...of循环**：具有 iterator 接口，就可以用 for…of 循环遍历它的成员(属性值)。for…of 循环可以使用的范围包括<u>数组、Set 和 Map 结构、类数组对象、Generator 对象，以及字符串</u>。for…of 循环调用遍历器接口，数组的遍历器接口只返回具有数字索引的属性。对于普通的对象，for…of 结构不能直接使用，会报错，必须部署了 Iterator 接口后才能使用。**可以中断循环。**
+- **for...in循环**：遍历对象自身的和继承的<u>可枚举的属性</u>, 不能直接获取属性值。**可以中断循环**。
+- **forEach**: 只能遍历数组，**不能中断，**没有返回值(或认为返回值是undefined)。
+- **map**: 只能遍历数组，**不能中断，**返回值是修改后的数组。
+
+> **扩展思考：**
+>
+> 1. Object.keys() 返回给定对象所有 <u>可枚举属性</u> 的字符串数组
+> 2. forEach 、map 是否会改变原数组？
+
+#### ES6定义类与ES5有何区别？
+
+1. ES6 类内部所有定义的方法都是`不可枚举`
+2. ES6 类必须使用 `new 调用`
+3. ES6 类`不存在变量提升`
+4. ES6 类默认即是严格模式
+5. ES6 子类必须在父类的构造函数中调用`super()`，这样才有 this 对象；ES5中类继承的关系是相反的，先有子类的this，然后用父类的方法应用在this上。**(此条需要修正)**
 
 #### AMD，CMD，CommonJS和ES6的对比
 
@@ -466,19 +503,23 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 2. CommonJS 模块是运行时加载，ES6 模块是**<u>编译时</u>**输出接口
 3. ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令import，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，ES6 的import有点像 Unix 系统的“符号连接”，原始值变了，import加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
 
+#### Set 和 Map 数据结构
+
+#### 展开运算符、解构
+
 ### 新 ECMAScript 2018 提案关注过有哪些？
 
     ** 提示: ECMAScript 2018 的 BigInt、partial function、pipeline operator
 
 ### JavaScript 中的迭代器（iterators）和迭代（iterables）是什么？ 你知道什么是内置迭代器吗？
 
-    ```javascript
-    const a ={
-        key1:Symbol(),
-        key2:110
-    }
-    console.log(JSON.stringify(a)) // {"key2":110}  丢失 key1，为什么丢失？
-    ```
+```javascript
+const a ={
+    key1:Symbol(),
+    key2:110
+}
+console.log(JSON.stringify(a)) // {"key2":110}  丢失 key1，为什么丢失？
+```
 
 ### 你熟悉 Typed Arrays 吗？ 如果熟悉，请解释他们与 JavaScript 中的传统数组相比的异同？
 
@@ -621,6 +662,14 @@ HTTP2中
 - 单向数据流架构在哪些方面适合MVC ？
 
     MVC 拥有大约 50 年的悠久历史，并已演变为 MVP，MVVM 和 MV *。两者之间的相互关系是什么？如果 MVC 是架构模式，那么单向数据流是什么？这些竞争模式是否能解决同样的问题？
+
+### Vue对比其他框架(主要关注 React)
+
+1. React需要开发者更多的关注子组件的重渲染，如何的避免这个问题引起的性能问题，然而在 Vue 应用中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。你可以理解为每一个组件都已经自动获得了 `shouldComponentUpdate`，并且没有上述的子树问题限制。因此 Vue 的这个特点使得开发者不再需要考虑此类优化，<u>从而能够更好地专注于应用本身。</u>
+2. Vue 的路由库和状态管理库都是由官方维护支持且与核心库同步更新的。React 则是选择把这些问题交给社区维护，因此创建了一个更分散的生态系统。但相对的，React 的生态系统相比 Vue 更加繁荣。
+3.  React 比 Vue 更好的地方，比如更丰富的生态系统，React 国际大厂的维护，Vue 初期则是个人开发者。
+
+> 更多对比查看 Vue 官方解释https://cn.vuejs.org/v2/guide/comparison#React
 
 ### 客户端 MVC 与服务器端或经典 MVC 有何不同？
 
@@ -781,11 +830,15 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 
 -  CSS 基础类《CSS揭秘》
 
+-  [ECMAScript 6 入门 (阮一峰)](http://es6.ruanyifeng.com/)
+
 -  JS 基础书籍《You-Dont-Know-JS》 [Github在线阅读](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN)
 
 	购买链接：[你不知道的JavaScript（上卷）](https://u.jd.com/mwU5Oo) 、  [你不知道的JavaScript（中卷）](https://u.jd.com/jHylwd)  、 [你不知道的JavaScript（下卷）](https://u.jd.com/iO9Z43)
 	
 -  [React  小书](http://huziketang.com/books/react/)
 
--  [Redux文档](http://cn.redux.js.org/)
+- [Redux文档](http://cn.redux.js.org/)
+
+-  [React 组件间通讯 Taobao FED](http://taobaofed.org/blog/2016/11/17/react-components-communication/)
 
