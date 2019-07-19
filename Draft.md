@@ -1,15 +1,14 @@
+```javascript
 const batches = (recipe, available)=>{
-
-
-Math.min(…(Object.keys(recipe).map((item,index,arr)=>{  Math.floor(available[item]/recipe[item]) || 0  })))
-
+	Math.min(…(Object.keys(recipe).map((item,index,arr)=>{  					
+    Math.floor(available[item]/recipe[item]) || 0  
+  })))
 }
+```
 
 
 
-
-
-```js
+```javascript
 batches(
   { milk: 100, butter: 50, flour: 5 },
   { milk: 132, butter: 48, flour: 51 }
@@ -69,12 +68,6 @@ delete 是个操作符    delete Obj.key
 
 事件订阅
 
-
-
-
-
-
-
 ```
 // duplicate([1, 2, 3, 4, 5]); → [1,2,3,4,5,1,2,3,4,5]
 
@@ -84,3 +77,19 @@ function duplicate(arr){
 	return result
 }
 ```
+
+
+
+
+
+
+
+## webpack 相关知识点 草稿
+
+gulp、grunt 更加关注前端工程流，是前端的工具应用，关键词 刷新、压缩、合并、插件、编译 Scss 和 Sass 等。
+
+webpack、browseify 主要是**模块打包**方案，另外与 Gulp 相似的，开发工具、插件功能。
+
+- gulp和webpack的区别？(模块与流，CommonChunks抽出公共模块)
+- Webpack 的工作原理？路由懒加载
+
