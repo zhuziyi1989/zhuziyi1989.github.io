@@ -21,21 +21,22 @@
 
 7 种原始(基本)数据类型  ▶ `栈内存`存储的是值
 
-  - Boolean
-  - Null （完全不存在）
-  - Undefined（一个没有被赋值的变量会有个默认值 undefined，也就说已存在，但还没值）
-  - Number（基于 IEEE 754 标准的`双精度` 64 位`二进制`格式的值（-(2^63 -1) 到 2^63 -1））
-  - String
-  - Symbol (ECMAScript 6 新定义)
-  - BigInt（ECMAScript 新提案）
+- Boolean
+- Null （完全不存在）
+- Undefined（一个没有被赋值的变量会有个默认值 undefined，也就说已存在，但还没值）
+- Number（基于 IEEE 754 标准的`双精度` 64 位`二进制`格式的值（-(2^63 -1) 到 2^63 -1））
+- String
+- Symbol (ECMAScript 6 新定义)
+- BigInt（ECMAScript 新提案）
 
 > 在JavaScript中，Number 可以准确表达的最大数字是2^53，比 2^53 大的所有数字可以使用BigInt表达。
 
 对象类型  ▶`堆内存`存储的是地址
-  - 数组（Array）
-  - 函数（Function）
-  - 正则（RegExp）
-  - 日期（Date）
+
+- 数组（Array）
+- 函数（Function）
+- 正则（RegExp）
+- 日期（Date）
 
 ### 数组(Array)
 
@@ -73,20 +74,18 @@ Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数�
 > **常见的类数组举例**
 >
 > 1. 函数的参数 arugments
->
 > 2. DOM 对象列表(比如通过 document.querySelectorAll 得到的列表)
->
 > 3. jQuery 对象 (比如 $("div"))
 >
->    **将类数组 `arrayLike` 转换为数组的方法**
+> **将类数组 `arrayLike` 转换为数组的方法**
 >
->1. Array.prototype.slice.call(arrayLike, start)
->2. 展开运算 [ …arrayLike ]
+> 1. Array.prototype.slice.call(arrayLike, start)
+> 2. 展开运算 [ …arrayLike ]
 >    3. Array.from(arrayLike);
->    
->    任何定义了遍历器（Iterator）接口的对象，都可以用扩展运算符转为真正的数组。
->    
->    Array.from方法可以将**类似数组的对象（array-like object）**和**可遍历（iterable）的对象**转为真正的数组。
+>
+> 任何定义了遍历器（Iterator）接口的对象，都可以用扩展运算符转为真正的数组。
+>
+> Array.from方法可以将**类似数组的对象（array-like object）**和**可遍历（iterable）的对象**转为真正的数组。
 
 ### 字符串(String)
 
@@ -226,6 +225,7 @@ Via：[征服 JavaScript 面试: 什么是函数式编程？| Eric Elliott](http
 　　document.getElementById("btn").onclick = function（）{ alert("hello"); } //脚本里面绑定
 </script>
 ```
+
 - 3. 绑定事件监听函数 (DOM2级)
 
 ```html
@@ -277,7 +277,6 @@ IIFE（Immediately Invoked Function Expressions）代表立即执行函数。
 
 ### setTimeout 和 setInterval
 
-
 #### setTimeout 导致实例引用的丢失
 
 <details>
@@ -301,6 +300,7 @@ LateBloomer.prototype.declare = function() {
 var flower = new LateBloomer();
 flower.bloom();  // 一秒钟后, 调用'declare'方法
 ```
+
 在默认情况下，使用 window.setTimeout() 时，this 关键字会指向 window （或global）对象。当类的方法中需要 this 指向类的实例时，你可能需要显式地把 this 绑定到回调函数，就不会丢失该实例的引用。
 </details>
 
@@ -311,6 +311,7 @@ setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID �
 ### 函数作用域,、块级作用域和词法作用域
 
 ### “new” 关键字有什么作用？
+
 当代码 new Foo(...) 执行时，会发生以下事情：
 
 - 1.一个继承自 Foo.prototype 的`新对象`被创建。
@@ -335,11 +336,11 @@ setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID �
 
 **一个对象都有原型对象，且原型对象是独立的！**如图：
 
-![](./images/prototype.jpg)
+![](./images/rototype.jpg)
 
 原型链查找图：
 
-![](./images/Prototypechain-min.jpg)
+![](./images/hain-min.jpg)
 
 ### 关于 this
 
@@ -355,9 +356,7 @@ setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID �
 首先 call、apply、bind 第一个参数都是 this 指向的对象，call 和 apply 如果第一个参数指向 null 或 undefined 时，那么this会指向windows对象。
 
 - call、apply 都是改变上下文中的 this，并立即执行。
-
 - call 与 apply 方法的区别： call 方法接受的是参数列表，而 apply 方法接受的是一个参数数组（联想下解构）。
-
 - bind 方法不立即执行，需要的时候再调用！
 
 参考资料：
@@ -369,9 +368,10 @@ setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID �
 #### 普通函数和箭头函数的this
 
 ES5中的普通函数：
-  - 函数被直接调用，上下文一定是 window (请区别 w 大写 的 Window 对象)
-  - 函数作为对象属性被调用，例如：obj.foo()，上下文就是对象本身obj
-  - 通过 new 调用，this 绑定在返回的 `实例` 上
+
+- 函数被直接调用，上下文一定是 window (请区别 w 大写 的 Window 对象)
+- 函数作为对象属性被调用，例如：obj.foo()，上下文就是对象本身obj
+- 通过 new 调用，this 绑定在返回的 `实例` 上
 
 ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，直到global / window。
 
@@ -385,12 +385,14 @@ ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，
 
 - `super` 关键字用于访问和调用一个对象的父对象上的函数。
 
-    super([arguments]); 
-    // 调用 父对象/父类 的**构造函数**
-    super.functionOnParent([arguments]); 
-    // 调用 父对象/父类 上的**方法**
+  super([arguments]); 
+  // 调用 父对象/父类 的**构造函数**
+  super.functionOnParent([arguments]); 
+  // 调用 父对象/父类 上的**方法**
 
-    	参考资料：[super MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super)
+  ```
+  参考资料：[super MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super)
+  ```
 
 - function* 关键字定义了一个 generator 函数表达式。
 
@@ -404,13 +406,13 @@ ES6中的箭头函数：它本身没有 this，会沿着作用域向上寻找，
 
 - Promise 和 Observerble
 
- - JSON.stringify() 将一个对象转制成字符串。JSON.parse() 将字符串转成对象
+- JSON.stringify() 将一个对象转制成字符串。JSON.parse() 将字符串转成对象
 
- - Object.prototype.hasOwnProperty 用于检查给定的属性/键是否存在于对象中。
+- Object.prototype.hasOwnProperty 用于检查给定的属性/键是否存在于对象中。
 
- - Object.prototype.instanceof 判断给定对象是否是特定原型的类型，更准备的判断用 `Object.prototype.toString.call(被检测者).slice(8,-1)`
+- Object.prototype.instanceof 判断给定对象是否是特定原型的类型，更准备的判断用 `Object.prototype.toString.call(被检测者).slice(8,-1)`
 
- - 使用 Object.freeze 可以冻结对象，以便不能修改对象现有属性，仍然是浅拷贝
+- 使用 Object.freeze 可以冻结对象，以便不能修改对象现有属性，仍然是浅拷贝
 
 - call()、apply()数组传递、bind()不立即执行
 
@@ -439,19 +441,23 @@ Object.assign({}, state, { visibilityFilter: action.filter })，把第一个参�
 
 参考资料：： [浮点数为什么不精确？](https://juejin.im/entry/575543857db2a2006993114e)
 
-### 事件循环(Event Loop)机制相关问题
+### 事件循环(Event Loop)
 
 > 参考：https://juejin.im/post/5bac87b6f265da0a906f78d8
 
 *占坑，未总结*
 
-### 异步相关，解释 promises，observables，generator 或 async-wait 
+### *** 异步
+
+- 解释 promises，observables，generator 或 async-wait 
 
 *占坑，未总结*
 
-### JavaScript 中有哪些不同的函数调用模式？ 详细解释。 
+### 函数调用模式的方式
 
-    ** 提示: 有四种模式，函数调用、方法调用、call() 和 apply()。
+```
+** 提示: 有四种模式，函数调用、方法调用、call() 和 apply()。
+```
 
 ### ES6+ 的新特性
 
@@ -465,7 +471,7 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 
 箭头函数和普通 function 的区别？从而可衍生到 `call、apply、bind` 三者的运用问题，更或者涉及到 `this` 的使用。查看相对小节的解释。
 
-####for of 和 for in的区别？
+#### for of 和 for in的区别？
 
 - **for...of循环**：具有 iterator 接口，就可以用 for…of 循环遍历它的成员(属性值)。for…of 循环可以使用的范围包括<u>数组、Set 和 Map 结构、类数组对象、Generator 对象，以及字符串</u>。for…of 循环调用遍历器接口，数组的遍历器接口只返回具有数字索引的属性。对于普通的对象，for…of 结构不能直接使用，会报错，必须部署了 Iterator 接口后才能使用。**可以中断循环。**
 - **for...in循环**：遍历对象自身的和继承的<u>可枚举的属性</u>, 不能直接获取属性值。**可以中断循环**。
@@ -509,7 +515,9 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 
 ### 新 ECMAScript 2018 提案关注过有哪些？
 
-    ** 提示: ECMAScript 2018 的 BigInt、partial function、pipeline operator
+```
+** 提示: ECMAScript 2018 的 BigInt、partial function、pipeline operator
+```
 
 ### JavaScript 中的迭代器（iterators）和迭代（iterables）是什么？ 你知道什么是内置迭代器吗？
 
@@ -535,6 +543,7 @@ console.log(JSON.stringify(a)) // {"key2":110}  丢失 key1，为什么丢失？
 var re = /ar/;
 var re = new RegExp('ar'); 
 ```
+
 ### 错误的处理模式，捕获和调试的一些心得？
 
 - try/catch
@@ -567,15 +576,21 @@ var re = new RegExp('ar');
 
 调用堆栈：
 
-	V8引擎主要由两部分组成:
-		① 内存堆：这是内存分配发生的地方
-		② 调用栈：这是你的代码执行时的地方
+```
+V8引擎主要由两部分组成:
+	① 内存堆：这是内存分配发生的地方
+	② 调用栈：这是你的代码执行时的地方
+```
 
 概念：[Call Stack — MDN](https://developer.mozilla.org/zh-CN/docs/Glossary/Call_stack)
 
 堆栈溢出？堆栈溢出的产生是由于过多的函数调用，导致调用堆栈无法容纳这些调用的返回地址，一般在递归中产生。
 
 参考资料：[JavaScript 如何工作：对引擎、运行时、调用堆栈的概述](https://juejin.im/post/5a05b4576fb9a04519690d42)
+
+### 事件循环(EventLoop)
+
+参考资料：[并发模型与事件循环(MDN)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop) 、[详解JavaScript中的事件循环机制- 知乎](https://zhuanlan.zhihu.com/p/33058983)、[JavaScript定时器与执行机制解析](http://www.alloyteam.com/2016/05/javascript-timer/)
 
 ## 3.服务端应用
 
@@ -615,6 +630,7 @@ HTTP2中
 </details>
 
 ### 五(七)层因特网协议栈？
+
 - （应用层）HTTP/DNS/FTP等，HTTP 与 HTTPS 的区别？DNS 域名解析过程？
 - （传输层）TCP/IP 协议
 - （网络层）IP/ARP 寻址，路由器
@@ -622,6 +638,7 @@ HTTP2中
 - （物理层）光纤/网线/无线电磁波等
 
 ### HTTP 相关问题
+
 - 强缓存  & 协商缓存
 - 跨域的原因及处理方式 [参考资料](https://tech.jandou.com/cross-domain.html)
 - get 与 post
@@ -638,42 +655,74 @@ HTTP2中
 - 为什么要等待2MSL？ ➤ ①.保证TCP协议的全双工连接能够_可靠关闭_；②.保证这次连接的_重复数据段从网络中消失_。备注：MSL是任何报文段被丢弃前在网络内的最长时间。
 
 参考资料：
+
 - [关于 TCP/IP，必知必会的十个问题](https://juejin.im/post/598ba1d06fb9a03c4d6464ab)
 - [通俗大白话来理解TCP协议的三次握手和四次分手 #14](https://github.com/jawil/blog/issues/14)
 - [掘金搜索TCP结果](https://juejin.im/search?query=tcp&type=all)
 
 </details>
 
+### 跨域资源共享(CORS) 机制
+
+策略：同源策略  ( [源]被定义为 URI、主机名和端口号的组合 )
+
+作用：浏览器作为"安全裁判"，用于隔离潜在恶意数据的重要安全机制
+
+解决方案：
+
+- JSONP (兼容性好，但数据量小，GET请求)
+- WebSocket (该协议不受同源政策限制)
+- 反向代理（Nginx 服务内部配置 Access-Control-Allow-Origin 选项为 *）
+- CORS 前后端协作设置请求头部，如设置 Access-Control-Allow-Origin 等头部信息( "简单请求"；[`OPTIONS`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/OPTIONS) 方法预检请求 )
+- iframe 嵌套通讯。关键技术：① 改变片段标识符，通过 `hashchange` 事件监听；② 利用 `window.name` 属性(影响性能)
+- HTML5 新 API：`window.postMessage()`，通过`message`事件监听。
+
+思考题：
+
+- 为什么form表单提交没有跨域问题，但ajax提交有跨域问题？提示：<u>因为原页面用 form 提交到另一个域名之后，原页面的脚本无法获取新页面中的内容。</u>
+
+
+
+参考资料：
+
+- [HTTP访问控制（CORS） - MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+- [浏览器同源政策及其规避方法](http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
+- [前端跨域及其解决方案](https://tech.jandou.com/cross-domain.html)
+
 ### 正向代理和反向代理的区别？
 
 ### 如何部署大型 CDN ？
 
-
 ## 5.框架的使用
 
 ### 解释单向数据流和双向数据绑定
+
 只有 UI控件 才存在双向，非 UI控件 只有单向。全局性数据流使用单向，易跟踪调试。局部性数据流使用双向，简单易用。
 
 - [单向数据绑定和双向数据绑定的优缺点，适合什么场景？](https://www.zhihu.com/question/49964363)
 - [React 应用的架构模式 Flux](http://stylechen.com/react-flux.html)
 
 ### Vue双向绑定实现原理 
+
 ➤ 参考资料：[《剖析Vue原理&实现双向绑定MVVM》](https://segmentfault.com/a/1190000006599500)
+
 - 单向数据流架构在哪些方面适合MVC ？
 
-    MVC 拥有大约 50 年的悠久历史，并已演变为 MVP，MVVM 和 MV *。两者之间的相互关系是什么？如果 MVC 是架构模式，那么单向数据流是什么？这些竞争模式是否能解决同样的问题？
+  MVC 拥有大约 50 年的悠久历史，并已演变为 MVP，MVVM 和 MV *。两者之间的相互关系是什么？如果 MVC 是架构模式，那么单向数据流是什么？这些竞争模式是否能解决同样的问题？
 
 ### Vue对比其他框架(主要关注 React)
 
 1. React需要开发者更多的关注子组件的重渲染，如何的避免这个问题引起的性能问题，然而在 Vue 应用中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。你可以理解为每一个组件都已经自动获得了 `shouldComponentUpdate`，并且没有上述的子树问题限制。因此 Vue 的这个特点使得开发者不再需要考虑此类优化，<u>从而能够更好地专注于应用本身。</u>
 2. Vue 的路由库和状态管理库都是由官方维护支持且与核心库同步更新的。React 则是选择把这些问题交给社区维护，因此创建了一个更分散的生态系统。但相对的，React 的生态系统相比 Vue 更加繁荣。
-3.  React 比 Vue 更好的地方，比如更丰富的生态系统，React 国际大厂的维护，Vue 初期则是个人开发者。
+3. React 比 Vue 更好的地方，比如更丰富的生态系统，React 国际大厂的维护，Vue 初期则是个人开发者。
 
 > 更多对比查看 Vue 官方解释https://cn.vuejs.org/v2/guide/comparison#React
 
 ### 客户端 MVC 与服务器端或经典 MVC 有何不同？
 
-    提示：经典 MVC 是适用于桌面应用程序的 Smalltalk MVC。在 Web 应用中，至少有两个不同的数据 MVC 周期。
+```
+提示：经典 MVC 是适用于桌面应用程序的 Smalltalk MVC。在 Web 应用中，至少有两个不同的数据 MVC 周期。
+```
 
 ### 不可变数据结构（immutable data structures）解决了哪些问题？
 
@@ -687,12 +736,14 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 
 ### 大型应用程序是否应使用静态类型？
 
-    如何比较 TypeScript/Flow 与 Elm/ReasonML/PureScript 等 JS 转换语言？这些方法的优缺点是什么？
-
+```
+如何比较 TypeScript/Flow 与 Elm/ReasonML/PureScript 等 JS 转换语言？这些方法的优缺点是什么？
+```
 
 ### Vue 和 React的一些优点？
 
 几个切入点：
+
 - 数据驱动
 - 数据单向流
 - 虚拟DOM（可减少直接操作DOM，性能上的优化）
@@ -703,8 +754,7 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 
 ➤ 参考资料：https://t.cn/RmV1t56
 
-![](./images/lifeCycle.jpg)
-
+![](./images/ifeCycle.jpg)
 
 ### 如何理解虚拟DOM? 
 
@@ -719,8 +769,10 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 
 关键技术：batching(批处理)、Diff算法的优化:
 
-    batching(批处理)：将所有DOM的操作搜集打包在js对象中完成，然后一次性的递交给真实DOM（性能上只刷新一次）
-    Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)，主要得益于对新旧DOM树进行了一个深度的优先遍历，并对每个节点做唯一 id 标记
+```
+batching(批处理)：将所有DOM的操作搜集打包在js对象中完成，然后一次性的递交给真实DOM（性能上只刷新一次）
+Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)，主要得益于对新旧DOM树进行了一个深度的优先遍历，并对每个节点做唯一 id 标记
+```
 
 逐层进行节点比较
 ![](./images/dom-diff.jpg)
@@ -775,13 +827,21 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 
 多个组件并排渲染，需要使用一个 HTML 比偶钱包过，一般增加一个 `<div>`  即可，但引起了 DOM 结构的冗余，于是出现了 `Fragment`，直接用 `<React.Fragment>` 代替 `<div>`
 
-### 单页面应用路由实现原理：
+### 单页面应用路由实现原理
 
 [以 React-Router 为例](https://github.com/youngwind/blog/issues/109#)
+
+### React Hooks
+
+参考资料：
+
+1. [精读《怎么用 React Hooks 造轮子》](https://juejin.im/post/5bf20ce6e51d454a324dd0e6)
+2. [Hook 官方解读](https://zh-hans.reactjs.org/docs/hooks-intro.html)
 
 ## 6.CSS布局基础
 
 ### BOM盒模型 
+
 - [box-sizing MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing) 
 - 浮动、文档流
 
@@ -803,23 +863,30 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 - 百分比
 
 问题例子：
+
 - 因使用了标准盒模型，盒子的 border 必然导致盒子挤出去，那么如何实现边框？
   答：用阴影或者outline来画线更加巧妙。
 - 
+
 ## 7.前端构架和开发效率
 
-### git
+### Git 重点和难点总结(单独)
 
-### 代码编辑器
+### 代码编辑器 Vscode
 
 ### 项目管理工具、BUG管理工具
+
+### Webpack 相关技术难点(单独)
+
+- [webpack热更新流程 #238](https://github.com/kaola-fed/blog/issues/238)
+
+EventSource → Websocket
 
 ## 8.算法、数据结构、计算机基础等
 
 ### 有哪些基本的算法？
 
 1. [Leetcode中文](https://leetcode-cn.com/)
-
 2. ["所谓"的前端算法](https://github.com/zhaoqize/blog/issues/18#) 
 
 ### 二进制, 十进制, 十六进制, 科学记数法
@@ -849,7 +916,6 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 
 ⑤ 设置响应头 cache-control 和 last-modifie
 
-
 ## 10.面试分享和学习资料
 
 ### 面试分享
@@ -876,21 +942,21 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 
 ### 学习资料
 
--  JS 基础类《JavaScript高级程序设计》（第3版）
+- JS 基础类《JavaScript高级程序设计》（第3版）
 
--  网络类《HTTP权威指南》
+- 网络类《HTTP权威指南》
 
--  CSS 基础类《CSS揭秘》
+- CSS 基础类《CSS揭秘》
 
--  [ECMAScript 6 入门 (阮一峰)](http://es6.ruanyifeng.com/)
+- [ECMAScript 6 入门 (阮一峰)](http://es6.ruanyifeng.com/)
 
--  JS 基础书籍《You-Dont-Know-JS》 [Github在线阅读](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN)
+- JS 基础书籍《You-Dont-Know-JS》 [Github在线阅读](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN)
 
-	购买链接：[你不知道的JavaScript（上卷）](https://u.jd.com/mwU5Oo) 、  [你不知道的JavaScript（中卷）](https://u.jd.com/jHylwd)  、 [你不知道的JavaScript（下卷）](https://u.jd.com/iO9Z43)
-	
--  [React  小书](http://huziketang.com/books/react/)
+  购买链接：[你不知道的JavaScript（上卷）](https://u.jd.com/mwU5Oo) 、  [你不知道的JavaScript（中卷）](https://u.jd.com/jHylwd)  、 [你不知道的JavaScript（下卷）](https://u.jd.com/iO9Z43)
 
--  [React 官方文档](https://zh-hans.reactjs.org/docs/)
+- [React  小书](http://huziketang.com/books/react/)
+
+- [React 官方文档](https://zh-hans.reactjs.org/docs/)
 
 - [Redux 文档](http://cn.redux.js.org/)
 
@@ -898,7 +964,7 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 
 - [现代 JavaScript 教程](https://zh.javascript.info/)
 
-- MDN
+- [MDN](https://developer.mozilla.org/zh-CN/)
 
 - [React API 速查](http://devhints.cn/react)
 
