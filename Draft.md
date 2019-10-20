@@ -90,6 +90,6 @@ gulp、grunt 更加关注前端工程流，是前端的工具应用，关键词 
 
 webpack、browseify 主要是**模块打包**方案，另外与 Gulp 相似的，开发工具、插件功能。
 
-- gulp和webpack的区别？(模块与流，CommonChunks抽出公共模块)
+- gulp和webpack的区别？(模块与流，Common Chunks 抽出公共模块)
 - Webpack 的工作原理？路由懒加载
 

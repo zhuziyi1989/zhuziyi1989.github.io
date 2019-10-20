@@ -1,6 +1,4 @@
-
-
-# 前端知识体系不完全记录
+前端知识体系不完全记录
 
 ## 目录
 
@@ -40,6 +38,8 @@
 
 ### 数组(Array)
 
+#### 常用数组方法
+
 Array.prototype.find() - 返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 undefined。
 
 Array.prototype.findIndex() – find and return an **index**
@@ -65,6 +65,37 @@ Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数�
 3. 使用 Object.prototype.toString.call 判断，如果值是 [object Array], 说明是数组
 4. 通过 constructor 来判断，如果是数组，那么 `A.constructor === Array`，在改变指定 `obj.constructor = Array`时，此方法并不准确。
 
+#### 数组去重
+
+方法一： hash 标记法
+
+```javascript
+function removeDup(arr){
+    var result = [];
+    var hashMap = {};
+    for(var i = 0; i < arr.length; i++){
+        var temp = arr[i]
+        if(!hashMap[temp]){
+            hashMap[temp] = true
+            result.push(temp)
+        }
+    }
+    return result;
+}
+```
+
+方法二：利用 Set 数据结构
+
+```javascript
+Array.from(new Set(arr))
+//或者
+[...new Set(arr)]
+```
+
+#### 数组乱序
+
+洗牌算法
+
 #### 类数组的特性
 
 1. 拥有 length 属性，其它属性（索引）为非负整数（对象中的索引会被当做字符串来处理）
@@ -86,6 +117,10 @@ Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数�
 > 任何定义了遍历器（Iterator）接口的对象，都可以用扩展运算符转为真正的数组。
 >
 > Array.from方法可以将**类似数组的对象（array-like object）**和**可遍历（iterable）的对象**转为真正的数组。
+
+#### 
+
+
 
 ### 字符串(String)
 
@@ -511,6 +546,42 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 
 #### Set 和 Map 数据结构
 
+|      |              Map               | Set  | WeakMap | WeakSet | Object |
+| :--: | ---------------------------- | :--- | :-----: | :-----: | :----: |
+| 定义 |         一个键值对集合         | 一个包含不重复值的集合 |         |         |        |
+|      |      对象可以作为键。迭代顺序是插入顺序。附加方便的方法，有 size 属性。      | 不允许元素重排。保持插入的顺序。 | 仅允许 [对象] 作为键 |         |        |
+|      |  |      |         |         |        |
+
+
+
+🚩Set  是一个包含不重复值的集合。
+
+
+
+1.和 Array 不同，set 不允许元素重新排序。
+
+2.保持插入的顺序。
+
+
+
+🚩WeakMap 是 Map 的一个变体，仅允许 [对象] 作为键，并且当对象由于其他原因不可引用的时候将其删除。
+
+
+
+它不支持整体的操作：没有 size 属性，没有 clear() 方法，没有迭代器。
+
+
+
+🚩WeakSet 是 Set 的一个变体，仅存储 [对象]，并且当对象由于其他原因不可引用的时候将其删除。
+
+
+
+同样不支持 size/clear() 和迭代器。
+
+
+
+WeakMap 和 WeakSet 被用作主要对象存储的次要数据结构补充。一旦对象从存储移除，那么存在于 WeakMap/WeakSet 的数据将会被自动清除。
+
 #### 展开运算符、解构
 
 ### 新 ECMAScript 2018 提案关注过有哪些？
@@ -533,7 +604,7 @@ console.log(JSON.stringify(a)) // {"key2":110}  丢失 key1，为什么丢失？
 
 ### 解释 TCO - 尾调用优化（Tail Call Optimization）。 有没有支持尾调用优化的 JavaScript 引擎？ 
 
-### 理解正则表达
+### 理解和使用正则表达
 
 正则表达式主要运用在_处理文本_、_对用户输入执行规则_等
 
@@ -543,6 +614,16 @@ console.log(JSON.stringify(a)) // {"key2":110}  丢失 key1，为什么丢失？
 var re = /ar/;
 var re = new RegExp('ar'); 
 ```
+
+|                             方法                             | 描述                                                         |
+| :----------------------------------------------------------: | :----------------------------------------------------------- |
+| [`exec`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec) | 一个在字符串中执行查找匹配的RegExp方法，它返回一个数组（未匹配到则返回 null）。 |
+| [`test`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test) | 一个在字符串中测试是否匹配的RegExp方法，它返回 true 或 false。 |
+| [`match`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/match) | 一个在字符串中执行查找匹配的String方法，它返回一个数组，在未匹配到时会返回 null。 |
+| [`matchAll`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll) | 一个在字符串中执行查找所有匹配的String方法，它返回一个迭代器（iterator）。 |
+| [`search`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/search) | 一个在字符串中测试匹配的String方法，它返回匹配到的位置索引，或者在失败时返回-1。 |
+| [`replace`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace) | 一个在字符串中执行查找匹配的String方法，并且使用替换字符串替换掉匹配到的子字符串。 |
+| [`split`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/split) | 一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的 `String`方法。 |
 
 ### 错误的处理模式，捕获和调试的一些心得？
 
@@ -697,7 +778,7 @@ HTTP2中
 
 ### 解释单向数据流和双向数据绑定
 
-只有 UI控件 才存在双向，非 UI控件 只有单向。全局性数据流使用单向，易跟踪调试。局部性数据流使用双向，简单易用。
+只有 UI 控件 才存在双向，非 UI控件 只有单向。全局性数据流使用单向，易跟踪调试。局部性数据流使用双向，简单易用。
 
 - [单向数据绑定和双向数据绑定的优缺点，适合什么场景？](https://www.zhihu.com/question/49964363)
 - [React 应用的架构模式 Flux](http://stylechen.com/react-flux.html)
@@ -817,6 +898,10 @@ Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)�
 
    #### 什么事柯里化？
 
+   柯里化：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数。
+
+   Currying 使用场景：参数复用、延迟执行。
+
 4. 渲染回调（Render Callbacks）：`this.props.children`方式，也就是函数作为子组件。
 
 5. 新的 API：Hooks
@@ -825,7 +910,7 @@ Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)�
 
 ### Fragments
 
-多个组件并排渲染，需要使用一个 HTML 比偶钱包过，一般增加一个 `<div>`  即可，但引起了 DOM 结构的冗余，于是出现了 `Fragment`，直接用 `<React.Fragment>` 代替 `<div>`
+多个组件并排渲染，需要使用一个 HTML 比偶钱包过，一般增加一个 `<div>`  即可，但引起了 DOM 结构的冗([rǒng])余，于是出现了 `Fragment`，直接用 `<React.Fragment>` 代替 `<div>`
 
 ### 单页面应用路由实现原理
 
@@ -855,7 +940,7 @@ Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)�
 
 ### 移动端布局方案
 
-- flex
+- flex （[图解CSS3 Flexbox属性](https://www.w3cplus.com/css3/a-visual-guide-to-css3-flexbox-properties.html)）
 - css-grid
 - rem
 - vw和vh
@@ -906,7 +991,7 @@ EventSource → Websocket
 场景：诸如京东6.18和双十一这类时期，要求采用高并发、高可用的前端架构，
 
 ① 利用**缓存**
-    浏览器的静态资源缓存、静态资源的 **cdn** 缓存、分布式缓存、服务端缓存。可在 `localStorage` 里所很多优化，充分利用客户端资源，可在客户端储存一些不常改变的静态数据、base64编码形式的图片。
+    浏览器的静态资源缓存、静态资源的 **cdn** 缓存、分布式缓存、服务端缓存。可在 `localStorage` 里做很多优化，充分利用客户端资源，可在客户端储存一些不常改变的静态数据、base64编码形式的图片。
 
 ② 升级为 http2 推送
 

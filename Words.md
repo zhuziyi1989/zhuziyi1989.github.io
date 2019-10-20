@@ -26,8 +26,10 @@
 10. Performance n. 性能；绩效；表演；执行；表现
 11. frequency  [美: 'frikwənsi] [英: 'friːkw(ə)nsɪ]  n. 频率；频繁
 
-
 ## 前端中常用词汇：
+
+> 及物动词(vt.)后可跟物品的词，但不及物动词(vi.)不可以。
+
 1. row   (表格的)行
 2. column (表格的)列
 3. traversal  n. [计] **遍历**；横越；横断物
@@ -43,3 +45,7 @@
 13. Accumulator  n. 蓄电池；**[计] 累加器；**积聚者
 14. `Promise`对象的英语意思就是“<u>承诺</u>”，表示其他手段无法改变，它代表一个异步操作，有三种状态：`pending`（进行中）、`fulfilled`（已成功）和`rejected`（已失败）
 15. `status` 状态、`restart` 重启、`start` 启动
+16. dialog  n. 对话；对话框[前]
+17. dismiss vt. 解散, 解雇；vi. 解散, 消失[前]
+18. pure adj. 纯的；纯粹的；纯洁的；清白的；纯理论的
+
