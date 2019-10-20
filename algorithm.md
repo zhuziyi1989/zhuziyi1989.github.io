@@ -57,4 +57,3 @@ fibonacciX(15); //  = 610
 const fibonacciX = () =>  (n <= 1 ? n : fibonacciX(n-1) + fibonacciX(n-2))
 fibonacciX(20); //  = 6765
 ```
-
