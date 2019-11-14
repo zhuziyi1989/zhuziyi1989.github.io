@@ -10,7 +10,7 @@ var url = encodeURIComponent(window.location.href)
 	qrcode_box=a.getElementById('qrcode-box')
 	qrcode_cover=a.getElementById('qrcode-cover')
 	js=a.getElementById('qrcode')
-	qrcode_box.innerHTML='<img src="'+base_url+url+'" style="width:200px;height:200px;background:url(https://zhuziyi1989.github.io/tool/img/qcode-loading.svg) no-repeat center center"><p style="text-align:center;color:#999;padding-bottom:20px;margin:0;">使用微信扫一扫</p><div id="btn" style="text-align:center;width:160px;height:30px;background:#ddd;line-height:30px;margin:0 auto;border-radius:4px;color:#666;cursor:pointer;" onclick="close()">关闭</div>'
+	qrcode_box.innerHTML='<img src="'+base_url+url+'" style="width:200px;height:200px;background:url(https://raw.githubusercontent.com/zhuziyi1989/zhuziyi1989.github.io/master/tool/img/qcode-loading.svg) no-repeat center center"><p style="text-align:center;color:#999;padding-bottom:20px;margin:0;">使用微信扫一扫</p><div id="btn" style="text-align:center;width:160px;height:30px;background:#ddd;line-height:30px;margin:0 auto;border-radius:4px;color:#666;cursor:pointer;" onclick="close()">关闭</div>'
 	var btn=document.getElementById('btn');
 	btn.onclick=function(){
 		a.body.removeChild(qrcode_box)
