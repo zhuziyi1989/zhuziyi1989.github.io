@@ -371,11 +371,11 @@ setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID �
 
 **一个对象都有原型对象，且原型对象是独立的！**如图：
 
-![](./images/rototype.jpg)
+![](./images/prototype.jpg)
 
 原型链查找图：
 
-![](./images/hain-min.jpg)
+![](./images/Prototypechain-min.jpg)
 
 ### 关于 this
 
@@ -774,6 +774,15 @@ HTTP2中
 
 ### 如何部署大型 CDN ？
 
+### 跨域认证问题(JWT)
+
+1. session + Cookie
+2. JSON Web Token
+
+JSON Web Token（缩写 JWT）是目前最流行的跨域认证解决方案
+
+> 阮一峰：[JSON Web Token 入门教程](http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
+
 ## 5.框架的使用
 
 ### 解释单向数据流和双向数据绑定
@@ -835,7 +844,7 @@ immutable.js在数据比较上也有优化，只需要对外层数据判断即�
 
 ➤ 参考资料：https://t.cn/RmV1t56
 
-![](./images/ifeCycle.jpg)
+![](./images/lifeCycle.jpg)
 
 ### 如何理解虚拟DOM? 
 
@@ -908,6 +917,33 @@ Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)�
 
 > 参考：[[译]React 组件模式](https://github.com/yueshuiniao/blog/issues/1)
 
+### React 组件之间通信方式？
+
+#### 常见应用场景
+
+1. 父组件 → 子组件：利用`props`实现数据传递
+2. 子组件 → 父组件：
+
+   - 回调函数实现，依靠父组件传下来的 `callback` 函数执行，改变 父组件 组件的状态，或者把 子组件 的 state 通知 父组件 。
+   - 自定义事件机制
+3. 跨层级（祖孙）组件：
+
+   - 层层组件传递`props`
+
+   - 使用`context`技术
+4. 兄弟组件：通常是依赖共有的顶级容器（即共有父组件）处理
+5. 无嵌套关系组件：自定义事件机制，常用的有发布/订阅模式，通常是依赖共有的顶级容器处理或者第三方的状态管理器（如Redux/Mbox）。其实原理都是相通的，兄弟 A （发布者）的 value 发生变化，分发的时候把 value 值告诉一个中间者 C（订阅者） ，C 会自动告知 B，实现 B 的自动render 。
+
+#### 终极解决方案：
+
+如果你的项目非常大，那可能需要一个状态管理工具，通过状态管理工具把组件之间的关系，和关系的处理逻辑从组建中抽象出来，并集中化到统一的地方来处理，Redux就是一个非常不错的状态管理工具，当然还有这些Mobx、Rematch、reselect 不错的工具。
+
+> 参考：
+>
+> - [React组件之间的通信](https://github.com/sunyongjian/blog/issues/27)
+>
+> - [ReactJS 组件间沟通的一些方法（From Alloyteam）](http://www.alloyteam.com/2016/01/some-methods-of-reactjs-communication-between-components/)
+
 ### Fragments
 
 多个组件并排渲染，需要使用一个 HTML 比偶钱包过，一般增加一个 `<div>`  即可，但引起了 DOM 结构的冗([rǒng])余，于是出现了 `Fragment`，直接用 `<React.Fragment>` 代替 `<div>`
@@ -930,7 +966,7 @@ Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)�
 - [box-sizing MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing) 
 - 浮动、文档流
 
-### 纯 CSS 盒子水平垂直居中的实现方法  
+### 纯 CSS 盒子水平垂直居中的实现方法
 
 查看 [Demo](https://zhuziyi1989.github.io/demo/box-center.html)
 
