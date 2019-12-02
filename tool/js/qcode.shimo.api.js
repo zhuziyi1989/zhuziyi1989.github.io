@@ -1,5 +1,5 @@
 window.Qrcode = {}
-var url = encodeURIComponent(window.location.href)
+var url = window.location.href
 	base_url='https://shimo.im/qrcode?size=396&margin=0&url='
 	a=document
 	b=''
