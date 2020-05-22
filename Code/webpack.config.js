@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: "production", // enabled useful tools for development
-    entry: './src/main.js',
+    entry: './src/app.js',
     output: {
         // webpack 如何输出结果的相关选项
         path: path.resolve(__dirname, "dist"), // string
