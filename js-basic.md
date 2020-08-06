@@ -1,6 +1,6 @@
-## 1.JS语言基础
+## JS语言基础
 
-### 简单说说 JS 数据类型
+### 1. 简单说说 JS 数据类型
 
 7 种原始(基本)数据类型  ▶ `栈内存`存储的是值
 
@@ -21,7 +21,7 @@
 - 正则（RegExp）
 - 日期（Date）
 
-###  \<script> 标签属性
+###  2. \<script> 标签属性
 
 ```javascript
 <script src="example-url.js" async或defer type="text/javascript"></script>
@@ -31,7 +31,7 @@ defer 属性规定是否对脚本执行进行延迟，直到页面加载为止�
 
 详细介绍可以阅读MDN [《 <script>-HTML 章节 》](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script)。
 
-### 数组(Array)
+### 3. 数组(Array)
 
 #### 常用数组方法
 
@@ -113,13 +113,10 @@ Array.from(new Set(arr))
 >
 > Array.from方法可以将**类似数组的对象（array-like object）**和**可遍历（iterable）的对象**转为真正的数组。
 
-#### 
 
+### 4. 字符串(String)
 
-
-### 字符串(String)
-
-### 对象(Object)
+### 5. 对象(Object)
 
 应该熟悉掌握`Object` 的一些 API：
 
@@ -129,7 +126,7 @@ Array.from(new Set(arr))
 2. `Object.keys()`：`Object.keys(obj).forEach(function (property) { ... })`。`Object.keys()`方法会返回一个由一个给定对象的自身可枚举属性组成的数组。
 3. `Object.getOwnPropertyNames()`：`Object.getOwnPropertyNames(obj).forEach(function (property) { ... })`。`Object.getOwnPropertyNames()`方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括 Symbol 值作为名称的属性）组成的数组。
 
-### 类型的判断
+### 6. 类型的判断
 
 #### 操作符 typeof 
 
@@ -165,7 +162,7 @@ Object.prototype.toString.call(Symbol(1)) // "[object Symbol]"
 Object.prototype.toString.call(true).slice(8,-1) // "Boolean"
 ```
 
-### 相等与全等区别
+### 7. 相等与全等区别
 
 相等（==）操作符会执行 `类型转换`，具体流程如下:
 
@@ -207,7 +204,7 @@ isNaN(1 + null) // false
 isNaN(1 + undefined) // true
 ```
 
-### 哪些值是 false
+### 8. 哪些值是 false
 
 可用 Boolean() 去检测，以下在条件语句中被认为是 false
 
@@ -218,7 +215,7 @@ isNaN(1 + undefined) // true
 - `NaN`
 - `0`（两个`+0`和`-0`）
 
-### 什么是函数式编程？
+### 9. 什么是函数式编程？
 
 **函数式编程** （通常简称为 FP）是指通过复合 **纯函数** 来构建软件的过程，它避免了**共享的状态（share state）**、**易变的数据(mutable data)**、以及**副作用(side-effects)**。函数式编程是**声明式**而不是**命令式**，并且应用程序状态通过纯函数流转。对比面向对象编程，后者的应用程序状态通常是共享并共用于对象方法。
 
@@ -236,7 +233,7 @@ Via：[征服 JavaScript 面试: 什么是函数式编程？| Eric Elliott](http
 
 什么是纯函数？ https://t.cn/EJELtXz
 
-### DOM 事件绑定的几种方式？
+### 10. DOM 事件绑定的几种方式？
 
 - 1. 在 DOM 元素上直接绑定（不推荐）
 
@@ -279,7 +276,7 @@ IE8.0及其以下版本用`attachEvent(event,fn);`代替。
 ③ 冒泡 + 捕获：相当于每个节点同一个事件，至少 2 次处理机会
 ④ 同一类事件，可以绑定多个函数
 
-### 事件冒泡和捕获
+### 11. 事件冒泡和捕获
 
 事件冒泡：子元素的触发事件会一直向父节点传递，一直到根结点停止。此过程中，可以在每个节点捕捉到相关事件。可以通过`stopPropagation`方法终止冒泡。
 
@@ -287,25 +284,25 @@ IE8.0及其以下版本用`attachEvent(event,fn);`代替。
 
 事件捕获的传播方向：根节点 → 子元素
 
-### 事件委托的优势
+### 12. 事件委托的优势
 
 使用事件委托是需要在 DOM 树中尽量最高的层次节点上添加一个事件处理程序，因为子节点的事件会冒泡，最终会被委托节点处理的，优势：① 如果绑定在 document 上，document是很快能被访问的，而且可在页面生命周期的任何时点上为它添加时间事件程序(无需等待 load 事件)；② 更简洁，多个事件处理不需要更多代码；③ 整个页面占用的内存空间较少，性能也得到了大大的提升。
 
-### 值类型和引用类型、变量提升
+### 13. 值类型和引用类型、变量提升
 
 1. var 的函数作用域、有变量提升
 2. let 和 const 定义前的区域为`暂时性死区`
 
-### 立即执行函数, 模块化, 命名空间
+### 14. 立即执行函数, 模块化, 命名空间
 
 IIFE（Immediately Invoked Function Expressions）代表立即执行函数。
 
 1. (function(){ … })()   私有化变量
 2. ES6+ 的 import、export 模块化相对比 Common.js 的优势？
 
-### 剩余参数、默认参数和解构赋值参数
+### 15. 剩余参数、默认参数和解构赋值参数
 
-### setTimeout 和 setInterval
+### 16. setTimeout 和 setInterval
 
 #### setTimeout 导致实例引用的丢失
 
@@ -338,9 +335,9 @@ flower.bloom();  // 一秒钟后, 调用'declare'方法
 
 setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID 传递给clearInterval()，clearTimeout() 以取消执行。这几个函数都是浏览器 window 对象提供的，没有公开的规范和标准，所以并不保证这些 ID 都是从1开始。
 
-### 函数作用域,、块级作用域和词法作用域
+### 17. 函数作用域、块级作用域和词法作用域
 
-### “new” 关键字有什么作用？
+### 18. “new” 关键字有什么作用？
 
 当代码 new Foo(...) 执行时，会发生以下事情：
 
@@ -348,11 +345,11 @@ setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID �
 - 2.使用指定的参数调用构造函数 Foo，并*将 this 绑定到新创建的对象* 。new Foo 等同于 Foo()，也就是没有指定参数列表，Foo 不带任何参数调用的情况。
 - 3.由构造函数返回的对象就是 new 表达式的结果。如果构造函数没有显式返回一个对象，则使用步骤1创建的对象。（一般情况下，构造函数不返回值，但是用户可以选择主动返回对象，来覆盖正常的对象创建步骤）
 
-### 关于“闭包”的相关话题
+### 19. 关于“闭包”的相关话题
 
 关键点在于一个函数返回另一个函数，另一个函数就是“闭包”
 
-### 原型、原型链、继承等相关话题
+### 20. 原型、原型链、继承等相关话题
 
 关于原型继承， 我们应该记住以下几条：
 
@@ -362,8 +359,6 @@ setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID �
 - 为了继承方法, 使用 Object.create 连接父和子的原型
 - 始终将子类构造函数设置为自身，以获得其对象的正确类型
 
-
-
 **一个对象都有原型对象，且原型对象是独立的！**如图：
 
 ![](./images/prototype.jpg)
@@ -372,7 +367,7 @@ setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID �
 
 ![](./images/Prototypechain-min.jpg)
 
-### 关于 this
+### 21. 关于 this
 
 - 如果要想把 this 的值从一个环境传到另一个，就要用 call 或者 apply 方法。
 - this 的值取决于**函数的调用方式**。一般来说，谁调用了该方法，那么 this 就指向谁。
@@ -415,9 +410,9 @@ ES6中的箭头函数：
 
 参考资料：[MDN 对 this 的讲解](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)
 
-### 设计模式展开话题
+### 22. 设计模式展开话题
 
-### JS中的重要关键词（大杂烩）
+### 23. JS中的重要关键词（大杂烩）
 
 - `super` 关键字用于访问和调用一个对象的父对象上的函数。
 
@@ -454,19 +449,19 @@ ES6中的箭头函数：
 
 - split() 字符串切割成数组  splice()  join()  push/pop  unshift/shift  concat()
 
-### Object.assign 如何实现深拷贝？
+### 24. Object.assign 如何实现深拷贝？
 
 Object.assign({}, state, { visibilityFilter: action.filter })，把第一个参数设置为空对象，就可以避免改变 state
 
 ![assign](./images/assign2.jpg)
 
-### 理解和深挖 map() 等高阶函数
+### 25. 理解和深挖 map() 等高阶函数
 
 1. 熟练掌握诸如 map() 、foreach() 、fliter() 、reduce() 新的 API
 2. 说说`map()`和`forEach()`的比较？均不改变原数组（除非 callback 有操作）。 `forEach()`的执行速度较慢，无返回值；`map()`则会要求分配新的内存空间，用于存储新数组 **并返回**。
 3. for(let key in Obj){ console.log(key, Obj[key]) } 的性能比较
 
-### 浮点数问题 0.1+0.2 != 0.3
+### 26. 浮点数问题 0.1+0.2 != 0.3
 
 解释 console.log(0.1+0.2) //0.30000000000000004  
 
@@ -477,25 +472,25 @@ Object.assign({}, state, { visibilityFilter: action.filter })，把第一个参�
 
 参考资料：： [浮点数为什么不精确？](https://juejin.im/entry/575543857db2a2006993114e)
 
-### 事件循环(Event Loop)
+### 27. 事件循环(Event Loop)
 
 > 参考：https://juejin.im/post/5bac87b6f265da0a906f78d8
 
 *占坑，未总结*
 
-### *** 异步
+### 28. *** 异步
 
 - 解释 promises，observables，generator 或 async-wait 
 
 *占坑，未总结*
 
-### 函数调用模式的方式
+### 29. 函数调用模式的方式
 
 ```
 ** 提示: 有四种模式，函数调用、方法调用、call() 和 apply()。
 ```
 
-### ES6+ 的新特性
+### 30. ES6+ 的新特性
 
 #### let、const 与 var 的区别
 
@@ -585,13 +580,13 @@ WeakMap 和 WeakSet 被用作主要对象存储的次要数据结构补充。一
 
 #### 展开运算符、解构
 
-### 新 ECMAScript 2018 提案关注过有哪些？
+### 31. 新 ECMAScript 2018 提案关注过有哪些？
 
 ```
 ** 提示: ECMAScript 2018 的 BigInt、partial function、pipeline operator
 ```
 
-### JavaScript 中的迭代器（iterators）和迭代（iterables）是什么？ 你知道什么是内置迭代器吗？
+### 32. JavaScript 中的迭代器（iterators）和迭代（iterables）是什么？ 你知道什么是内置迭代器吗？
 
 ```javascript
 const a ={
@@ -601,11 +596,11 @@ const a ={
 console.log(JSON.stringify(a)) // {"key2":110}  丢失 key1，为什么丢失？
 ```
 
-### 你熟悉 Typed Arrays 吗？ 如果熟悉，请解释他们与 JavaScript 中的传统数组相比的异同？
+### 33.你熟悉 Typed Arrays 吗？ 如果熟悉，请解释他们与 JavaScript 中的传统数组相比的异同？
 
-### 解释 TCO - 尾调用优化（Tail Call Optimization）。 有没有支持尾调用优化的 JavaScript 引擎？ 
+### 34.解释 TCO - 尾调用优化（Tail Call Optimization）。 有没有支持尾调用优化的 JavaScript 引擎？ 
 
-### 理解和使用正则表达
+### 35.理解和使用正则表达
 
 正则表达式主要运用在_处理文本_、_对用户输入执行规则_等
 
@@ -626,11 +621,11 @@ var re = new RegExp('ar');
 | [`replace`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace) | 一个在字符串中执行查找匹配的String方法，并且使用替换字符串替换掉匹配到的子字符串。 |
 | [`split`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/split) | 一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的 `String`方法。 |
 
-### 错误的处理模式，捕获和调试的一些心得？
+### 36. 错误的处理模式，捕获和调试的一些心得？
 
 - try/catch
 
-### TypeScript对JS的改进？
+### 37. TypeScript对JS的改进？
 
 主要在于`静态类型检查`，那么静态类型检查有何意义呢？
 
