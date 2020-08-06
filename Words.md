@@ -23,7 +23,7 @@
 7. assign vt. 分配；指派；[计] [数]   **赋值**     Object.assign(target, ...sources)
 19. instance  n. **实例**；情况；建议 （为对象创建一个实例时）
 20. option n. [计] **选项**；选择权；买卖的特权；期权
-21. Performance n. **性能**；绩效；表演；执行；表现
+21. Performance n. **性能**；绩效；表演；执行；表现  (Performance optimization 性能优化)
 22. frequency  [美: 'frikwənsi] [英: 'friːkw(ə)nsɪ]  n. **频率**；频繁
 23. unified  adj. **统一的**；一致标准的 v. 统一；使一致（unify的过去分词）
 24. platform n. **平台**；月台，站台；坛；讲台
