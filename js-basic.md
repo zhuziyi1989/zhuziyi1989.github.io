@@ -29,25 +29,30 @@
 async 规定一旦脚本可用，则会异步执行。
 defer 属性规定是否对脚本执行进行延迟，直到页面加载为止。
 
-详细介绍可以阅读MDN [《 <script>-HTML 章节 》](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script)。
+详细介绍可以阅读MDN [《 \<script>-HTML 章节 》](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script)。
 
 ### 3. 数组(Array)
 
 #### 常用数组方法
 
-Array.prototype.find() - 返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 undefined。
+<details><summary><b>查看解析</b></summary>
+  <p>
+  
+    Array.prototype.find() - 返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 undefined。
 
-Array.prototype.findIndex() – find and return an **index**
-
-Array.prototype.includes() – 用来判断一个数组是否包含一个指定的值，如果包含则返回 true，否则返回false。
-
-Array.prototype.filter() – _创建一个新数组_, 其包含通过所提供函数实现的测试的所有元素。 
-
-Array.prototype.every() – 测试数组的**所有元素**是否都通过了指定函数的测试。
-
-Array.prototype.some() – 测试是否**至少有一个元素**通过由提供的函数实现的测试。
-
-Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数。
+    Array.prototype.findIndex() – find and return an **index**
+    
+    Array.prototype.includes() – 用来判断一个数组是否包含一个指定的值，如果包含则返回 true，否则返回false。
+    
+    Array.prototype.filter() – _创建一个新数组_, 其包含通过所提供函数实现的测试的所有元素。 
+    
+    Array.prototype.every() – 测试数组的**所有元素**是否都通过了指定函数的测试。
+    
+    Array.prototype.some() – 测试是否**至少有一个元素**通过由提供的函数实现的测试。
+    
+    Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数。
+  </p>
+</details>
 
 #### 哪些 API 会改变原数组？
 
@@ -55,10 +60,18 @@ Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数�
 
 #### 如何判断变量 A 是不是数组？
 
-1. 使用 Array.isArray(A) 判断，如果返回 true, 说明是数组
-2. 使用 A instanceof Array 判断，如果返回true, 说明是数组
-3. 使用 Object.prototype.toString.call 判断，如果值是 [object Array], 说明是数组
-4. 通过 constructor 来判断，如果是数组，那么 `A.constructor === Array`，在改变指定 `obj.constructor = Array`时，此方法并不准确。
+<details><summary><b>查看解析</b></summary>
+  <p>
+
+    1. 使用 Array.isArray(A) 判断，如果返回 true, 说明是数组
+    
+    2. 使用 A instanceof Array 判断，如果返回true, 说明是数组
+    
+    3. 使用 Object.prototype.toString.call 判断，如果值是 [object Array], 说明是数组
+    
+    4. 通过 constructor 来判断，如果是数组，那么 `A.constructor === Array`，在改变指定 `obj.constructor = Array`时，此方法并不准确。
+  </p>
+</details>
 
 #### 数组去重
 

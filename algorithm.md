@@ -1,6 +1,6 @@
 # 算法
 
-## 一、排序
+## 一、初级
 
 ### 1. 快速排序
 
@@ -30,7 +30,7 @@ console.log(quicksort([2,4,5,49,63,4,5,55,2,4,43])); // [2, 2, 4, 4, 4, 5, 5, 43
 
 ### 2.Fibonacci（斐波那契）
 
-```js
+```javascript
 //循环 O(n)
 function fibonacci(n){
   var fibo = Array(0,1);
@@ -57,3 +57,12 @@ fibonacciX(15); //  = 610
 const fibonacciX = () =>  (n <= 1 ? n : fibonacciX(n-1) + fibonacciX(n-2))
 fibonacciX(20); //  = 6765
 ```
+
+### 
+
+## 进阶
+
+### 1. 哈希表问题
+
+参考：[前端进阶算法8：头条正在面的哈希表问题 #49
+](https://github.com/sisterAn/JavaScript-Algorithms/issues/49)
