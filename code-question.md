@@ -1,9 +1,40 @@
-### 1.
+# 手写代码题
+
+### 1.返回字符串中最多的那个字符
+
+```javascript
+const str_test = 'affaaaedfjak';
+
+let findMaxDuplicateChar = (str)=>{
+    // 如果只有一个字符时
+    if(str.length===1){
+        return str;
+    }
+    let hashObj={}
+    for(let i=0,length=str.length;i<length;i++){
+        if (!hashObj[str[i]]){
+            hashObj[str[i]] = 1;//第 1 次标记为 1
+        }else{
+            hashObj[str[i]]+=1;//第2、3、4...次标记
+        }
+    }
+    let maxKey = '',maxValue = 1;// 初始化最大的key和value
+    for (var key in hashObj){//遍历储存标记的对象
+        if (hashObj[key] > maxValue) {
+            maxKey = key; //更新 maxKey
+            maxValue = hashObj[key]; //更新 maxValue
+        }
+    }
+    return maxKey
+}
+
+console.log(findMaxDuplicateChar(str_test))
+```
 
 
 ### 2.进制转换
 
-```js
+```javascript
 /**
  * 进制转换
  */
@@ -33,7 +64,7 @@ console.log(c_16); // 67
 
 ### 3.一个字符串的字符组合成的字符串集合
 
-```js
+```javascript
 const anagrams = str => {
   if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
   return str.split('').reduce((acc, letter, i) =>
@@ -44,11 +75,12 @@ console.log(anagrams('123')) // [ '123', '132', '213', '231', '312', '321' ]
 
 ### 4.数组去重
 
-```js
+```javascript
 /**
  *
  * 数组去重
  */
+const array_test = [1, 1, 2, 3, 4, 2, 3]
 
 // 手写数组去重 - 基础版
 Array.prototype.unique = function() {
@@ -62,13 +94,20 @@ Array.prototype.unique = function() {
     }
     return result
 }
-console.log([1, 1, 2, 3, 4].unique())
+console.log(array_test.unique())
 
 // Set 数据结构 + 展开运算符
-console.log(`展开运算符 -- ${JSON.stringify([...new Set([1,1,2,3,4,5])])}`)
+console.log(`展开运算符 -- ${JSON.stringify([...new Set(array_test)])}`)
 
 // Set 数据结构 + Arrary.from()
-console.log(`Arrary.from() -- ${JSON.stringify(Array.from(new Set([1,1,2,3,4,5])))}`)
+console.log(`Arrary.from() -- ${JSON.stringify(Array.from(new Set(array_test)))}`)
+
+// 使用 filter 方法过滤，利用 indexOf 检查是否为重复元素  ❤️ 算法复杂度O(n^2)
+
+array_test.filter((item,index,array) => {
+  array_test.indexOf(item) === index // 如果当前 item 的第一次出现的索引不等于当前索引，说明 item 是重复元素
+})
+
 ```
 
 ### 5.手写源码系列 call
@@ -124,6 +163,8 @@ console.log(test1.meCall(person, 1, 2, 3))
 ```
 
 ### 6.手写源码系列 apply、bind  → 类似 call
+
+略...
 
 ### 7.逗号操作符
 

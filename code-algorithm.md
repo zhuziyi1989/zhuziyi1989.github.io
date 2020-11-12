@@ -2,7 +2,7 @@
 
 ## 一、初级
 
-### 1. 快速排序
+### 1.快速排序
 
 ```javascript
 //常规快速排序算法，递归的利用
@@ -28,10 +28,44 @@ console.log(quicksort([2,4,5,49,63,4,5,55,2,4,43])); // [2, 2, 4, 4, 4, 5, 5, 43
 */
 ```
 
-### 2.Fibonacci（斐波那契）
+### 2.冒泡排序
 
 ```javascript
-//循环 O(n)
+let bubbleSort = (arrary)=>{
+    const length = arrary.length;
+    for (let i = 0; i <= length; i++){
+        for (let j = i + 1; j < length;j++){
+            if(arrary[i] > arrary[j]){
+                let temp = arrary[i];
+                arrary[i] = arrary[j];
+                arrary[j] = temp;
+            }
+        }
+    }
+    return arrary
+}
+
+console.log(`${bubbleSort([1, 20, 5])}`)
+
+/*
+for(①;②;③){
+    ④；
+}
+               ↓———————————————|
+  start → ① → ② → true → ④ → ③
+                 ↓
+               false
+                 ↓
+                end
+*/
+```
+
+### 3.Fibonacci（[斐波那契](https://baike.baidu.com/item/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97)）
+
+```javascript
+* 斐波那契数列：0、1、1、2、3、5、8、13、21、34、…
+
+环 O(n)
 function fibonacci(n){
   var fibo = Array(0,1);
   if (n === 0) return 0;
@@ -54,11 +88,11 @@ function fibonacciX(n){
 fibonacciX(15); //  = 610
 
 //递归方法之 ES6简写 O(2n)-
-const fibonacciX = () =>  (n <= 1 ? n : fibonacciX(n-1) + fibonacciX(n-2))
+const fibonacciX = (n) =>  (n <= 1 ? n : fibonacciX(n-1) + fibonacciX(n-2))
 fibonacciX(20); //  = 6765
 ```
 
-### 
+### 4.
 
 ## 进阶
 
