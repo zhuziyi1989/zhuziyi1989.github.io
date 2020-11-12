@@ -40,13 +40,12 @@ function debounce(fn) {
       return function () {
         clearTimeout(timeout); // 每当用户输入的时候把前一个 setTimeout clear 掉
         timeout = setTimeout(() => { // 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数
-          fn.apply(this, arguments);//为了确保上下文环境为当前的this，所以这里使用apply。
+          fn.apply(this, arguments);//为了确保上下文环境为当前的this，注意这里使用apply手动绑定。
         }, 500);
       };
     }
     function sayHi() {
-    	const message = 'ok!'
-      console.log('防抖成功',this.name);
+      console.log('防抖成功');
     }
 
     var inp = document.getElementById('inp');

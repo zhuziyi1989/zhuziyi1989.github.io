@@ -6,6 +6,8 @@
   <p>
 7 种原始(基本)数据类型  ▶ `栈内存`存储的是值
 
+
+
 - Boolean
 - Null （完全不存在）
 - Undefined（一个没有被赋值的变量会有个默认值 undefined，也就说已存在，但还没值）
@@ -19,21 +21,27 @@
 1种复杂(对象)数据类型  ▶`堆内存`存储的是地址
 
 - 数组（Array）
+
 - 函数（Function）
+
 - 正则（RegExp）
+
 - 日期（Date）
-  
+
   </p>
-</details>
+  </details>
 
 ## 2. \<script> 标签属性
 
 <details><summary><b>查看解析</b></summary>
   <p>
 
+
+
 ```javascript
 <script src="example-url.js" async或defer type="text/javascript"></script>
 ```
+
 async 规定一旦脚本可用，则会异步执行。
 defer 属性规定是否对脚本执行进行延迟，直到页面加载为止。
 
@@ -51,6 +59,8 @@ defer 属性规定是否对脚本执行进行延迟，直到页面加载为止�
 <details><summary><b>查看解析</b></summary>
   <p>
 
+
+
     举例：
     
     Array.prototype.find() - 返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 undefined。
@@ -66,22 +76,27 @@ defer 属性规定是否对脚本执行进行延迟，直到页面加载为止�
     Array.prototype.some() – 测试是否**至少有一个元素**通过由提供的函数实现的测试。
     
     Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数。
+
   </p>
 </details>
 
-### 哪些 API 会改变原数组？
+### 1).哪些 API 会改变原数组？
 
 <details><summary><b>查看解析</b></summary>
   <p>
+
+
 
 ![数组的哪些API会改变原数组](./images/arrary.jpg)
   </p>
 </details>
 
-### 如何判断变量 A 是不是数组？
+### 2).如何判断变量 A 是不是数组？
 
 <details><summary><b>查看解析</b></summary>
   <p>
+
+
 
     1. 使用 Array.isArray(A) 判断，如果返回 true, 说明是数组
     
@@ -90,13 +105,16 @@ defer 属性规定是否对脚本执行进行延迟，直到页面加载为止�
     3. 使用 Object.prototype.toString.call 判断，如果值是 [object Array], 说明是数组
     
     4. 通过 constructor 来判断，如果是数组，那么 `A.constructor === Array`，在改变指定 `obj.constructor = Array`时，此方法并不准确。
+
   </p>
 </details>
 
-### 数组去重
+### 3).数组去重
 
 <details><summary><b>查看解析</b></summary>
   <p>
+
+
 
 方法一： hash 标记法
 
@@ -122,14 +140,15 @@ Array.from(new Set(arr))
 //或者
 [...new Set(arr)]
 ```
+
   </p>
 </details>
 
-### 数组乱序
+### 4).数组乱序
 
 参考关键词：洗牌算法
 
-### 类数组的特性
+### 5).类数组的特性
 
 1. 拥有 length 属性，其它属性（索引）为非负整数（对象中的索引会被当做字符串来处理）
 2. 不具有数组所具有的方法
@@ -165,7 +184,7 @@ Array.from(new Set(arr))
 
 1. `for`循环：`for (var property in obj) { console.log(property) }`。但这还会遍历到它的继承属性，在使用之前，你需要加入`obj.hasOwnProperty(property)`检查。
 2. `Object.keys()`：`Object.keys(obj).forEach(function (property) { ... })`。`Object.keys()`方法会返回一个由一个给定对象的自身可枚举属性组成的数组。
-3. `Object.getOwnPropertyNames()`：`Object.getOwnPropertyNames(obj).forEach(function (property) { ... })`。`Object.getOwnPropertyNames()`方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括 Symbol 值作为名称的属性）组成的数组。
+3. `Object.getOwnPropertyNames()`：`Object.getOwnPropertyNames(obj).forEach(function (property) { ... })`。`Object.getOwnPropertyNames()`方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括 Symbol 值作为名称的属性）组成的数组。  
 
 ## 6. 类型的判断
 
@@ -357,6 +376,8 @@ IIFE（Immediately Invoked Function Expressions）代表立即执行函数。
   <summary>查看解析</summary>
 
 
+
+
 ```javascript
 function LateBloomer() {
   this.petalCount = Math.ceil(Math.random() * 12) + 1;
@@ -497,19 +518,42 @@ ES6中的箭头函数：
 
 - split() 字符串切割成数组  splice()  join()  push/pop  unshift/shift  concat()
 
-### 24. Object.assign 如何实现深拷贝？
+## 24. 如何实现深拷贝？
 
-Object.assign({}, state, { visibilityFilter: action.filter })，把第一个参数设置为空对象，就可以避免改变 state
+### 1).最简单的深拷贝
 
-![assign](./images/assign2.jpg)
+```js
+const cloneObj = JSON.parse(JSON.stringify(Obj))
+```
 
-### 25. 理解和深挖 map() 等高阶函数
+- 弊端：
+
+  - 如果Obj里面有时间对象，则JSON.stringify后再JSON.parse的结果，时间将只是字符串的形式，而不是对象的形式；
+  - 如果Obj里有RegExp(正则表达式)、Error对象，则序列化的结果将只得到空对象；
+  - 如果Obj里有函数，undefined，则序列化的结果会把函数或undefined丢失；
+  - 如果Obj里有NaN、Infinity和-Infinity，则序列化的结果会变成null；
+  - 如果Obj里存在循环引用的情况，无法正确实现深拷贝；
+  - JSON.stringify()只能序列化对象的可枚举的自有属性，如果Obj中的对象是有构造函数生成的，则使用JSON.parse(JSON.stringify(obj))深拷贝后，会丢弃对象的constructor。
+- 拓展：
+  - 因localStorage/sessionStorage默认只能存储字符串，JSON.stringify()将对象转为字符串储存，读取缓存时，只需配合JSON.parse()转回对象即可。
+  - 判断两数组/对象是否相等，JSON.stringify()将对象转为字符串，直接对比字符串
+  - JSON.stringify()与toString()方法返回值是有区别的。
+
+### 2).Object.assign 实现深拷贝
+
+```js
+Object.assign({}, state, { visibilityFilter: action.filter }) //把第一个参数设置为空对象，就可以避免改变 state
+```
+
+<img src="../../images/assign2.jpg" alt="assign" style="zoom:50%;" />
+
+## 25. 理解和深挖 map() 等高阶函数
 
 1. 熟练掌握诸如 map() 、foreach() 、fliter() 、reduce() 新的 API
 2. 说说`map()`和`forEach()`的比较？均不改变原数组（除非 callback 有操作）。 `forEach()`的执行速度较慢，无返回值；`map()`则会要求分配新的内存空间，用于存储新数组 **并返回**。
 3. for(let key in Obj){ console.log(key, Obj[key]) } 的性能比较
 
-### 26. 浮点数问题 0.1+0.2 != 0.3
+## 26. 浮点数问题 0.1+0.2 != 0.3
 
 解释 console.log(0.1+0.2) //0.30000000000000004  
 
@@ -531,33 +575,32 @@ Object.assign({}, state, { visibilityFilter: action.filter })，把第一个参�
 - **setTimeout** 的优先级最低
 
 - **Promise** 的函数代码的异步任务会 **优先** 于 **setTimeout** 的延时为0的任务先执行。
-- 
 
-### 28. *** 异步❗️❗️❗️
+## 28. *** 异步❗️❗️❗️
 
 - 解释 promises，observables，generator 或 async-wait 
 
 *占坑，未总结*
 
-### 29. 函数调用模式的方式
+## 29. 函数调用模式的方式
 
-```
-** 提示: 有四种模式，函数调用、方法调用、call() 和 apply()。
-```
+> 提示: 有四种模式，函数调用、方法调用、call() 和 apply()。
 
-### 30. ES6+ 的新特性
+## 30. ES6+ 的新特性
 
-### let、const 与 var 的区别
+### 1).let、const 与 var 的区别
 
 let 和 const 属于`块级作用域`，且`不存在变量提升`，也`不允许重复声明`(会抛出错误)，`变量不能在声明之前使用`(因 **暂时性死区** 会抛出错误)。
 
 const 声明一个只读的常量。一旦声明，**常量的值就不能改变**，如果声明是一个对象，那么不能改变的是对象的引用地址。
 
-### 箭头函数
+### 2).箭头函数
 
-箭头函数和普通 function 的区别？从而可衍生到 `call、apply、bind` 三者的运用问题，更或者涉及到 `this` 的使用。查看相对小节的解释。
+箭头函数和普通 function 的区别？
 
-### for of 和 for in的区别？
+> 提示: 从而可衍生到 `call、apply、bind` 三者的运用问题，更或者涉及到 `this` 的使用。查看相对小节的解释。
+
+### 3).for of 和 for in的区别？
 
 - **for...of循环**：具有 iterator 接口，就可以用 for…of 循环遍历它的成员(属性值)。for…of 循环可以使用的范围包括<u>数组、Set 和 Map 结构、类数组对象、Generator 对象，以及字符串</u>。for…of 循环调用遍历器接口，数组的遍历器接口只返回具有数字索引的属性。对于普通的对象，for…of 结构不能直接使用，会报错，必须部署了 Iterator 接口后才能使用。**可以中断循环。**
 - **for...in循环**：遍历对象自身的和继承的<u>可枚举的属性</u>, 不能直接获取属性值。**可以中断循环**。
@@ -569,7 +612,7 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 > 1. Object.keys() 返回给定对象所有 <u>可枚举属性</u> 的字符串数组
 > 2. forEach 、map 是否会改变原数组？
 
-### ES6定义类与ES5有何区别？
+## ES6定义类与ES5有何区别？
 
 1. ES6 类内部所有定义的方法都是`不可枚举`
 2. ES6 类必须使用 `new 调用`
@@ -577,31 +620,31 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 4. ES6 类默认即是严格模式
 5. ES6 子类必须在父类的构造函数中调用`super()`，这样才有 this 对象；ES5中类继承的关系是相反的，先有子类的this，然后用父类的方法应用在this上。**(此条需要修正)**
 
-### AMD，CMD，CommonJS和ES6的对比
+### 1).AMD，CMD，CommonJS和ES6的对比
 
 参考文章：[ECMAScript 6 的模块相比 CommonJS 的 有什么优点？](https://tech.jandou.com/ECMAScript6-CommonJS-Module-Compare.html)
 
-### CommonJS、AMD的起源
+### 2).CommonJS、AMD的起源
 
 ​	**CommonJS 起源于 Node.js ，因此在服务端广泛使用。**对于服务端，所有的模块都存放在本地硬盘，可以**同步加载**完成，等待时间就是硬盘的读取时间。但对于浏览器，这却是一个大问题，因为模块都放在服务器端，等待时间取决于网速的快慢，可能要等很长时间，浏览器处于"假死"状态。因此，浏览器端的模块，不能采用"同步加载"（synchronous），**只能采用"异步加载"（asynchronous）。这就是AMD规范诞生的背景。**
 
-### CMD与AMD区别？
+### 3).CMD与AMD区别？
 
 ​	AMD和CMD最大的区别是**对依赖模块的执行时机处理不同**，而不是加载的时机或者方式不同，二者皆为异步加载模块。
 
-### ES6模块机制与CommonJS的区别
+### 4).ES6模块机制与CommonJS的区别
 
 1. CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是**<u>值的引用</u>**。
 2. CommonJS 模块是运行时加载，ES6 模块是**<u>编译时</u>**输出接口
 3. ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令import，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，ES6 的import有点像 Unix 系统的“符号连接”，原始值变了，import加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
 
-### Set 和 Map 数据结构
+### 5).Set 和 Map 数据结构
 
-|      |              Map               | Set  | WeakMap | WeakSet | Object |
-| :--: | ---------------------------- | :--- | :-----: | :-----: | :----: |
-| 定义 |         一个键值对集合         | 一个包含不重复值的集合 |         |         |        |
-|      |      对象可以作为键。迭代顺序是插入顺序。附加方便的方法，有 size 属性。      | 不允许元素重排。保持插入的顺序。 | 仅允许 [对象] 作为键 |         |        |
-|      |  |      |         |         |        |
+|      | Map                                                          | Set                              |       WeakMap        | WeakSet | Object |
+| :--: | ------------------------------------------------------------ | :------------------------------- | :------------------: | :-----: | :----: |
+| 定义 | 一个键值对集合                                               | 一个包含不重复值的集合           |                      |         |        |
+|      | 对象可以作为键。迭代顺序是插入顺序。附加方便的方法，有 size 属性。 | 不允许元素重排。保持插入的顺序。 | 仅允许 [对象] 作为键 |         |        |
+|      |                                                              |                                  |                      |         |        |
 
 
 
@@ -633,15 +676,15 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 
 WeakMap 和 WeakSet 被用作主要对象存储的次要数据结构补充。一旦对象从存储移除，那么存在于 WeakMap/WeakSet 的数据将会被自动清除。
 
-### 展开运算符、解构
+### 6).展开运算符、解构
 
-### 31. 新 ECMAScript 2018 提案关注过有哪些？
+占坑
 
-```
-** 提示: ECMAScript 2018 的 BigInt、partial function、pipeline operator
-```
+## 31. 新 ECMAScript 2018 提案关注过有哪些？
 
-### 32. JavaScript 中的迭代器（iterators）和迭代（iterables）是什么？ 你知道什么是内置迭代器吗？
+> 提示: ECMAScript 2018 的 BigInt、partial function、pipeline operator
+
+## 32. JavaScript 中的迭代器（iterators）和迭代（iterables）是什么？ 你知道什么是内置迭代器吗？
 
 ```javascript
 const a ={
