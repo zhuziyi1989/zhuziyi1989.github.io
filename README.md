@@ -62,7 +62,7 @@
 
 - [Redux 文档](http://cn.redux.js.org/)
 
-- [React 组件间通讯 Taobao FED](http://taobaofed.org/blog/2016/11/17/react-components-communication/)
+- [React 组件间通讯 Taobao FED](https://fed.taobao.org/blog/2016/11/17/react-components-communication/)
 
 - [现代 JavaScript 教程](https://zh.javascript.info/)
 
