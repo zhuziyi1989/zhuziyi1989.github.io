@@ -370,13 +370,10 @@ IIFE（Immediately Invoked Function Expressions）代表立即执行函数。
 
 ## 16. setTimeout 和 setInterval ❗️❗️
 
-### setTimeout 导致实例引用的丢失
+### 1).setTimeout 导致实例引用的丢失
 
 <details>
   <summary>查看解析</summary>
-
-
-
 
 ```javascript
 function LateBloomer() {
@@ -398,23 +395,35 @@ flower.bloom();  // 一秒钟后, 调用'declare'方法
 ```
 
 在默认情况下，使用 window.setTimeout() 时，this 关键字会指向 window （或global）对象。当类的方法中需要 this 指向类的实例时，你可能需要显式地把 this 绑定到回调函数，就不会丢失该实例的引用。
+
 </details>
 
-### setTimeout和setInterval的返回值问题
+### 2).setTimeout 返回值问题
 
-setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID 传递给clearInterval()，clearTimeout() 以取消执行。这几个函数都是浏览器 window 对象提供的，没有公开的规范和标准，所以并不保证这些 ID 都是从1开始。
+setInterval() 和 setTimeout()执行后会返回一个数字 ID，你可以将这个 ID 传递给clearInterval() 或 clearTimeout() 以取消执行。这几个函数都是浏览器 window 对象提供的，没有公开的规范和标准，所以并不保证这些 ID 都是从1开始。
 
-### 17. 函数作用域、块级作用域和词法作用域
+## 17. 函数作用域、块级作用域和词法作用域
 
-### 18. “new” 关键字有什么作用？
+略...
 
-当代码 new Foo(...) 执行时，会发生以下事情：
+## 18. “new” 关键字有什么作用？
 
-- 1.一个继承自 Foo.prototype 的`新对象`被创建。
-- 2.使用指定的参数调用构造函数 Foo，并*将 this 绑定到新创建的对象* 。new Foo 等同于 Foo()，也就是没有指定参数列表，Foo 不带任何参数调用的情况。
-- 3.由构造函数返回的对象就是 new 表达式的结果。如果构造函数没有显式返回一个对象，则使用步骤1创建的对象。（一般情况下，构造函数不返回值，但是用户可以选择主动返回对象，来覆盖正常的对象创建步骤）
+当代码 new Animal(...) 执行时，会发生以下事情：
 
-### 19. 关于“闭包”的相关话题❗️❗️
+- 1.一个继承自 Animal.prototype 的`新对象`被创建。
+- 2.使用指定的参数调用构造函数 Animal，并将 this 绑定到新创建的对象。new Animal 等同于 Animal()，也就是没有指定参数列表，Animal 不带任何参数调用的情况。
+- 3.由构造函数返回的对象就是 new 表达式的结果。如果构造函数没有显式返回一个对象，则使用步骤 1 创建的对象。（一般情况下，构造函数不返回值，但是用户可以选择主动返回对象，来覆盖正常的对象创建步骤）
+
+```javascript
+const cat = new Animal(); // new 操作符
+
+//以上相当于以下代码
+var cat = new Object();
+cat.__proto__ = Animal.prototype;
+Animal.call(cat);//用 call 将环境上下文绑定到实例cat上，并运行构造函数 Animal，返回值给 cat
+```
+
+## 19. 关于“闭包”的相关话题❗️❗️
 
 关键点在于一个函数返回另一个函数，另一个函数就是“闭包”
 
@@ -427,16 +436,21 @@ setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID �
 - 为了继承属性， 使用 call 函数来传递 this
 - 为了继承方法, 使用 Object.create 连接父和子的原型
 - 始终将子类构造函数设置为自身，以获得其对象的正确类型
+- 掌握 `hasOwnProperty` 方法的使用
 
-**一个对象都有原型对象，且原型对象是独立的！** 如图：
+一个对象都有原型对象，且原型对象是独立的！每个*实例*对象（ object ）都有一个私有属性（称之为 \_\_proto__ ）指向它的构造函数的*原型对象*（**prototype** ）。该原型对象也有一个自己的原型对象( \_\_proto__ ) ，层层向上直到一个对象的原型对象为 `null`。根据定义，`null` 没有原型，并作为这个**原型链**中的最后一个环节。如图：
 
-![](./images/prototype.jpg)
+<img src="../../images/prototype.jpg" style="zoom:50%;" />
+
+当试图访问一个对象的属性时，它不仅仅在该对象上搜寻，还会搜寻该*对象的原型*，以及该*对象的原型的原型*，依次层层向上搜索，直到找到一个名字匹配的属性或到达原型链的末尾(null)。
 
 原型链查找图：
 
-![](./images/Prototypechain-min.jpg)
+<img src="../../images/Prototypechain.png" />
 
-### 21. 关于 this
+> 参考资料：[继承与原型链- JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+
+## 21. 关于 this
 
 - 如果要想把 this 的值从一个环境传到另一个，就要用 call 或者 apply 方法。
 - this 的值取决于**函数的调用方式**。一般来说，谁调用了该方法，那么 this 就指向谁。
@@ -445,7 +459,7 @@ setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID �
 - 特殊情况下，bind/call/apply 能够强制改变 this 的绑定。
 - 使用 new 操作符时，也会涉及 this 的绑定。
 
-### bind / call / apply ❗️❗️
+### bind / call / apply 
 
 首先 call、apply、bind 第一个参数都是 this 指向的对象，call 和 apply 如果第一个参数指向 null 或 undefined 时，那么this会指向windows对象。
 
@@ -459,7 +473,7 @@ setInterval()，setTimeout() 会返回一个数字 ID，你可以将这个 ID �
 - [细说Array.prototype.slice.call](https://juejin.im/post/5a5a201f5188257345017af1)
 - [手动实现call/apply/bind](https://juejin.im/post/5ca088fb51882568093c24ee)
 
-### 普通函数和箭头函数的this❗️❗️❗️
+### 普通函数和箭头函数的this
 
 ES5中的普通函数：
 
@@ -477,11 +491,11 @@ ES6中的箭头函数：
 
 *以上方法指定 this 的优先级：new > bind/call/apply > 对象调用 > 直接调用*
 
-参考资料：[MDN 对 this 的讲解](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)
+> 参考资料：[MDN 对 this 的讲解](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)
 
-### 22. 设计模式展开话题
+## 22. 设计模式展开话题
 
-### 23. JS中的重要关键词（大杂烩）
+## 23. JS中的重要关键词（大杂烩）
 
 - `super` 关键字用于访问和调用一个对象的父对象上的函数。
 
@@ -490,9 +504,7 @@ ES6中的箭头函数：
   super.functionOnParent([arguments]); 
   // 调用 父对象/父类 上的**方法**
 
-  ```
-  参考资料：[super MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super)
-  ```
+>参考资料：[super MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super)
 
 - function* 关键字定义了一个 generator 函数表达式。
 
@@ -542,7 +554,8 @@ const cloneObj = JSON.parse(JSON.stringify(Obj))
 ### 2).Object.assign 实现深拷贝
 
 ```js
-Object.assign({}, state, { visibilityFilter: action.filter }) //把第一个参数设置为空对象，就可以避免改变 state
+//把第一个参数设置为空对象，就可以避免改变 state
+Object.assign({}, state, { visibilityFilter: action.filter }) 
 ```
 
 <img src="../../images/assign2.jpg" alt="assign" style="zoom:50%;" />
@@ -564,7 +577,7 @@ Object.assign({}, state, { visibilityFilter: action.filter }) //把第一个参�
 
 参考资料：： [浮点数为什么不精确？](https://juejin.im/entry/575543857db2a2006993114e)
 
-## 27. 事件循环(Event Loop)❗️❗️❗️
+## 27. 事件循环(Event Loop)❗️
 
 > 参考①：https://juejin.im/post/5bac87b6f265da0a906f78d8
 >
@@ -576,7 +589,7 @@ Object.assign({}, state, { visibilityFilter: action.filter }) //把第一个参�
 
 - **Promise** 的函数代码的异步任务会 **优先** 于 **setTimeout** 的延时为0的任务先执行。
 
-## 28. *** 异步❗️❗️❗️
+## 28. *** 异步❗️
 
 - 解释 promises，observables，generator 或 async-wait 
 
@@ -612,7 +625,7 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 > 1. Object.keys() 返回给定对象所有 <u>可枚举属性</u> 的字符串数组
 > 2. forEach 、map 是否会改变原数组？
 
-## ES6定义类与ES5有何区别？
+### 4).ES6定义类与ES5有何区别？
 
 1. ES6 类内部所有定义的方法都是`不可枚举`
 2. ES6 类必须使用 `new 调用`
@@ -620,25 +633,25 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 4. ES6 类默认即是严格模式
 5. ES6 子类必须在父类的构造函数中调用`super()`，这样才有 this 对象；ES5中类继承的关系是相反的，先有子类的this，然后用父类的方法应用在this上。**(此条需要修正)**
 
-### 1).AMD，CMD，CommonJS和ES6的对比
+### 5).AMD，CMD，CommonJS和ES6的对比
 
 参考文章：[ECMAScript 6 的模块相比 CommonJS 的 有什么优点？](https://tech.jandou.com/ECMAScript6-CommonJS-Module-Compare.html)
 
-### 2).CommonJS、AMD的起源
+### 6).CommonJS、AMD的起源
 
 ​	**CommonJS 起源于 Node.js ，因此在服务端广泛使用。**对于服务端，所有的模块都存放在本地硬盘，可以**同步加载**完成，等待时间就是硬盘的读取时间。但对于浏览器，这却是一个大问题，因为模块都放在服务器端，等待时间取决于网速的快慢，可能要等很长时间，浏览器处于"假死"状态。因此，浏览器端的模块，不能采用"同步加载"（synchronous），**只能采用"异步加载"（asynchronous）。这就是AMD规范诞生的背景。**
 
-### 3).CMD与AMD区别？
+### 7).CMD与AMD区别？
 
 ​	AMD和CMD最大的区别是**对依赖模块的执行时机处理不同**，而不是加载的时机或者方式不同，二者皆为异步加载模块。
 
-### 4).ES6模块机制与CommonJS的区别
+### 8).ES6模块机制与CommonJS的区别
 
 1. CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是**<u>值的引用</u>**。
 2. CommonJS 模块是运行时加载，ES6 模块是**<u>编译时</u>**输出接口
 3. ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令import，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，ES6 的import有点像 Unix 系统的“符号连接”，原始值变了，import加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
 
-### 5).Set 和 Map 数据结构
+### 9).Set 和 Map 数据结构
 
 |      | Map                                                          | Set                              |       WeakMap        | WeakSet | Object |
 | :--: | ------------------------------------------------------------ | :------------------------------- | :------------------: | :-----: | :----: |
@@ -646,45 +659,30 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 |      | 对象可以作为键。迭代顺序是插入顺序。附加方便的方法，有 size 属性。 | 不允许元素重排。保持插入的顺序。 | 仅允许 [对象] 作为键 |         |        |
 |      |                                                              |                                  |                      |         |        |
 
+🚩Set是一个包含不重复值的集合。
 
-
-🚩Set  是一个包含不重复值的集合。
-
-
-
-1.和 Array 不同，set 不允许元素重新排序。
-
-2.保持插入的顺序。
-
-
+1. 和 Array 不同，Set 不允许元素重新排序。
+2. 保持插入的顺序。
 
 🚩WeakMap 是 Map 的一个变体，仅允许 [对象] 作为键，并且当对象由于其他原因不可引用的时候将其删除。
 
-
-
 它不支持整体的操作：没有 size 属性，没有 clear() 方法，没有迭代器。
-
-
 
 🚩WeakSet 是 Set 的一个变体，仅存储 [对象]，并且当对象由于其他原因不可引用的时候将其删除。
 
-
-
 同样不支持 size/clear() 和迭代器。
-
-
 
 WeakMap 和 WeakSet 被用作主要对象存储的次要数据结构补充。一旦对象从存储移除，那么存在于 WeakMap/WeakSet 的数据将会被自动清除。
 
-### 6).展开运算符、解构
-
-占坑
+### 10).展开运算符、解构
 
 ## 31. 新 ECMAScript 2018 提案关注过有哪些？
 
 > 提示: ECMAScript 2018 的 BigInt、partial function、pipeline operator
 
-## 32. JavaScript 中的迭代器（iterators）和迭代（iterables）是什么？ 你知道什么是内置迭代器吗？
+## 32.迭代器和迭代
+
+JavaScript 中的迭代器（iterators）和迭代（iterables）是什么？ 你知道什么是内置迭代器吗？
 
 ```javascript
 const a ={
@@ -704,10 +702,10 @@ console.log(JSON.stringify(a)) // {"key2":110}  丢失 key1，为什么丢失？
 
 创建正则表达式，有如下两种方式：
 
-```
+  ```
 var re = /ar/;
 var re = new RegExp('ar'); 
-```
+  ```
 
 |                             方法                             | 描述                                                         |
 | :----------------------------------------------------------: | :----------------------------------------------------------- |
@@ -739,3 +737,7 @@ var re = new RegExp('ar');
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 智者见智，仁者见仁
+
+```
+
+```

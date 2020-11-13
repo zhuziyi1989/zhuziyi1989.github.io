@@ -55,7 +55,7 @@
 
   购买链接：[你不知道的JavaScript（上卷）](https://u.jd.com/mwU5Oo) 、  [你不知道的JavaScript（中卷）](https://u.jd.com/jHylwd)  、 [你不知道的JavaScript（下卷）](https://u.jd.com/iO9Z43)
 
-- [React  小书](http://huziketang.com/books/react/)
+- [React 小书](http://huziketang.com/books/react/)
 
 - [React 官方文档](https://zh-hans.reactjs.org/docs/)
 
