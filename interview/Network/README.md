@@ -1,9 +1,82 @@
 # 前端知识体系 - 网络原理
 
-## 1.简单讲解一下 HTTP2 的多路复用？
+## 1. 知识体系大纲
 
-<details>
-<summary>查看解析</summary>
+### 五(七)层英特网协议栈
+
+- （应用层）HTTP/DNS/FTP/SMTP等
+- （传输层）TCP/IP 协议
+- （网络层）IP/ARP 寻址，路由器
+- （数据链路层）封装成帧，交换机
+- （物理层）光纤/网线/无线电磁波等
+
+### HTTP 相关常识
+
+- HTTP协议的主要特点：无连接、无状态
+- HTTP报文的组成部分：请求报文（请求方法、URL、http协议版本、请求头、请求体）和响应报文（http协议版本、状态码、响应头、响应体）
+- 请求方法：get（会被浏览器主动缓存，适合传输少量且不敏感数据）、post、put（更新数据）、delete（删除数据）、HEAD、OPTIONS
+- 持久连接：HTTP1.0的轮询（资源、性能上浪费） 和 HTTP1.1中的长连接（通过使用 `Connection:keep-alive` 进行长连接。客户端只请求一次，但是服务器会将继续保持连接，当再次请求时，避免了重新建立连接。）管线化是什么？
+- HTTP协议版本：1.x和2.x的区别？2.x以二进制传输、多路复用、头部压缩 参考[第 5 题](#5. 简单讲解一下 HTTP2 的多路复用？)。
+- HTTPS（http+ssl/tsl）参考[第 4 题](#4. 详解 HTTPS ？)。
+- 强缓存 & 协商缓存 强缓存会直接从浏览器里面拿数据，关键字段 Expires 和 Cache-Control。协商缓存会先访问服务器看缓存是否过期，再决定是否从浏览器里面拿数据，关键字段优先级 “Etag / If-None-Match” > “Last-Modified / If-Modified-Since”
+- 跨域的原因及处理方式，参考[第 3 题](#3. 跨域资源共享(CORS) 机制)。
+- 如何防范 CSRF 攻击？窃取 Cookie 等包含用户验证的信息，伪造请求非法获取资源。<u>采取 POST 请求、验证码、检测 Referer、Token</u>
+- 如何防御 XSS 攻击？注入恶意 Script 代码
+- 常用的状态码  200（请求成功） 301（永久转移） 302(临时转移) 304（缓存读取） 400（语法错误）401（未经授权）403（禁止访问） 404（找不到） 500 501 503（可能是服务端资源被耗尽）
+- [HTTPS加密过程详解](https://segmentfault.com/a/1190000019976390) 服务器用**私匙**去解密请求的数据，客服端用自己生成的**随机密码**解密服务器响应的数据（不能用公匙解密）
+
+### TCP/IP 相关原理及延伸
+
+- 为什么握手需要三次，而挥手却需要四次？ ➤ 为了防止_已失效的_连接请求报文段突然又传送到了服务端，因而产生错误。握手过程中传送的包里不包含数据。
+- 为什么要四次挥手？ ➤ 主机双方相互确认结束报文的发送，并应答对方。
+- 为什么要等待2MSL？ ➤ ①.保证TCP协议的全双工连接能够_可靠关闭_；②.保证这次连接的_重复数据段从网络中消失_。备注：MSL是任何报文段被丢弃前在网络内的最长时间。
+
+参考资料：
+
+- [关于 TCP/IP，必知必会的十个问题](https://juejin.im/post/598ba1d06fb9a03c4d6464ab)
+- [通俗大白话来理解TCP协议的三次握手和四次分手 #14](https://github.com/jawil/blog/issues/14)
+- [掘金搜索TCP结果](https://juejin.im/search?query=tcp&type=all)
+
+## 2. 五(七)层因特网协议栈？
+
+
+
+
+
+## 3. 跨域资源共享(CORS) 机制
+
+策略：同源策略  ( [源]被定义为 URI、主机名和端口号的组合 )
+
+作用：浏览器作为"安全裁判"，用于隔离潜在恶意数据的重要安全机制，无法跨域访问Cookie、LocalStorage、IndexDB、获取和操作DOM、发送AJAX。
+
+解决方案：
+
+- JSONP (异步加载 script 标签，兼容性好，但数据量小，GET请求)
+- Hash（ Hash 的改变，页面不会刷新，通过`onhashchange`事件监听）
+- WebSocket (该协议不受同源政策限制)
+- 反向代理（Nginx 服务内部配置 Access-Control-Allow-Origin 选项为 *）
+- CORS 前后端协作设置请求头部，如设置 Access-Control-Allow-Origin 等头部信息( "简单请求"；[`OPTIONS`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/OPTIONS) 方法预检请求 )
+- iframe 嵌套通讯。关键技术：① 改变片段标识符，通过 `hashchange` 事件监听；② 利用 `window.name` 属性(影响性能)
+- HTML5 新 API：`window.postMessage()`，通过`message`事件监听。
+
+思考题：
+
+- 为什么form表单提交没有跨域问题，但ajax提交有跨域问题？提示：<u>因为原页面用 form 提交到另一个域名之后，原页面的脚本无法获取新页面中的内容。</u>
+- 原生`XMLHttpRequest`对象发送 Ajax 的几个步骤：① 创建XMLHttpRequest 对象；② 使用 open 方法设置请求的参数，即 open(method, url, 是否异步；③ 发送请求，即 send()；④ 注册事件，即注册 onreadystatechange 事件，状态改变时就会调用。
+
+参考资料：
+
+- [HTTP访问控制（CORS） - MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+- [浏览器同源政策及其规避方法](http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
+- [前端跨域及其解决方案](https://tech.jandou.com/cross-domain.html)
+
+## 4. 详解 HTTPS ？
+
+客服端取`公钥`，验证公钥合法性，生成`随机密钥`，客服端用`随机密钥`解密。
+
+服务端用`私钥`解密，用会话`随机密钥`加密
+
+## 5. 简单讲解一下 HTTP2 的多路复用？
 
 在 HTTP/1 中，每次请求都会建立一次TCP连接，也就是我们常说的3次握手4次挥手，这在一次请求过程中占用了相当长的时间，即使开启了 Keep-Alive ，解决了多次连接的问题，但是依然有两个效率上的问题：
 
@@ -14,74 +87,16 @@ HTTP2采用二进制格式传输，取代了HTTP1.x的文本格式，二进制�
 多路复用代替了HTTP1.x的序列和阻塞机制，所有的相同域名请求都通过同一个TCP连接并发完成。在HTTP1.x中，并发多个请求需要多个TCP连接，浏览器为了控制资源会有6-8个TCP连接都限制。
 HTTP2中
 
-- 同域名下所有通信都在单个连接上完成，消除了因多个 TCP 连接而带来的延时和内存消耗。
-- 单个连接上可以并行交错的请求和响应，之间互不干扰
+- <u>同域名下所有通信都在单个连接上完成，消除了因多个 TCP 连接而带来的延时和内存消耗。</u>
+- <u>单个连接上可以并行交错的请求和响应，之间互不干扰</u>
 
-**总结**：HTTP/2的多路复用就是为了解决上述的两个性能问题。
-在 HTTP/2 中，有两个非常重要的概念，分别是帧（frame）和流（stream）。
+**总结**：HTTP/2的`多路复用`就是为了解决上述的两个性能问题。
+在 HTTP/2 中，有两个非常重要的概念，分别是`帧（frame）和流（stream）`。
 帧代表着最小的数据单位，每个帧会标识出该帧属于哪个流，流也就是多个帧组成的数据流。
 多路复用，就是在一个 TCP 连接中可以存在多条流。换句话说，也就是可以发送多个请求，对端可以通过帧中的标识知道属于哪个请求。通过这个技术，可以避免 HTTP 旧版本中的队头阻塞问题，极大的提高传输性能。[More...](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/14)
 
-</details>
 
-## 2. 五(七)层因特网协议栈？
-
-- （应用层）HTTP/DNS/FTP等，HTTP 与 HTTPS 的区别？DNS 域名解析过程？
-- （传输层）TCP/IP 协议
-- （网络层）IP/ARP 寻址，路由器
-- （数据链路层）封装成帧，交换机
-- （物理层）光纤/网线/无线电磁波等
-
-## 3. HTTP 相关问题
-
-- 强缓存 & 协商缓存
-- 跨域的原因及处理方式 [参考资料](https://tech.jandou.com/cross-domain.html)
-- get 与 post
-- 通用头部、请求/响应头、请求/响应体
-- 常用的状态码  200 301 302 304 400 404 500 501 503
-- [HTTPS加密过程详解](https://segmentfault.com/a/1190000019976390) 服务器用**私匙**去解密请求的数据，客服端用自己生成的**随机密码**解密服务器响应的数据（不能用公匙解密）
-
-TCP/IP 相关原理及延伸
-
-<details>
-<summary>查看解析</summary>
-
-- 为什么握手需要三次，而挥手却需要四次？ ➤为了防止_已失效的_连接请求报文段突然又传送到了服务端，因而产生错误。握手过程中传送的包里不包含数据。
-- 为什么要四次挥手？ ➤主机双方相互确认结束报文的发送，并应答对方。
-- 为什么要等待2MSL？ ➤ ①.保证TCP协议的全双工连接能够_可靠关闭_；②.保证这次连接的_重复数据段从网络中消失_。备注：MSL是任何报文段被丢弃前在网络内的最长时间。
-
-参考资料：
-
-- [关于 TCP/IP，必知必会的十个问题](https://juejin.im/post/598ba1d06fb9a03c4d6464ab)
-- [通俗大白话来理解TCP协议的三次握手和四次分手 #14](https://github.com/jawil/blog/issues/14)
-- [掘金搜索TCP结果](https://juejin.im/search?query=tcp&type=all)
-
-</details>
-
-### 跨域资源共享(CORS) 机制
-
-策略：同源策略  ( [源]被定义为 URI、主机名和端口号的组合 )
-
-作用：浏览器作为"安全裁判"，用于隔离潜在恶意数据的重要安全机制
-
-解决方案：
-
-- JSONP (兼容性好，但数据量小，GET请求)
-- WebSocket (该协议不受同源政策限制)
-- 反向代理（Nginx 服务内部配置 Access-Control-Allow-Origin 选项为 *）
-- CORS 前后端协作设置请求头部，如设置 Access-Control-Allow-Origin 等头部信息( "简单请求"；[`OPTIONS`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/OPTIONS) 方法预检请求 )
-- iframe 嵌套通讯。关键技术：① 改变片段标识符，通过 `hashchange` 事件监听；② 利用 `window.name` 属性(影响性能)
-- HTML5 新 API：`window.postMessage()`，通过`message`事件监听。
-
-思考题：
-
-- 为什么form表单提交没有跨域问题，但ajax提交有跨域问题？提示：<u>因为原页面用 form 提交到另一个域名之后，原页面的脚本无法获取新页面中的内容。</u>
-
-参考资料：
-
-- [HTTP访问控制（CORS） - MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
-- [浏览器同源政策及其规避方法](http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
-- [前端跨域及其解决方案](https://tech.jandou.com/cross-domain.html)
+## DNS 域名解析过程？
 
 ### 正向代理和反向代理的区别？
 
@@ -95,3 +110,6 @@ TCP/IP 相关原理及延伸
 JSON Web Token（缩写 JWT）是目前最流行的跨域认证解决方案
 
 > 阮一峰：[JSON Web Token 入门教程](http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
+
+## 从输入 URL 到页面加载显示完成的过程
+

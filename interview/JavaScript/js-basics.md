@@ -86,8 +86,7 @@ defer 属性规定是否对脚本执行进行延迟，直到页面加载为止�
   <p>
 
 
-
-![数组的哪些API会改变原数组](./images/arrary.jpg)
+![数组的哪些API会改变原数组](../../images/arrary.jpg)
   </p>
 </details>
 

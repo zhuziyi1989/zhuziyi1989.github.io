@@ -16,7 +16,7 @@
 ### 面试题库
 
 - [JavaScript Interview Questions & Answers](https://github.com/sudheerj/javascript-interview-questions) （英文）
-- [FE-Interview-Questions](https://github.com/poetries/FE-Interview-Questions) (中文)
+- [FE-Interview-Questions](https://github.com/poetries/FE-Interview-Questions/issues/2) (中文)
 
 ### 优秀面试分享
 
@@ -38,8 +38,9 @@
 - [2019前端面试题--这样准备，拿不到offer算我输！](https://juejin.im/post/5cbff661e51d456e693f48ec)
 - [三年前端，面试思考（头条蚂蚁美团offer）](https://juejin.im/post/5bd97627f265da39651c0a4b)
 - [2018大厂高级前端面试题汇总](https://juejin.im/post/5bc92e9ce51d450e8e777136#heading-19)
-- [2019面试 你必须要懂的原生JS知识点](https://juejin.im/post/5cb7b62b5188253772753c01)
-- [2020年8-9月前端找工作感受总结](https://segmentfault.com/a/1190000027083997)
+- [2019面试你必须要懂的原生JS知识点](https://juejin.im/post/5cb7b62b5188253772753c01)
+- [2020年8-9月 前端找工作感受总结](https://segmentfault.com/a/1190000027083997)
+- [2020年5月 蚂蚁、字节、滴滴面试经历总结 - 桃翁](http://www.taoweng.site/index.php/archives/321/)
 
 ### 学习资料
 
