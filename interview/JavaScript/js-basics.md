@@ -2,41 +2,32 @@
 
 ## 1.简单说说 JS 数据类型
 
-<details><summary><b>查看解析</b></summary>
-  <p>
+### 1).基本数据类型
+
 7 种原始(基本)数据类型  ▶ `栈内存`存储的是值
 
-
-
-- Boolean
-- Null （完全不存在）
+- Null （表示缺少的标识，指示变量未指向任何对象）
 - Undefined（一个没有被赋值的变量会有个默认值 undefined，也就说已存在，但还没值）
 - Number（基于 IEEE 754 标准的`双精度` 64 位`二进制`格式的值（-(2^63 -1) 到 2^63 -1））
 - String
-- Symbol (ECMAScript 6 新定义，用于唯一的标识符。)
+- Boolean
+- Symbol (ECMAScript 6 新定义，用于唯一的标识符，比如身份证号码。)
 - BigInt（ECMAScript 新提案，用于任意长度的整数。）
 
-> 在JavaScript中，Number 可以准确表达的最大数字是2^53，比 2^53 大的所有数字可以使用BigInt表达。
+> - 在JavaScript中，Number 可以准确表达的最大数字是2^53，比 2^53 大的所有数字可以使用BigInt表达。
+>
+> - `undefined`和`null`的一些故事  ▶ [Link](https://2ality.com/2021/01/undefined-null-revisited.html)
 
-1种复杂(对象)数据类型  ▶`堆内存`存储的是地址
+### 2).复杂数据类型
+
+1 种复杂(对象)数据类型  ▶ `堆内存`存储的是地址
 
 - 数组（Array）
-
 - 函数（Function）
-
 - 正则（RegExp）
-
 - 日期（Date）
 
-  </p>
-  </details>
-
 ## 2. \<script> 标签属性
-
-<details><summary><b>查看解析</b></summary>
-  <p>
-
-
 
 ```javascript
 <script src="example-url.js" async或defer type="text/javascript"></script>
@@ -47,21 +38,21 @@ defer 属性规定是否对脚本执行进行延迟，直到页面加载为止�
 
 详细介绍可以阅读MDN [《 \<script>-HTML 章节 》](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script)。
 
-  </p>
-</details>
-
 ## 3. 数组(Array)
 
 常用数组方法
 
 详细参考：[JavaScript 标准内置对象Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
-<details><summary><b>查看解析</b></summary>
-  <p>
-
-
 
     举例：
+    Array.prototype.concat() - 用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
+    
+    Array.prototype.copyWithin() - 浅复制数组的一部分到同一数组中的另一个位置，并返回它，不会改变原数组的长度。
+    
+    Array.prototype.entries() - 返回一个新的Array Iterator对象，该对象包含数组中每个索引的键/值对。
+    
+    Array.prototype.fill() - 用一个固定值去填充一个数组中从起始索引到终止索引内的全部元素。不含终止索引。【原数组改变】
     
     Array.prototype.find() - 返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 undefined。
     
@@ -69,7 +60,9 @@ defer 属性规定是否对脚本执行进行延迟，直到页面加载为止�
     
     Array.prototype.includes() – 用来判断一个数组是否包含一个指定的值，如果包含则返回 true，否则返回false。
     
-    Array.prototype.filter() – _创建一个新数组_, 其包含通过所提供函数实现的测试的所有元素。 
+    Array.prototype.every() - 方法测试一个数组内的所有元素是否都能通过某个指定函数的测试。它返回一个布尔值。
+    
+    Array.prototype.filter() – _创建一个新数组_, 其包含通过所提供函数实现的测试的所有元素。【原数组不变】
     
     Array.prototype.every() – 测试数组的**所有元素**是否都通过了指定函数的测试。
     
@@ -77,25 +70,13 @@ defer 属性规定是否对脚本执行进行延迟，直到页面加载为止�
     
     Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数。
 
-  </p>
-</details>
-
 ### 1).哪些 API 会改变原数组？
-
-<details><summary><b>查看解析</b></summary>
-  <p>
 
 
 ![数组的哪些API会改变原数组](../../images/arrary.jpg)
-  </p>
-</details>
+
 
 ### 2).如何判断变量 A 是不是数组？
-
-<details><summary><b>查看解析</b></summary>
-  <p>
-
-
 
     1. 使用 Array.isArray(A) 判断，如果返回 true, 说明是数组
     
@@ -105,15 +86,7 @@ defer 属性规定是否对脚本执行进行延迟，直到页面加载为止�
     
     4. 通过 constructor 来判断，如果是数组，那么 `A.constructor === Array`，在改变指定 `obj.constructor = Array`时，此方法并不准确。
 
-  </p>
-</details>
-
 ### 3).数组去重
-
-<details><summary><b>查看解析</b></summary>
-  <p>
-
-
 
 方法一： hash 标记法
 
@@ -139,9 +112,6 @@ Array.from(new Set(arr))
 //或者
 [...new Set(arr)]
 ```
-
-  </p>
-</details>
 
 ### 4).数组乱序
 
@@ -202,6 +172,10 @@ instanceof 判断对象类型，但数组可能被 `instanceof` 判断为 Object
 
 [instanceof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof) 运算符用于测试构造函数的`prototype`属性是否出现在对象的`原型链`中的任何位置 (简单地说，可以判断是否是某个对象的实例，举个例子： `奥迪 instanceof 汽车`) 
 
+### 反转字符串 
+
+'number'.split('').reverse().join('') → 'rebmun'
+
 ### Object.prototype.toString.call()
 
  Object.prototype.toString 可精确判断类型
@@ -219,6 +193,8 @@ Object.prototype.toString.call(Symbol(1)) // "[object Symbol]"
 
 // 加上 slice(8,-1) 的效果
 Object.prototype.toString.call(true).slice(8,-1) // "Boolean"
+Object.prototype.toString.call(true).slice(1,-1).split(' ')[1]  //"Boolean"
+
 ```
 
 ## 7. 相等与全等区别
@@ -286,7 +262,7 @@ Via：[征服 JavaScript 面试: 什么是函数式编程？| Eric Elliott](http
 
 ✪  纯函数的优势有哪些？ (来自维基百科)
 
-- ❶ 无状态，线程安全，不需要线程同步
+-   无状态，线程安全，不需要线程同步
 - ❷ 纯函数相互调用组装起来的函数，还是纯函数
 - ❸ 应用程序或者运行环境(Runtime) 可以对纯函数的运算结果进行*缓存*，运算加快速度
 
@@ -357,6 +333,7 @@ IE8.0及其以下版本用`attachEvent(event,fn);`代替。
 
 1. var 的函数作用域、有变量提升
 2. let 和 const 定义前的区域为`暂时性死区`
+3. 由多个执行上下文的变量对象构成的链表叫做作用域链。
 
 ### 14. 立即执行函数, 模块化, 命名空间
 
@@ -426,7 +403,7 @@ Animal.call(cat);//用 call 将环境上下文绑定到实例cat上，并运行�
 
 关键点在于一个函数返回另一个函数，另一个函数就是“闭包”
 
-## 20. 原型、原型链、继承等相关话题❗️❗️❗️
+## 20. 原型、原型链、继承❗️❗️❗️
 
 关于原型继承， 我们应该记住以下几条：
 
@@ -446,6 +423,11 @@ Animal.call(cat);//用 call 将环境上下文绑定到实例cat上，并运行�
 原型链查找图：
 
 <img src="../../images/Prototypechain.png" />
+
+```javascript
+Object.getPrototypeOf(Object.prototype) //null
+// 图中可以看出，Object的原型是null，即没有原型。
+```
 
 > 参考资料：[继承与原型链- JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 
@@ -612,17 +594,17 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 
 > 提示: 从而可衍生到 `call、apply、bind` 三者的运用问题，更或者涉及到 `this` 的使用。查看相对小节的解释。
 
-### 3).for of 和 for in的区别？
+### 3).for in 和 [for of](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of)的区别？
 
-- **for...of循环**：具有 iterator 接口，就可以用 for…of 循环遍历它的成员(属性值)。for…of 循环可以使用的范围包括<u>数组、Set 和 Map 结构、类数组对象、Generator 对象，以及字符串</u>。for…of 循环调用遍历器接口，数组的遍历器接口只返回具有数字索引的属性。对于普通的对象，for…of 结构不能直接使用，会报错，必须部署了 Iterator 接口后才能使用。**可以中断循环。**
-- **for...in循环**：遍历对象自身的和继承的<u>可枚举的属性</u>, 不能直接获取属性值。**可以中断循环**。
+- **for...in循环**：ES5标准，遍历对象<u>自身的</u>和<u>继承的</u>**可枚举的属性**, 不能直接获取属性值。**可以中断循环**。
+- **for...of循环**：ES6标准，具有 iterator 接口，就可以用 for…of 循环遍历它的成员(属性值)。for…of 可以循环[可迭代对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols)，包括<u>Array、Set 和 Map 结构、类数组对象、Generator 对象、String</u>。for…of 循环调用遍历器接口，数组的遍历器接口只返回<u>具有数字索引</u>的属性。对于普通的对象，for…of 结构<u>不能</u>直接使用，会报错，必须部署了 Iterator 接口后才能使用，或者通过和`Object.keys()`搭配使用访客遍历普通对象。**可以中断循环，由`break`, `throw continue `或`return`终止。**
 - **forEach**: 只能遍历数组，**不能中断，**没有返回值(或认为返回值是undefined)。
 - **map**: 只能遍历数组，**不能中断，**返回值是修改后的数组。
 
 > **扩展思考：**
 >
 > 1. Object.keys() 返回给定对象所有 <u>可枚举属性</u> 的字符串数组
-> 2. forEach 、map 是否会改变原数组？
+> 2. forEach 、map 是否会改变原数组？forEach 会，map 不会。 
 
 ### 4).ES6定义类与ES5有何区别？
 
@@ -652,11 +634,13 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 
 ### 9).Set 和 Map 数据结构
 
-|      | Map                                                          | Set                              |       WeakMap        | WeakSet | Object |
-| :--: | ------------------------------------------------------------ | :------------------------------- | :------------------: | :-----: | :----: |
-| 定义 | 一个键值对集合                                               | 一个包含不重复值的集合           |                      |         |        |
-|      | 对象可以作为键。迭代顺序是插入顺序。附加方便的方法，有 size 属性。 | 不允许元素重排。保持插入的顺序。 | 仅允许 [对象] 作为键 |         |        |
-|      |                                                              |                                  |                      |         |        |
+|        | Map                                                          | Set                                  | WeakMap                                   |                  WeakSet                  | Object |
+| :----: | ------------------------------------------------------------ | :----------------------------------- | :---------------------------------------- | :---------------------------------------: | :----: |
+|  定义  | 一个键值对集合（字典数据结构）                               | 不重复值的集合（集合数据结构）       |                                           |                                           |        |
+| 键值对 | 对象可以作为键。<br />迭代顺序是插入顺序。<br />附加方便的方法，<br />有 size 属性。 | 无序、不重复。<br />保持插入的顺序。 | 仅允许 [对象] 作为键                      |                                           |        |
+|  用途  | 数据储存                                                     | 数据重组                             |                                           |                                           |        |
+|  例子  | [key,vlaue]                                                  | [vlaue,vlaue]                        |                                           |                                           |        |
+|   值   |                                                              |                                      | 成员都是弱引用<br/>可以被垃圾回收机制回收 | 成员都是弱引用<br/>可以被垃圾回收机制回收 |        |
 
 🚩Set是一个包含不重复值的集合。
 

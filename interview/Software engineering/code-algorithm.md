@@ -92,7 +92,7 @@ const fibonacciX = (n) =>  (n <= 1 ? n : fibonacciX(n-1) + fibonacciX(n-2))
 fibonacciX(20); //  = 6765
 ```
 
-### 4.
+### 4. 洗牌算法
 
 ## 进阶
 

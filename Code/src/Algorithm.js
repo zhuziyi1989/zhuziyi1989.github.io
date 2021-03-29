@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 if(!String.prototype.repeatX) {
     String.prototype.repeatX = function (count) {
         if (this == null) {

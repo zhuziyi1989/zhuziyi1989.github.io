@@ -16,13 +16,14 @@
   - 浏览器支持新标签后，还需要添加标签默认的样式
 - 当然也可以直接使用成熟的框架、比如`html5shim`
 
-## 2. 定位
+## 2. 定位（[MDN](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Positioning)）
 
 - BOM盒模型(IE盒模型的内容含border和padding，box-sizing: border-box; W3C盒模型box-sizing: content-box) [box-sizing MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing)
-- 定位 Position（absolute/relative/fixed）
+- 定位 Position（absolute/relative/fixed/[sticky](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Positioning#position_sticky)）
 - 浮动 float（清除浮动？空标签clear:both、伪类、父级设置 overflow:hidden）
-- 块级格式化上下文：BFC
-- 文档流
+- [块级格式化上下文（BFC）](https://zhuanlan.zhihu.com/p/25321647) 可触发 BFC：根元素、浮动元素、绝对定位、display(inline-block、table-cells、flex)、overflow(hidden、auto、scroll)
+- 文档流（定位流、浮动流和普通流）
+- [z-index](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Positioning#介绍_z-index) 描述元素的堆叠顺序
 
 ## 3. 布局
 

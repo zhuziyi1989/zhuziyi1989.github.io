@@ -1,6 +1,6 @@
 ## ES6+ 的新特性
 
-1. ### 变量声明 let、const  ❗️
+1. ### 变量声明 let、const  ❗️（暂时性死区）
 
 2. ### 函数的默认参数
 
@@ -8,7 +8,7 @@
 
 4. ### 模版字符串 ` `` `
 
-5. ### 箭头函数（Arrow Functions）❗️
+5. ### 箭头函数（Arrow Functions）❗️（this 指向）
 
 6. ### 二进制和八进制字面量
 
@@ -24,7 +24,7 @@
 
 11. ### 类 Class
 
-12. ### 异步的 Prominse❗️
+12. ### 异步的 Prominse❗️（resolve、rejected、pending）
 
 13. ### 模块化`import 和 export`
 

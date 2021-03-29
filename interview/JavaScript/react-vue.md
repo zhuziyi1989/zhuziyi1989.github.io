@@ -1,18 +1,16 @@
 ## 框架的使用
 
-### 1、解释单向数据流和双向数据绑定
+1、解释单向数据流和双向数据绑定
 
 只有 UI 控件 才存在双向，非 UI控件 只有单向。全局性数据流使用单向，易跟踪调试。局部性数据流使用双向，简单易用。
 
 - [单向数据绑定和双向数据绑定的优缺点，适合什么场景？](https://www.zhihu.com/question/49964363)
 - [React 应用的架构模式 Flux](http://stylechen.com/react-flux.html)
 
-### 2、如何理解虚拟DOM? 
+### 2、如何理解虚拟DOM?
 
 <details>
 <summary>查看解析</summary>
-
-
 参考资料：[如何理解虚拟DOM? @zhihu](https://www.zhihu.com/question/29504639)
 
 - 步骤一：用JS对象模拟DOM树
@@ -27,7 +25,7 @@ Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)�
 ```
 
 逐层进行节点比较
-![](./images/dom-diff.jpg)
+![](../../images/dom-diff.jpg)
 
 更多解析：[深入浅出 React（四）：虚拟 DOM Diff 算法解析](https://infoq.cn/article/react-dom-diff)
 
@@ -39,7 +37,7 @@ Diff算法的优化：将标准的diff算法的O(n^3)复杂度降低到了O(n)�
 
 </details>
 
-### 3、Vue双向绑定实现原理 
+### 3、Vue双向绑定实现原理
 
 ➤ 参考资料：[《剖析Vue原理&实现双向绑定MVVM》](https://segmentfault.com/a/1190000006599500)
 
@@ -91,13 +89,11 @@ hash模式是依靠onhashchange事件(监听location.hash的改变)，而history
 - Vue 的双向绑定（原理：**Object.defineProperty()来实现数据劫持**、发布者-订阅者模式。 [参考资料](https://juejin.im/entry/5923973da22b9d005893805a) ）
 - 无缝结合 webpack 等打包工具，使得开发模式更现代，具有模块化、组件化式的。
 
-### 10、React 生命周期图谱 
+### 10、React 生命周期图谱
 
 ➤ 参考资料：https://t.cn/RmV1t56
 
-![](./images/lifeCycle.jpg)
-
-
+![](../../images/lifeCycle.jpg)
 
 ### 11、React 组合 vs 继承
 
@@ -141,7 +137,7 @@ hash模式是依靠onhashchange事件(监听location.hash的改变)，而history
 
 ### React 组件之间通信方式？
 
-### 常见应用场景
+#### 常见应用场景
 
 1. 父组件 → 子组件：利用`props`实现数据传递
 2. 子组件 → 父组件：
@@ -156,15 +152,27 @@ hash模式是依靠onhashchange事件(监听location.hash的改变)，而history
 4. 兄弟组件：通常是依赖共有的顶级容器（即共有父组件）处理
 5. 无嵌套关系组件：自定义事件机制，常用的有发布/订阅模式，通常是依赖共有的顶级容器处理或者第三方的状态管理器（如Redux/Mbox）。其实原理都是相通的，兄弟 A （发布者）的 value 发生变化，分发的时候把 value 值告诉一个中间者 C（订阅者） ，C 会自动告知 B，实现 B 的自动render 。
 
-### 终极解决方案：
+#### 大型应用解决方案：
 
 如果你的项目非常大，那可能需要一个状态管理工具，通过状态管理工具把组件之间的关系，和关系的处理逻辑从组建中抽象出来，并集中化到统一的地方来处理，Redux就是一个非常不错的状态管理工具，当然还有这些Mobx、Rematch、reselect 不错的工具。
+
+#### Redux 相关理解
+
+1. Web应用是一个状态机，视图与状态是一一对应的。其次，所有的状态，保存在一个对象里面（即单一数据源）。
+
+2. Redux 就是一个 JavaScript 状态容器(Store)，这个状态(State)只读，想要改变必须使用纯函数(Reducers)来执行修改。
+
+![redux-1.png](../../images/redux-1.png)
+
+Redux的工作流程:
+
+![redux-2.png](../../images/redux-2.png)
 
 > 参考：
 >
 > - [React组件之间的通信](https://github.com/sunyongjian/blog/issues/27)
->
-> - [ReactJS 组件间沟通的一些方法（From Alloyteam）](http://www.alloyteam.com/2016/01/some-methods-of-reactjs-communication-between-components/)
+>- [ReactJS 组件间沟通的一些方法（From Alloyteam）](http://www.alloyteam.com/2016/01/some-methods-of-reactjs-communication-between-components/)
+> - [Redux从设计到源码](https://tech.meituan.com/2017/07/14/redux-design-code.html)
 
 ### Fragments
 
@@ -180,3 +188,4 @@ hash模式是依靠onhashchange事件(监听location.hash的改变)，而history
 
 1. [精读《怎么用 React Hooks 造轮子》](https://juejin.im/post/5bf20ce6e51d454a324dd0e6)
 2. [Hook 官方解读](https://zh-hans.reactjs.org/docs/hooks-intro.html)
+

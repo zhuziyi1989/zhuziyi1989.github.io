@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 function selectSort(arr) {
     var len = arr.length;
     for (let i = 0; i < len - 1; i++) {
@@ -11,5 +13,4 @@ function selectSort(arr) {
 }
 var result = selectSort([1, 2, 3, 7, 6, 1, 3])
 
-// eslint-disable-next-line no-console
 console.log(result);
