@@ -79,15 +79,27 @@ hash模式是依靠onhashchange事件(监听location.hash的改变)，而history
 如何比较 TypeScript/Flow 与 Elm/ReasonML/PureScript 等 JS 转换语言？这些方法的优缺点是什么？
 ```
 
-### 9、Vue 和 React的一些优点？
+### 9、Vue 和 React的一些优点和区别？
 
 几个切入点：
 
 - 数据驱动
 - 数据单向流
 - 虚拟DOM（可减少直接操作DOM，性能上的优化）
-- Vue 的双向绑定（原理：**Object.defineProperty()来实现数据劫持**、发布者-订阅者模式。 [参考资料](https://juejin.im/entry/5923973da22b9d005893805a) ）
+- Vue 的双向绑定（vue2.x实现原理：**Object.defineProperty()来实现数据劫持**、发布者-订阅者模式。[参考资料](https://juejin.im/entry/5923973da22b9d005893805a) 但Vue3.x版本之后就改用Proxy进行实现。[参考资料](https://www.cnblogs.com/tugenhua0707/p/10261170.html)）
 - 无缝结合 webpack 等打包工具，使得开发模式更现代，具有模块化、组件化式的。
+
+区别：
+
+- 模板渲染的方式区别：
+
+  ​	React在JSX中使用**原生的JS语法**来实现<u>插值，条件渲染，循环渲染</u>等等。而Vue则需要依赖<u>指令</u>来进行，更加容易上手但是封装的程度更高，调试成本更大，难以定位Bug。
+
+- 性能差异：
+
+  ​	在React中组件的更新渲染是从数据发生变化的<u>根组件开始往子组件</u>逐层重新渲染，而组件的生命周期有shouldComponentUpdate()函数供给开发者优化组件在不需要更新的时候返回false。而在Vue中是通过watcher监听到数据的变化之后通过自己的diff算法，在virtualDom中直接找到以最低成本更新视图的方式。
+
+- Vue更适合开发周期更短的相对小型的项目，React更适合构建稳定大型的应用，可定制化的能力更强。
 
 ### 10、React 生命周期图谱
 
@@ -134,6 +146,16 @@ hash模式是依靠onhashchange事件(监听location.hash的改变)，而history
 5. 新的 API：Hooks
 
 > 参考：[[译]React 组件模式](https://github.com/yueshuiniao/blog/issues/1)
+
+### 优化一个react组件的性能
+
+1. 减少渲染的节点的量
+2. 减少不必要的嵌套
+3. 减少setState的操作次数
+4. 在需要大量滚动列表的组件，可使用虚拟列表[react-virtualized](https://github.com/bvaughn/react-virtualized)
+5. 避免直接使用**箭头函数**作为**事件处理器**，因为每一次渲染都会<u>重新创建一个新的事件处理器</u>。
+
+
 
 ### React 组件之间通信方式？
 

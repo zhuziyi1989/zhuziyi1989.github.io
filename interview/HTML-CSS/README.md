@@ -35,7 +35,7 @@
 - flex （[图解CSS3 Flexbox属性](https://www.w3cplus.com/css3/a-visual-guide-to-css3-flexbox-properties.html)）
 - css-grid
 - rem
-- vw和vh
+- vw 和 vh（按视窗的百分比计算，1vw为窗口的1%，100vw撑满，[MDN](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Values_and_units)）
 - 媒体查询
 - 百分比
 

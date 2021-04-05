@@ -401,7 +401,7 @@ Animal.call(cat);//用 call 将环境上下文绑定到实例cat上，并运行�
 
 ## 19. 关于“闭包”的相关话题❗️❗️
 
-关键点在于一个函数返回另一个函数，另一个函数就是“闭包”
+关键点在于一个函数返回另一个函数，另一个函数就是“闭包”，可能造成内存泄漏（可联想到垃圾回收机制）
 
 ## 20. 原型、原型链、继承❗️❗️❗️
 
@@ -488,28 +488,18 @@ ES6中的箭头函数：
 >参考资料：[super MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super)
 
 - function* 关键字定义了一个 generator 函数表达式。
-
 - yield     暂停和恢复 generator 函数。
-
 - yield*    委派给另外一个 generator 函数或可迭代的对象。
-
 - async function*  async function 定义一个异步函数表达式。
-
 - await     暂停或恢复执行异步函数，并等待 promise 的 resolve/reject 回调。
-
 - Promise 和 Observerble
-
 - JSON.stringify() 将一个对象转制成字符串。JSON.parse() 将字符串转成对象
-
 - Object.prototype.hasOwnProperty 用于检查给定的属性/键是否存在于对象中。
-
 - Object.prototype.instanceof 判断给定对象是否是特定原型的类型，更准备的判断用 `Object.prototype.toString.call(被检测者).slice(8,-1)`
-
 - 使用 Object.freeze 可以冻结对象，以便不能修改对象现有属性，仍然是浅拷贝
-
 - call()、apply()数组传递、bind()不立即执行
-
 - split() 字符串切割成数组  splice()  join()  push/pop  unshift/shift  concat()
+- Object.defineProperty() 和 Proxy 对象，都可以用来对数据的劫持操作。[Link](https://www.cnblogs.com/tugenhua0707/p/10261170.html)
 
 ## 24. 如何实现深拷贝？
 
@@ -592,6 +582,10 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 
 箭头函数和普通 function 的区别？
 
+1. 箭头函数相当于匿名函数，不能作为构造函数，不能使用`new`。
+2. 箭头函数没有`arguments`，所以用扩展运算符解决。
+3. 箭头函数不会根据调用它的对象而改变this的指向，会始终指向当前所在的上下文的this。
+
 > 提示: 从而可衍生到 `call、apply、bind` 三者的运用问题，更或者涉及到 `this` 的使用。查看相对小节的解释。
 
 ### 3).for in 和 [for of](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of)的区别？
@@ -634,13 +628,15 @@ const 声明一个只读的常量。一旦声明，**常量的值就不能改变
 
 ### 9).Set 和 Map 数据结构
 
-|        | Map                                                          | Set                                  | WeakMap                                   |                  WeakSet                  | Object |
-| :----: | ------------------------------------------------------------ | :----------------------------------- | :---------------------------------------- | :---------------------------------------: | :----: |
-|  定义  | 一个键值对集合（字典数据结构）                               | 不重复值的集合（集合数据结构）       |                                           |                                           |        |
-| 键值对 | 对象可以作为键。<br />迭代顺序是插入顺序。<br />附加方便的方法，<br />有 size 属性。 | 无序、不重复。<br />保持插入的顺序。 | 仅允许 [对象] 作为键                      |                                           |        |
-|  用途  | 数据储存                                                     | 数据重组                             |                                           |                                           |        |
-|  例子  | [key,vlaue]                                                  | [vlaue,vlaue]                        |                                           |                                           |        |
-|   值   |                                                              |                                      | 成员都是弱引用<br/>可以被垃圾回收机制回收 | 成员都是弱引用<br/>可以被垃圾回收机制回收 |        |
+|        | Map                                                          | Set                                                          | WeakMap                                       | WeakSet                                        | Object   |
+| :----: | ------------------------------------------------------------ | :----------------------------------------------------------- | :-------------------------------------------- | :--------------------------------------------- | :------- |
+|  定义  | 一个键值对集合（字典）                                       | 不重复值的集合（集合）                                       |                                               |                                                |          |
+| 键值对 | 对象可以作为键。<br/>迭代顺序是插入顺序。<br/>附加方便的方法，<br/>有 size 属性。 | 无序、不重复。<br/>保持插入的顺序。                          | 仅允许 [对象] 作为键                          | 仅允许 [对象] 作为键值                         |          |
+|  用途  | 数据储存                                                     | 数据重组                                                     |                                               | 可以用来保存DOM节点，<br/>不容易造成内存泄漏。 |          |
+|  键名  | 任何类型                                                     | 无                                                           | 成员都是弱引用(对象)<br/>可被垃圾回收机制回收 | 无                                             | 字符串   |
+|  键值  | 任何类型                                                     | 任何类型                                                     | 任何类型                                      | 成员都是弱引用(对象)<br/>可被垃圾回收机制回收  | 任何类型 |
+|  方法  | get、set、has、delete                                        | add、delete、has                                             | 略...                                         | 略...                                          | 略...    |
+| 迭代器 | keys()、<br />values()、<br />entries() 、<br />forEach(callbackFn,thisArg) | keys()、<br />values()、<br />entries() 、<br />forEach(callbackFn,thisArg) | 不能遍历                                      | 不能遍历                                       | 略...    |
 
 🚩Set是一个包含不重复值的集合。
 

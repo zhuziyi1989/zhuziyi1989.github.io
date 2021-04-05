@@ -41,7 +41,8 @@
 
 
 
-```
+```javascript
+// 举个例子，说明 ES6 的一些新特性
 let es6 = (width = 50, color = 'red', url = 'https://jandou.com')=>{
   let oValue = 0o10;
   console.log(oValue); // 8

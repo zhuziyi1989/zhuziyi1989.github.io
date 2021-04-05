@@ -94,6 +94,12 @@ fibonacciX(20); //  = 6765
 
 ### 4. 洗牌算法
 
+### 5.[两数之和](https://leetcode-cn.com/problems/two-sum/)
+
+
+
+6.
+
 ## 进阶
 
 ### 1. 哈希表问题
