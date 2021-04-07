@@ -103,7 +103,7 @@ hash模式是依靠onhashchange事件(监听location.hash的改变)，而history
 
 ### 10、React 生命周期图谱
 
-➤ 参考资料：https://t.cn/RmV1t56
+➤ 参考资料：https://t.cn/RmV1t56  废弃了三个带有 Will 的钩子函数，是为react新版本的异步渲染做铺垫。
 
 ![](../../images/lifeCycle.jpg)
 
