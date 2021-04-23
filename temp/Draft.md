@@ -1,3 +1,7 @@
+# 草稿纸
+
+
+
 ```javascript
 const batches = (recipe, available)=>{
 	Math.min(…(Object.keys(recipe).map((item,index,arr)=>{  					
