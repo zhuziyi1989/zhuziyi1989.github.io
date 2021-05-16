@@ -1,4 +1,4 @@
-
+#骨架和布局
 
 ## 1. html5有哪些新特性、移除了那些元素？
 
@@ -28,11 +28,12 @@
 ## 3. 布局
 
 - 纯 CSS 盒子水平垂直居中的实现方法 [Demo](https://zhuziyi1989.github.io/demo/box-center.html)
-- display:flex
+- flex
 
 ### 移动端布局方案
 
 - flex （[图解CSS3 Flexbox属性](https://www.w3cplus.com/css3/a-visual-guide-to-css3-flexbox-properties.html)）
+  - 问题1：解释CSS语句 “flex: 0 1 auto”  flex-grow flex-shrink flex-basis [参考链接](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/380)
 - css-grid
 - rem
 - vw 和 vh（按视窗的百分比计算，1vw为窗口的1%，100vw撑满，[MDN](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Values_and_units)）

@@ -348,9 +348,6 @@ IIFE（Immediately Invoked Function Expressions）代表立即执行函数。
 
 ### 1).setTimeout 导致实例引用的丢失
 
-<details>
-  <summary>查看解析</summary>
-
 ```javascript
 function LateBloomer() {
   this.petalCount = Math.ceil(Math.random() * 12) + 1;
@@ -372,11 +369,15 @@ flower.bloom();  // 一秒钟后, 调用'declare'方法
 
 在默认情况下，使用 window.setTimeout() 时，this 关键字会指向 window （或global）对象。当类的方法中需要 this 指向类的实例时，你可能需要显式地把 this 绑定到回调函数，就不会丢失该实例的引用。
 
-</details>
+> [经典面试题：for 循环内 setTimeout 顺序输出的解法](https://segmentfault.com/a/1190000014045184)
 
 ### 2).setTimeout 返回值问题
 
 setInterval() 和 setTimeout()执行后会返回一个数字 ID，你可以将这个 ID 传递给clearInterval() 或 clearTimeout() 以取消执行。这几个函数都是浏览器 window 对象提供的，没有公开的规范和标准，所以并不保证这些 ID 都是从1开始。
+
+
+
+### 3).[经典面试题：for 循环内 setTimeout 顺序输出的解法](https://segmentfault.com/a/1190000014045184)
 
 ## 17. 函数作用域、块级作用域和词法作用域
 
