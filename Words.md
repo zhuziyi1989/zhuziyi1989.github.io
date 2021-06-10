@@ -49,8 +49,16 @@
 13. Accumulator  n. 蓄电池；**[计] 累加器；**积聚者
 14. `Promise`对象的英语意思就是“<u>承诺</u>”，表示其他手段无法改变，它代表一个异步操作，有三种状态：`pending`（进行中）、`fulfilled`（已成功）和`rejected`（已失败）
 15. `status` 状态、`restart` 重启、`start` 启动
-16. dialog  n. 对话；对话框[前]
+16. dialog  n. 对话；**对话框**[前]
 17. dismiss vt. 解散, 解雇；vi. 解散, 消失[前]
-18. pure adj. 纯的；纯粹的；纯洁的；清白的；纯理论的
-19. branch [美: bræntʃ] [英: brɑːntʃ] n. 分支；分公司；分部；树枝；支流；岔路；（血管）分枝
+18. pure adj. **纯的**；纯粹的；纯洁的；清白的；纯理论的
+19. branch [美: bræntʃ] [英: brɑːntʃ] n. **分支**；分公司；分部；树枝；支流；岔路；（血管）分枝
+20. grow [美: ɡroʊ] vi. 发展；生长；渐渐变得… vt. 使生长；种植；**扩展**
+21. shrink 美[ʃrɪŋk] v.**（使）缩小**，（使）收缩；退缩，畏缩，回避；（衣服、布料）缩水 n. 收缩；畏缩；
+22. This will push to the remote branch "origin/master" **which cannot be undone**. 这将推送到远程分支“origin/master”，且**这是无法撤消的**
+23. Certificate n. 证书；文凭，合格证书；电影放映许可证
+24. valid adj. 有效的；有根据的；合法的；正当的
+25. trusted adj. 可信的，可靠的
+26. The connection to this site is **encrypted and authenticated** using TLS 1.3, X25519, and AES_128_GCM. **加密和身份验证**
+27. 
 
