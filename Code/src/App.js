@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-
+// import {  } from "./Algorithm";
 function selectSort(arr) {
     var len = arr.length;
     for (let i = 0; i < len - 1; i++) {
@@ -12,5 +11,4 @@ function selectSort(arr) {
     return arr
 }
 var result = selectSort([1, 2, 3, 7, 6, 1, 3])
-
-console.log(result);
+console.log('result');

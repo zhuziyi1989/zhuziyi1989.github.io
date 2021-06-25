@@ -30,10 +30,11 @@
 - 纯 CSS 盒子水平垂直居中的实现方法 [Demo](https://zhuziyi1989.github.io/demo/box-center.html)
 - flex
 
-### 移动端布局方案
+### （1）.移动端布局方案
 
-- flex （[图解CSS3 Flexbox属性](https://www.w3cplus.com/css3/a-visual-guide-to-css3-flexbox-properties.html)）
+- flex （[图解CSS3 Flexbox属性](https://www.w3cplus.com/css3/a-visual-guide-to-css3-flexbox-properties.html) 、[一份 Flex 完整指南](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)）
   - 问题1：解释CSS语句 “flex: 0 1 auto”  flex-grow flex-shrink flex-basis [参考链接](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/380)
+  - 请注意`float`，`clear`、`vertical-align`对弹性项目没有影响。
 - css-grid
 - rem
 - vw 和 vh（按视窗的百分比计算，1vw为窗口的1%，100vw撑满，[MDN](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Values_and_units)）

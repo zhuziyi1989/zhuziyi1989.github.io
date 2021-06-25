@@ -47,27 +47,16 @@ defer 属性规定是否对脚本执行进行延迟，直到页面加载为止�
 
     举例：
     Array.prototype.concat() - 用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
-    
     Array.prototype.copyWithin() - 浅复制数组的一部分到同一数组中的另一个位置，并返回它，不会改变原数组的长度。
-    
     Array.prototype.entries() - 返回一个新的Array Iterator对象，该对象包含数组中每个索引的键/值对。
-    
     Array.prototype.fill() - 用一个固定值去填充一个数组中从起始索引到终止索引内的全部元素。不含终止索引。【原数组改变】
-    
     Array.prototype.find() - 返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 undefined。
-    
     Array.prototype.reverse() - 将数组中元素的位置颠倒，并返回该数组。
-    
     Array.prototype.includes() – 用来判断一个数组是否包含一个指定的值，如果包含则返回 true，否则返回false。
-    
     Array.prototype.every() - 方法测试一个数组内的所有元素是否都能通过某个指定函数的测试。它返回一个布尔值。
-    
     Array.prototype.filter() – _创建一个新数组_, 其包含通过所提供函数实现的测试的所有元素。【原数组不变】
-    
     Array.prototype.every() – 测试数组的**所有元素**是否都通过了指定函数的测试。
-    
     Array.prototype.some() – 测试是否**至少有一个元素**通过由提供的函数实现的测试。
-    
     Array.prototype.forEach() - 对数组的每个元素执行一次提供的函数。
 
 ### 1).哪些 API 会改变原数组？
@@ -168,13 +157,13 @@ typeof undefined   // "undefined"
 
 ### 操作符 instanceof
 
-instanceof 判断对象类型，但数组可能被 `instanceof` 判断为 Object。
+instanceof 判断对象类型，但数组可能被`instanceof`判断为 Object。
 
 [instanceof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof) 运算符用于测试构造函数的`prototype`属性是否出现在对象的`原型链`中的任何位置 (简单地说，可以判断是否是某个对象的实例，举个例子： `奥迪 instanceof 汽车`) 
 
-### 反转字符串 
+### 反转字符串
 
-'number'.split('').reverse().join('') → 'rebmun'
+`'number'.split('').reverse().join('') → 'rebmun'`
 
 ### Object.prototype.toString.call()
 
@@ -199,7 +188,7 @@ Object.prototype.toString.call(true).slice(1,-1).split(' ')[1]  //"Boolean"
 
 ## 7. 相等与全等区别
 
-相等（==）操作符会执行 `类型转换`，具体流程如下:
+相等（==）操作符会执行 `类型转换` ，具体流程如下:
 
 1. 首先**判断两者类型**，如果相同，则判断`值`是否相等即可。
 2. 如果类型不同，先进行类型转换，再判断。

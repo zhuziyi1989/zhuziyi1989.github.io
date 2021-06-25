@@ -20,7 +20,7 @@ module.exports = {
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'My App Demo',
-            filename: "assets/index.html",
+            filename: "./assets/index.html",
             // template:"",
             hash:true,
             meta: {

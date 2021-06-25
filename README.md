@@ -44,15 +44,15 @@
 
 ### 学习资料
 
-- JS 基础类《JavaScript高级程序设计》（第3版）
+- 《JavaScript高级程序设计》（第3版）
 
-- 网络类《HTTP权威指南》
+- 《HTTP权威指南》
 
-- CSS 基础类《CSS揭秘》
+- 《CSS揭秘》
 
 - [ECMAScript 6 入门 (阮一峰)](http://es6.ruanyifeng.com/)
 
-- JS 基础书籍《You-Dont-Know-JS》 [Github在线阅读](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN)
+- 《You-Dont-Know-JS》 [Github在线阅读](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN)
 
   购买链接：[你不知道的JavaScript（上卷）](https://u.jd.com/mwU5Oo) 、  [你不知道的JavaScript（中卷）](https://u.jd.com/jHylwd)  、 [你不知道的JavaScript（下卷）](https://u.jd.com/iO9Z43)
 
@@ -60,13 +60,15 @@
 
 - [React 官方文档](https://zh-hans.reactjs.org/docs/)
 
-- [Redux 文档](http://cn.redux.js.org/)
+- [React API 速查](http://devhints.cn/react)
 
-- [React 组件间通讯 Taobao FED](https://fed.taobao.org/blog/2016/11/17/react-components-communication/)
+- [Redux 官方文档](http://cn.redux.js.org/)
+
+- [React 组件间通讯（Taobao FED）](https://fed.taobao.org/blog/2016/11/17/react-components-communication/)
 
 - [现代 JavaScript 教程](https://zh.javascript.info/)
 
-- [MDN](https://developer.mozilla.org/zh-CN/)
+- [MDN 业界标杆文档](https://developer.mozilla.org/zh-CN/)
 
-- [React API 速查](http://devhints.cn/react)
+- [前端进阶之道](https://yuchengkai.cn/)
 
