@@ -28,7 +28,7 @@
 ## 3. 布局
 
 - 纯 CSS 盒子水平垂直居中的实现方法 [Demo](https://zhuziyi1989.github.io/demo/box-center.html)
-- flex
+- Flex
 
 ### （1）.移动端布局方案
 
@@ -45,6 +45,7 @@
 
 - 因使用了标准盒模型，盒子的 border 必然导致盒子挤出去，那么如何实现边框？
   答：用阴影或者outline来画线更加巧妙。
+- [水平垂直居中方案与flexbox布局](https://www.cnblogs.com/coco1s/p/4444383.html)
 
 
 
@@ -55,3 +56,14 @@
 ## CSS3动画
 
 - 三个重要属性：`transition`、`transform`、`animation`
+
+## n.面试问题
+
+`position: relative;` 和 `transform: translate(1px, 1px);` 均是相对自己的位置在移动，有什么区别呢？
+
+> ##### 参考答案：
+>
+> 1. 从页面布局的角度看效果是一样的。
+> 2. 从动画角度来说使用transform时，可以让 GPU 参与运算，动画的 FPS 更高。position时，最小的动画变化的单位是1px，transform参与时，可以做到更小（动画效果更加平滑）position 是为页面布局而生的。transform 是为动画而生的。
+> 3. 表现效果相似，但 **translate 不会引起浏览器的重绘和重排**。
+

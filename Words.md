@@ -46,7 +46,7 @@
 10. filter  vi. 滤过；渗入；慢慢传开  n. 滤波器；[化工] **过滤器；筛选；**滤光器
 11. reduce  **vt. 减少；**降低；使处于；把…分解  vi. 减少；缩小；归纳为
 12. reducer  还原剂；减径管；**减速管道**
-13. Accumulator  n. 蓄电池；**[计] 累加器；**积聚者
+13. accumulator  n. 蓄电池；**[计] 累加器；**积聚者
 14. `Promise`对象的英语意思就是“<u>承诺</u>”，表示其他手段无法改变，它代表一个异步操作，有三种状态：`pending`（进行中）、`fulfilled`（已成功）和`rejected`（已失败）
 15. `status` 状态、`restart` 重启、`start` 启动
 16. dialog  n. 对话；**对话框**[前]
@@ -54,10 +54,17 @@
 18. pure adj. **纯的**；纯粹的；纯洁的；清白的；纯理论的
 19. branch [美: bræntʃ] n. **分支**；分公司；分部；树枝；支流；岔路；（血管）分枝
 20. grow [美: ɡroʊ] vi. 发展；生长；渐渐变得… vt. 使生长；种植；**扩展**
-21. shrink 美[ʃrɪŋk] v.**（使）缩小**，（使）收缩；退缩，畏缩，回避；（衣服、布料）缩水 n. 收缩；畏缩；
+21. shrink [美: ʃrɪŋk] v.**（使）缩小**，（使）收缩；退缩，畏缩，回避；（衣服、布料）缩水 n. 收缩；畏缩；
 22. This will push to the remote branch "origin/master" **which cannot be undone**. 这将推送到远程分支“origin/master”，且**这是无法撤消的**
-23. Certificate n. 证书；文凭，合格证书；电影放映许可证
+23. certificate n. 证书；文凭，合格证书；电影放映许可证
 24. valid adj. 有效的；有根据的；合法的；正当的
 25. trusted adj. 可信的，可靠的
 26. The connection to this site is **encrypted and authenticated** using TLS 1.3, X25519, and AES_128_GCM. **加密和身份验证**
 27. force [美: fɔːrs] vt. 促使，推动；强迫；强加 （ git 远程强制推送 --force）
+28. propagation [美:,prɑpə'geʃən] n. 传播；繁殖；增殖 stopPropagation => 阻止传播
+29. cancel [美: 'kænsl] vt. 取消；删去
+30. bubble [美: 'bʌbl] n. 气泡，泡沫，泡状物；透明圆形罩，圆形顶
+31. battery [美: 'bæt(ə)rɪ] n. [电] 电池，蓄电池  （Battery sensor：电池传感器）
+32. constructor  [美: kənˈstrʌktər] n. 构造器；构造方法；构造函数
+33. instance [美: 'ɪnstəns] n. 实例；情况；建议 vt. 举...为例  （Instanceof：n.实例；运算符）
+34. prototype [美: 'protə'taɪp] n. 原型；标准，模范

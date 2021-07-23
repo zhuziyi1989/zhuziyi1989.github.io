@@ -49,11 +49,9 @@
 - [通俗大白话来理解TCP协议的三次握手和四次分手 #14](https://github.com/jawil/blog/issues/14)
 - [掘金搜索TCP结果](https://juejin.im/search?query=tcp&type=all)
 
-## 2. XXX
+## 2. 从输入 URL 到页面加载显示完成的过程
 
-
-
-
+略...
 
 ## 3. 跨域资源共享(CORS) 机制
 
@@ -107,8 +105,7 @@ HTTP2中
 帧代表着最小的数据单位，每个帧会标识出该帧属于哪个流，流也就是多个帧组成的数据流。
 多路复用，就是在一个 TCP 连接中可以存在多条流。换句话说，也就是可以发送多个请求，对端可以通过帧中的标识知道属于哪个请求。通过这个技术，可以避免 HTTP 旧版本中的队头阻塞问题，极大的提高传输性能。[More...](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/14)
 
-
-## DNS 域名解析过程？
+## 6. DNS 域名解析过程？
 
 ### 正向代理和反向代理的区别？
 
@@ -128,6 +125,4 @@ HTTP2中
 JSON Web Token（缩写 JWT）是目前最流行的跨域认证解决方案
 
 > 阮一峰：[JSON Web Token 入门教程](http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
-
-## 从输入 URL 到页面加载显示完成的过程
 
