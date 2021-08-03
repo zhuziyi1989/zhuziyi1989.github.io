@@ -57,7 +57,7 @@
 21. shrink [美: ʃrɪŋk] v.**（使）缩小**，（使）收缩；退缩，畏缩，回避；（衣服、布料）缩水 n. 收缩；畏缩；
 22. This will push to the remote branch "origin/master" **which cannot be undone**. 这将推送到远程分支“origin/master”，且**这是无法撤消的**
 23. certificate n. 证书；文凭，合格证书；电影放映许可证
-24. valid adj. 有效的；有根据的；合法的；正当的
+24. valid [美: ˈvælɪd] adj. 有效的；有根据的；合法的；正当的 （invalid 无效的）
 25. trusted adj. 可信的，可靠的
 26. The connection to this site is **encrypted and authenticated** using TLS 1.3, X25519, and AES_128_GCM. **加密和身份验证**
 27. force [美: fɔːrs] vt. 促使，推动；强迫；强加 （ git 远程强制推送 --force）
@@ -66,5 +66,6 @@
 30. bubble [美: 'bʌbl] n. 气泡，泡沫，泡状物；透明圆形罩，圆形顶
 31. battery [美: 'bæt(ə)rɪ] n. [电] 电池，蓄电池  （Battery sensor：电池传感器）
 32. constructor  [美: kənˈstrʌktər] n. 构造器；构造方法；构造函数
-33. instance [美: 'ɪnstəns] n. 实例；情况；建议 vt. 举...为例  （Instanceof：n.实例；运算符）
+33. instance [美: 'ɪnstəns] n. 实例；情况；建议 vt. 举...为例  （instanceof：n.实例；运算符）
 34. prototype [美: 'protə'taɪp] n. 原型；标准，模范
+35. instantaneously  [美: ˌɪnstənˈteɪniəsli] adv. 即刻；突如其来地
