@@ -56,7 +56,7 @@
 20. grow [美: ɡroʊ] vi. 发展；生长；渐渐变得… vt. 使生长；种植；**扩展**
 21. shrink [美: ʃrɪŋk] v.**（使）缩小**，（使）收缩；退缩，畏缩，回避；（衣服、布料）缩水 n. 收缩；畏缩；
 22. This will push to the remote branch "origin/master" **which cannot be undone**. 这将推送到远程分支“origin/master”，且**这是无法撤消的**
-23. certificate n. 证书；文凭，合格证书；电影放映许可证
+23. certificate [美: sərˈtɪfɪkət] n. 证书；文凭，合格证书；电影放映许可证
 24. valid [美: ˈvælɪd] adj. 有效的；有根据的；合法的；正当的 （invalid 无效的）
 25. trusted adj. 可信的，可靠的
 26. The connection to this site is **encrypted and authenticated** using TLS 1.3, X25519, and AES_128_GCM. **加密和身份验证**
@@ -69,3 +69,4 @@
 33. instance [美: 'ɪnstəns] n. 实例；情况；建议 vt. 举...为例  （instanceof：n.实例；运算符）
 34. prototype [美: 'protə'taɪp] n. 原型；标准，模范
 35. instantaneously  [美: ˌɪnstənˈteɪniəsli] adv. 即刻；突如其来地
+36. attach [美: əˈtætʃ] vi. 附加；附属；伴随  （at·tach to 附属于）
