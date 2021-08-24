@@ -43,12 +43,16 @@
 
 ```javascript
 // 举个例子，说明 ES6 的一些新特性
-let es6 = (width = 50, color = 'red', url = 'https://jandou.com')=>{
+let es6 = (width = 50, color = 'red', url = 'https://jandou.com',obj)=>{
   let oValue = 0o10;
   console.log(oValue); // 8
 
   let bValue = 0b10; // 二进制使用 `0b` 或者 `0B`
   console.log(bValue); // 2
+
+  const { b:b_new } = obj
+
+  console.log(b_new); 
   
 	console.log(`
 		您所访问的网址是：${url}，
@@ -56,5 +60,7 @@ let es6 = (width = 50, color = 'red', url = 'https://jandou.com')=>{
 		元素的颜色为：${color}，
 	`)
 }
+
+es6(88,'blue','https://baidu.com',{a:1,b:2,c:3})
 ```
 

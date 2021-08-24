@@ -159,6 +159,8 @@ typeof undefined   // "undefined"
 
 ### 操作符 instanceof
 
+`object instanceof constructor`
+
 instanceof 判断对象类型，但数组可能被`instanceof`判断为 Object。
 
 [instanceof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof) 运算符用于测试构造函数的`prototype`属性是否出现在对象的`原型链`中的任何位置 (简单地说，可以判断是否是某个对象的实例，举个例子： `奥迪 instanceof 汽车`) 
