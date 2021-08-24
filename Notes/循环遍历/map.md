@@ -1,5 +1,3 @@
-
-
 # Map 的各种用法收集
 
 >  map()对数组的每个元素进行一定的操作（映射）后，会返回一个新的数组; 常用在处理服务器返回的大量数据。
@@ -9,15 +7,15 @@ const items = [{
     "name": "祝梓毅",
     "sex": "男",
     "age": 31,
-    "birthday": 1900,
+    "birthday": 1989,
     "weight": "60",
     "hobby": "足球",
   },
   {
-    "name": "卢敏",
+    "name": "王小丫",
     "sex": "女",
     "age": 26,
-    "birthday": 1900,
+    "birthday": 1995,
     "weight": "51",
     "hobby": "羽毛球",
   }
