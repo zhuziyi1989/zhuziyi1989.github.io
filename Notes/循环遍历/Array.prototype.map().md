@@ -1,4 +1,4 @@
-# Map 的各种用法收集
+# [Array.prototype.map()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 的常见使用场景
 
 >  map()对数组的每个元素进行一定的操作（映射）后，会返回一个新的数组; 常用在处理服务器返回的大量数据。
 
@@ -22,8 +22,8 @@ const items = [{
 ];
 
 /* 重新格式化对象数组中的对象 */
+let obj ={};
 const new1 = items.map(function(item, index, arr) {
-  let obj ={};
   obj[item.sex] = item.hobby
   obj[item.weight] = item.age
   return obj //注意这个返回值
@@ -41,14 +41,5 @@ let new3 = items.map((item) => {
 })
 console.log('+++++',new3)
 
-
-/* let array = [1, 2, 3, 2, 1, 2, 3, 4] */
-/* console.log([...new Set(array)]) */
-
-/* var arr = [0, 1, 2, 3, 4, 5];
-var arr1 = arr.map(item => {
-  return item * 2
-}); */
-/* console.log(arr, arr1) */
 
 ````
