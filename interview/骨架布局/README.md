@@ -1,20 +1,16 @@
 #骨架和布局
 
-## 1. html5有哪些新特性、移除了那些元素？
+## 1.  HTML 5 有哪些新特性？
 
-- `HTML5` 现在已经不是 `SGML` 的子集，主要是关于图像，位置，存储，多任务等功能的增加
-  - 绘画 `canvas`、`svg`
-  - 用于媒介回放的 `video` 和 `audio` 元素
-  - 本地离线存储 `localStorage` 长期存储数据，浏览器关闭后数据不丢失
-  - `sessionStorage` 的数据在浏览器关闭后自动删除
-  - 语意化更好的内容元素，比如` article`、`footer`、`header`、`nav`、`section`
-  - 表单控件，`calendar`、`date`、`time`、`email`、`url`、`search`
-  - 新的技术`webworker`, `websocket`, `Geolocation`
-- 支持`HTML5`新标签：
-  - `IE8/IE7/IE6`支持通过`document.createElement`方法产生的标签
-  - 可以利用这一特性让这些浏览器支`持HTML5`新标签
-  - 浏览器支持新标签后，还需要添加标签默认的样式
-- 当然也可以直接使用成熟的框架、比如`html5shim`
+`HTML5` 现在已经不是 `SGML` 的子集，主要是关于图像，位置，存储，多任务等功能的增加
+
+- 绘画 `canvas`、`svg`
+- 用于媒介回放的 `video` 和 `audio` 元素
+-  `localStorage` 长期存储数据，浏览器关闭后数据不丢失
+- `sessionStorage` 的数据在浏览器关闭后自动删除
+- 语意化更好的内容元素` article`、`footer`、`header`、`nav`、`section`
+- 表单控件`calendar`、`date`、`time`、`email`、`url`、`search`
+- 新的技术`webworker`, `websocket`, `Geolocation`
 
 ## 2. 定位（[MDN](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Positioning)）
 
@@ -47,17 +43,31 @@
   答：用阴影或者outline来画线更加巧妙。
 - [水平垂直居中方案与flexbox布局](https://www.cnblogs.com/coco1s/p/4444383.html)
 
-
-
 ## CSS选择器
 
 - 权重（！important → 行内 → id → class/属性/伪类 → 元素标签 → 其他）
+
+- 选择器 nth-child() [MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:nth-child)
+
+  ```css
+  /* 举例 */
+  nth-child(3n+5)/*匹配第5、第8、第11...*/
+  nth-child(5n-1)/*匹配第5-1=4、第10-1=9、…、第5的倍数减1*/
+  nth-child(3n±0)/*相当于(3n)*/
+  nth-child(±0n+3)/*相当于(3)*/
+  ```
+
+  
 
 ## CSS3动画
 
 - 三个重要属性：`transition`、`transform`、`animation`
 
-## n.面试问题
+
+
+## 收集性能问题
+
+### 1. 相对自身移动的比较
 
 `position: relative;` 和 `transform: translate(1px, 1px);` 均是相对自己的位置在移动，有什么区别呢？
 
